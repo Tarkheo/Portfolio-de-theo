@@ -1,0 +1,55 @@
+<!DOCTYPE html> <!-- Déclaration du type de document HTML5 -->
+<html lang="fr"> <!-- Balise racine du document HTML avec langue française -->
+<head> <!-- En-tête du document contenant les métadonnées -->
+    <meta charset="UTF-8"> <!-- Définit l'encodage des caractères en UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Configure la vue pour les appareils mobiles (responsive) -->
+    <title>TPS - Travaux Pratiques</title> <!-- Titre affiché dans l'onglet du navigateur -->
+    <link rel="stylesheet" href="css/tps.css"> <!-- Lien vers la feuille de style spécifique pour la page TPS -->
+</head> <!-- Fin de l'en-tête -->
+<body> <!-- Corps du document, contenu visible -->
+    <canvas id="matrixCanvas"></canvas> <!-- Canvas HTML5 pour l'effet Matrix en arrière-plan -->
+    <canvas id="particlesCanvas"></canvas> <!-- Canvas HTML5 pour l'effet de particules en arrière-plan -->
+    
+    <!-- Bouton retour en forme de fenêtre CMD --> <!-- Commentaire décrivant le bouton de retour stylisé -->
+    <a href="javascript:history.back()" class="btn-back-cmd"> <!-- Lien qui revient à la page précédente -->
+        <div class="cmd-window"> <!-- Conteneur principal de la fenêtre CMD -->
+            <div class="cmd-title-bar"> <!-- Barre de titre de la fenêtre CMD -->
+                <div class="cmd-title"> <!-- Section titre de la fenêtre -->
+                    <span class="cmd-icon">C:\</span> <!-- Icône montrant le chemin C:\ (style Windows) -->
+                    <span class="cmd-text">Retour</span> <!-- Texte "Retour" dans le titre -->
+                </div> <!-- Fin de la section titre -->
+                <div class="cmd-buttons"> <!-- Section des boutons de la fenêtre -->
+                    <span class="cmd-btn minimize">─</span> <!-- Bouton minimiser avec symbole moins -->
+                    <span class="cmd-btn maximize">▢</span> <!-- Bouton agrandir avec symbole carré -->
+                </div> <!-- Fin des boutons de fenêtre -->
+            </div> <!-- Fin de la barre de titre -->
+            <div class="cmd-content"> <!-- Contenu de la fenêtre CMD -->
+                <span class="cmd-prompt">C:\Users\></span> <!-- Prompt de commande Windows style -->
+                <span class="cmd-command">cd ..</span> <!-- Commande "cd .." pour remonter d'un dossier -->
+                <span class="cmd-cursor">_</span> <!-- Curseur clignotant style terminal -->
+            </div> <!-- Fin du contenu CMD -->
+        </div> <!-- Fin de la fenêtre CMD -->
+    </a> <!-- Fin du lien de retour -->
+    
+    <div class="container"> <!-- Conteneur principal de la page -->
+        <header> <!-- En-tête de la page -->
+            <h1>TPS - Travaux Pratiques</h1> <!-- Titre principal de niveau 1 -->
+            <p class="subtitle">Supports de cours et exercices</p> <!-- Sous-titre descriptif -->
+        </header> <!-- Fin de l'en-tête -->
+
+        <main class="tp-grid" id="tpGrid"> <!-- Section principale avec grille des TPs, identifié par "tpGrid" pour JavaScript -->
+            <!-- Les TPs seront générés automatiquement par JavaScript --> <!-- Commentaire expliquant que le contenu sera ajouté dynamiquement -->
+        </main> <!-- Fin de la section principale -->
+    </div> <!-- Fin du conteneur principal -->
+
+    <!-- Modal pour visualisation PDF --> <!-- Commentaire décrivant la fenêtre modale -->
+    <div id="pdfModal" class="modal"> <!-- Conteneur de la fenêtre modale pour afficher les PDFs, identifié par "pdfModal" -->
+        <div class="modal-content"> <!-- Contenu de la modale -->
+            <span class="close" onclick="closeModal()">&times;</span> <!-- Bouton de fermeture (X) qui appelle la fonction closeModal() au clic -->
+            <iframe id="pdfViewer" src="" width="100%" height="600px"></iframe> <!-- Iframe pour afficher le PDF, prend 100% de largeur et 600px de hauteur, source vide (sera remplie dynamiquement) -->
+        </div> <!-- Fin du contenu de la modale -->
+    </div> <!-- Fin de la fenêtre modale -->
+
+    <script src="js/tps.js"></script> <!-- Lien vers le fichier JavaScript qui gère l'affichage des TPs, les animations et la modale -->
+</body> <!-- Fin du corps du document -->
+</html> <!-- Fin du document HTML -->

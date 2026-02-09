@@ -1,0 +1,23 @@
+<!DOCTYPE html> <!-- Déclaration du type de document HTML5 -->
+<html lang="fr"> <!-- Balise racine du document HTML avec langue française -->
+<head> <!-- En-tête du document contenant les métadonnées -->
+  <meta charset="UTF-8" /> <!-- Définit l'encodage des caractères en UTF-8 -->
+  <title>Télécharger le CV</title> <!-- Titre affiché dans l'onglet du navigateur -->
+  <link rel="stylesheet" href="css/styleCV.css"> <!-- Lien vers la feuille de style spécifique pour la page CV -->
+</head> <!-- Fin de l'en-tête -->
+<body> <!-- Corps du document, contenu visible -->
+  <!-- Canvas pour l'effet Matrix (sera créé par le JS) --> <!-- Commentaire expliquant qu'un canvas sera ajouté dynamiquement par JavaScript pour l'effet Matrix -->
+  
+  <!-- Bouton retour style Matrix --> <!-- Commentaire décrivant le bouton de retour -->
+  <a href="javascript:history.back()" class="btn-matrix">← Retour</a> <!-- Lien qui revient à la page précédente en utilisant l'historique du navigateur, avec flèche et texte "Retour" -->
+
+  <div class="cv-container"> <!-- Conteneur principal pour le CV -->
+    <!-- H1 cliquable pour télécharger --> <!-- Commentaire expliquant que le titre est cliquable -->
+    <a href="images/cvtheo.zip" class="download-text" download="images/cvtheo.pdf">Télécharger</a> <!-- Lien de téléchargement vers le fichier ZIP du CV, avec nom de fichier suggéré "theocv.pdf" lors du téléchargement -->
+     <!-- H1 cliquable pour télécharger  <h1 class="download-text">Télécharger le CV</h1>--> <!-- Code commenté (désactivé) qui montrait une ancienne version avec balise H1 -->
+    <img src="images/cvtheo.jpg" alt="Mon CV" class="image"> <!-- Image affichant un aperçu du CV, avec texte alternatif "Mon CV" pour l'accessibilité -->
+  </div> <!-- Fin du conteneur du CV -->
+
+  <script src="js/script.js"></script> <!-- Lien vers le fichier JavaScript principal qui gère les animations et interactions -->
+</body> <!-- Fin du corps du document -->
+</html> <!-- Fin du document HTML -->

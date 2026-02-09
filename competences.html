@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certifications Informatiques</title>
+    <link rel="stylesheet" href="css/competences.css">
+</head>
+<body>
+    <!-- Canvas Matrix en arrière-plan -->
+    <canvas id="matrixCanvas"></canvas>
+    <canvas id="particlesCanvas"></canvas>
+    
+    <!-- ### BOUTON RETOUR EN FORME DE FENÊTRE CMD ### -->
+    <a href="javascript:history.back()" class="btn-back-cmd">
+        <div class="cmd-window">
+            <div class="cmd-title-bar">
+                <div class="cmd-title">
+                    <span class="cmd-icon">C:\</span>
+                    <span class="cmd-text">Retour</span>
+                </div>
+                <div class="cmd-buttons">
+                    <span class="cmd-btn minimize">─</span>
+                    <span class="cmd-btn maximize">□</span>
+                </div>
+            </div>
+            <div class="cmd-content">
+                <span class="cmd-prompt">C:\Users\></span>
+                <span class="cmd-command">cd ..</span>
+                <span class="cmd-cursor">_</span>
+            </div>
+        </div>
+    </a>
+    
+    <!-- ### CONTENEUR PRINCIPAL ### -->
+    <div class="container">
+        <header>
+            <h1>Certifications Informatiques</h1>
+            <p class="subtitle">Mes diplômes et certifications professionnelles</p>
+        </header>
+
+        <!-- ### GRILLE DES CERTIFICATIONS ### -->
+        <!-- Les certifications seront générées automatiquement par JavaScript -->
+        <main class="cert-grid" id="certGrid">
+            <!-- Génération automatique ici -->
+        </main>
+    </div>
+
+    <!-- ### MODAL POUR VISUALISER LES CERTIFICATIONS EN GRAND ### -->
+    <div id="certModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <img id="certImage" src="" alt="Certification">
+            <div id="certCaption"></div>
+        </div>
+    </div>
+
+    <!-- Lien vers le fichier JavaScript -->
+    <script src="js/competences.js"></script>
+
+</body>
+</html>

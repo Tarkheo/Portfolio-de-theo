@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<!-- # Déclaration du type de document HTML5 -->
+
+<html lang="fr">
+<!-- # Balise HTML principale avec langue française -->
+
+<head>
+    <!-- # En-tête du document (non visible à l'écran) -->
+    
+    <meta charset="UTF-8">
+    <!-- # Définit l'encodage des caractères en UTF-8 (pour les accents) -->
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- # Rend le site responsive (adapté aux mobiles) -->
+    
+    <title>Contacter Théo</title>
+    <!-- # Titre qui apparaît dans l'onglet du navigateur -->
+    
+    <link rel="stylesheet" href="css/stylecontact.css">
+    <!-- # Lien vers la feuille de style CSS externe -->
+</head>
+
+<body>
+    <!-- # Corps principal du document (tout ce qui est visible) -->
+    
+    <!-- Canvas pour l'animation de fond -->
+    <canvas id="phoneCanvas"></canvas>
+    <!-- # Élément canvas pour dessiner l'animation Matrix en arrière-plan -->
+    
+    <!-- Bouton retour en forme de clavier -->
+    <a href="javascript:history.back()" class="btn-back">
+    <!-- # Lien qui revient à la page précédente du navigateur -->
+        <div class="keyboard-key">
+        <!-- # Conteneur principal de la touche de clavier -->
+            <div class="key-top">
+            <!-- # Partie supérieure visible de la touche -->
+                <span class="arrow">←</span>
+                <!-- # Flèche de retour -->
+                <span class="key-label">Retour</span>
+                <!-- # Texte "Retour" sous la flèche -->
+            </div>
+            <div class="key-side"></div>
+            <!-- # Partie latérale de la touche (effet 3D) -->
+        </div>
+    </a>
+    
+    <div class="container">
+    <!-- # Conteneur principal du formulaire -->
+        
+        <!-- ### CONFIGURATION EMAIL - FormSubmit.co ### -->
+        <!-- # FormSubmit est un service gratuit qui envoie les formulaires par email -->
+        <!-- # REMPLACEZ 'VOTRE_EMAIL@example.com' par votre vraie adresse email -->
+        <form class="contact-form" action="https://formspree.io/f/mldqpwqp" method="POST">
+        <!-- # Formulaire qui envoie les données vers FormSubmit -->
+        <!-- # method="POST" = envoie les données de manière sécurisée -->
+        
+            <!-- ### CONFIGURATIONS FORMSUBIT (champs cachés) ### -->
+            
+            <input type="hidden" name="_subject" value="Nouveau message depuis votre site web">
+            <!-- # Définit l'objet de l'email que vous recevrez -->
+            
+            <input type="hidden" name="_captcha" value="false">
+            <!-- # Désactive le captcha (sinon les utilisateurs doivent prouver qu'ils ne sont pas des robots) -->
+            
+            <input type="hidden" name="_next" value="https://votre-site.com/merci.html">
+            <!-- # OPTIONNEL: Page vers laquelle rediriger après envoi du formulaire -->
+            <!-- # REMPLACEZ par l'URL de votre page de remerciement -->
+            <!-- # OU supprimez cette ligne pour rester sur la page FormSubmit -->
+            
+            <input type="hidden" name="_template" value="box">
+            <!-- # Style de l'email reçu (box = design moderne) -->
+            
+            <!-- ### FIN DES CONFIGURATIONS ### -->
+            
+            <h1>Contactez Théo</h1>
+            <!-- # Titre principal du formulaire -->
+            
+            <div class="form-group">
+            <!-- # Groupe de champ pour le nom -->
+                <label for="nom">Prénom et Nom *</label>
+                <!-- # Étiquette du champ (le "for" lie au champ avec id="nom") -->
+                <input type="text" id="nom" name="nom" required placeholder="Votre nom">
+                <!-- # Champ texte pour le nom -->
+                <!-- # required = champ obligatoire -->
+                <!-- # placeholder = texte d'exemple gris dans le champ -->
+                <!-- # name="nom" = le nom de la variable envoyée par email -->
+            </div>
+
+            <div class="form-group">
+            <!-- # Groupe de champ pour l'email -->
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required placeholder="exemple@email.com">
+                <!-- # type="email" = vérifie que c'est un email valide -->
+                <!-- # IMPORTANT: name="email" permet à FormSubmit de savoir qui envoie -->
+            </div>
+
+            <div class="form-group">
+            <!-- # Groupe de champ pour le téléphone -->
+                <label for="telephone">Téléphone (falcultatif)</label>
+                <input type="tel" id="telephone" name="telephone" placeholder="+33 6 12 34 56 78">
+                <!-- # type="tel" = optimisé pour les numéros de téléphone -->
+                <!-- # Pas de "required" = champ optionnel -->
+            </div>
+
+            <div class="form-group">
+            <!-- # Groupe de champ pour le sujet -->
+                <label for="sujet">Sujet *</label>
+                <select id="sujet" name="sujet" required>
+                <!-- # Menu déroulant pour choisir le sujet -->
+                    <option value="">-- Choisissez un sujet --</option>
+                    <!-- # Option par défaut vide -->
+                    <option value="information">Me conctatez sur mon adresse mail</option>
+                    <!-- # Première option de sujet -->
+                </select>
+            </div>
+
+            <div class="form-group">
+            <!-- # Groupe de champ pour le message -->
+                <label for="message">Message *</label>
+                <textarea id="message" name="message" rows="6" required placeholder="Votre message..."></textarea>
+                <!-- # Zone de texte multiligne pour le message -->
+                <!-- # rows="6" = hauteur de 6 lignes -->
+            </div>
+
+            <div class="form-group checkbox-group">
+            <!-- # Groupe pour la case à cocher newsletter -->
+                <input type="checkbox" id="newsletter" name="newsletter" value="oui">
+                <!-- # Case à cocher (optionnelle) -->
+                <!-- # value="oui" = si cochée, envoie "oui" dans l'email -->
+                <label for="newsletter">Je souhaite alerter Théo</label>
+                <!-- # Texte cliquable à côté de la case -->
+            </div>
+
+            <div class="form-group checkbox-group">
+            <!-- # Groupe pour la case à cocher conditions -->
+                <input type="checkbox" id="conditions" name="conditions" required value="accepte">
+                <!-- # Case à cocher OBLIGATOIRE (required) -->
+                <label for="conditions">J'accepte les conditions d'utilisation *</label>
+            </div>
+
+            <button type="submit" class="btn-submit">Envoyer</button>
+            <!-- # Bouton pour soumettre le formulaire -->
+            <!-- # type="submit" = envoie les données du formulaire -->
+            
+            <p class="form-note">* Champs obligatoires</p>
+            <!-- # Note explicative sur les champs obligatoires -->
+        </form>
+    </div>
+
+    <script src="js/script.js"></script>
+    <!-- # Lien vers le fichier JavaScript pour les animations -->
+</body>
+</html>
+
+<!-- 
+###############################################
+### INSTRUCTIONS POUR RECEVOIR LES EMAILS ###
+###############################################
+
+1. **REMPLACEZ** dans la ligne 52 :
+   action="https://formsubmit.co/VOTRE_EMAIL@example.com"
+   
+   Par votre vraie adresse email :
+   action="https://formsubmit.co/theo@monmail.com"
+   
+   ### EXEMPLE COMPLET ###
+   <form class="contact-form" action="https://formsubmit.co/theo.dupont@gmail.com" method="POST">
+
+2. **PREMIÈRE UTILISATION** :
+   - Testez le formulaire une première fois
+   - FormSubmit vous enverra un email de CONFIRMATION
+   - CLIQUEZ sur le lien dans cet email pour ACTIVER le service
+   - Après activation, tous les formulaires vous seront envoyés
+
+3. **OPTIONNEL - Page de remerciement** :
+   - Ligne 60 : Remplacez l'URL par votre page de merci
+   - OU supprimez cette ligne complètement
+
+4. **SÉCURITÉ** :
+   - FormSubmit masque votre email dans le code source
+   - Après la première activation, votre email ne sera plus visible
+   - Service 100% gratuit, sans limite d'envois
+
+5. **PERSONNALISATION** :
+   - Ligne 57 : Changez l'objet de l'email si vous voulez
+   - Vous recevrez un email avec tous les champs remplis par l'utilisateur
+
+###############################################
+-->

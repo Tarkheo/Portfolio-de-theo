@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lettre de Motivation</title>
+  <link rel="stylesheet" href="css/stylemotivation.css">
+  <!-- Bibliothèque jsPDF pour générer des PDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+  
+  <!-- Bouton retour style Matrix en haut à gauche -->
+  <a href="javascript:history.back()" class="btn-matrix">← Retour</a>
+
+  <!-- Conteneur principal de la lettre -->
+  <div class="letter-container">
+    <!-- Papier blanc de la lettre -->
+    <div class="letter-paper" id="letterContent">
+      
+      <!-- En-tête avec vos coordonnées -->
+      <div class="sender-info">
+        <p><strong>Théo Dautrevaux</strong></p>
+        <p>Ville de résidence : Roye</p>
+        <p>Email : todtvx@protonmail.com</p>
+      </div>
+
+      <!-- Coordonnées du destinataire -->
+      <div class="recipient-info">
+        <p><strong>Bonduelle</strong></p>
+        <p>À l'attention de M./Mme</p>
+        <p>Service Ressources Humaines</p>
+        <p>Bonduelle - Estrées-Mons</p>
+        <p>80200</p>
+      </div>
+
+      <!-- Lieu et date -->
+      <div class="date-location">
+        <p>Amiens, le <span id="current-date"></span></p>
+      </div>
+
+      <!-- Objet de la lettre -->
+      <div class="object">
+        <p><strong>Objet :</strong> Candidature au poste de Stagiaire Technicien système et réseaux</p>
+      </div>
+
+      <!-- Formule d'appel -->
+      <div class="greeting">
+        <p>Madame, Monsieur,</p>
+      </div>
+
+      <!-- Corps de la lettre -->
+      <div class="letter-body">
+        <p>
+          Actuellement à la recherche d'un stage, je me permets de vous adresser ma candidature 
+          pour le poste de technicien système et réseau au sein de votre entreprise Bonduelle entreprise.
+        </p>
+
+        <p>
+          Diplômé d'un Baccalauréat option Maths / Informatique et d'une expérience de 1mois dans le domaine 
+          de informatique, j'ai développé des compétences solides en développement, 
+          en réseau grâce à cisco. Mon parcours m'a permis d'acquérir une expertise 
+          particulière en système et résaeau, ce qui correspond parfaitement aux exigences 
+          du poste que vous proposez.
+        </p>
+
+        <p>
+          Au cours de mes précédentes expériences chez Chantelle Corbie, j'ai eu 
+          l'occasion de découvrir le monde du réseau avec GPAO.
+        </p>
+
+        <p>
+          Votre entreprise attire particulièrement mon attention pour elle pourrait m'apporter de réélles compétences en système et réseaux. Je suis convaincu que mes 
+          compétences et ma motivation contribueront au développement de vos projets et 
+          aux objectifs de votre structure.
+        </p>
+
+        <p>
+          Je reste à votre disposition pour un entretien afin de vous exposer plus en détail 
+          mes motivations et ma vision du poste. Dans cette attente, je vous prie d'agréer, 
+          Madame, Monsieur, l'expression de mes salutations distinguées.
+        </p>
+      </div>
+
+      <!-- Signature -->
+      <div class="signature">
+        <p>Théo Dautrevaux</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Section boutons -->
+  <div class="action-buttons">
+    <button onclick="visualiserPDF()" class="btn-action btn-visualiser">
+      👁️ Visualiser en PDF
+    </button>
+    <button onclick="telechargerPDF()" class="btn-action btn-telecharger">
+      📥 Télécharger en PDF
+    </button>
+    <button onclick="imprimerLettre()" class="btn-action btn-imprimer">
+      🖨️ Imprimer
+    </button>
+  </div>
+
+  <!-- Modale pour visualiser le PDF -->
+  <div id="pdfModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="fermerModal()">&times;</span>
+      <h2>Aperçu de la lettre</h2>
+      <iframe id="pdfViewer" class="pdf-viewer"></iframe>
+      <div class="modal-buttons">
+        <button onclick="telechargerPDF()" class="btn-modal btn-download">
+          📥 Télécharger ce PDF
+        </button>
+        <button onclick="fermerModal()" class="btn-modal btn-close">
+          Fermer
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script pour générer la date et les fonctions PDF -->
+  <script>
+    // Générer la date automatiquement
+    const dateElement = document.getElementById('current-date');
+    const aujourd_hui = new Date();
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    dateElement.textContent = aujourd_hui.toLocaleDateString('fr-FR', options);
+
+    // Fonction pour générer le PDF
+    async function genererPDF() {
+      const element = document.getElementById('letterContent');
+      
+      // Capturer l'élément en image
+      const canvas = await html2canvas(element, {
+        scale: 2,
+        useCORS: true,
+        backgroundColor: '#ffffff',
+        logging: false
+      });
+
+      const imgData = canvas.toDataURL('image/png');
+      
+      // Créer le PDF
+      const { jsPDF } = window.jspdf;
+      const pdf = new jsPDF({
+        orientation: 'portrait',
+        unit: 'mm',
+        format: 'a4'
+      });
+
+      const imgWidth = 210; // Largeur A4 en mm
+      const pageHeight = 297; // Hauteur A4 en mm
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      
+      pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+      
+      return pdf;
+    }
+
+    // Fonction pour visualiser le PDF
+    async function visualiserPDF() {
+      try {
+        const pdf = await genererPDF();
+        const pdfBlob = pdf.output('blob');
+        const pdfUrl = URL.createObjectURL(pdfBlob);
+        
+        // Afficher dans la modale
+        document.getElementById('pdfViewer').src = pdfUrl;
+        document.getElementById('pdfModal').style.display = 'flex';
+      } catch (error) {
+        console.error('Erreur lors de la génération du PDF:', error);
+        alert('Erreur lors de la génération du PDF. Veuillez réessayer.');
+      }
+    }
+
+    // Fonction pour télécharger le PDF
+    async function telechargerPDF() {
+      try {
+        const pdf = await genererPDF();
+        pdf.save('Lettre_Motivation_Theo_Dautrevaux.pdf');
+      } catch (error) {
+        console.error('Erreur lors du téléchargement:', error);
+        alert('Erreur lors du téléchargement. Veuillez réessayer.');
+      }
+    }
+
+    // Fonction pour imprimer
+    function imprimerLettre() {
+      window.print();
+    }
+
+    // Fonction pour fermer la modale
+    function fermerModal() {
+      const modal = document.getElementById('pdfModal');
+      modal.style.display = 'none';
+      // Nettoyer l'iframe
+      document.getElementById('pdfViewer').src = '';
+    }
+
+    // Fermer la modale en cliquant en dehors
+    window.onclick = function(event) {
+      const modal = document.getElementById('pdfModal');
+      if (event.target === modal) {
+        fermerModal();
+      }
+    }
+  </script>
+
+  <script src="js/script.js"></script>
+  
+</body>
+</html>

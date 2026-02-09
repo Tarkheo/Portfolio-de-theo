@@ -1,0 +1,118 @@
+<!DOCTYPE html> <!-- Déclaration du type de document HTML5 -->
+<html> <!-- Balise racine du document HTML -->
+<head> <!-- En-tête du document contenant les métadonnées -->
+<meta charset="utf-8"> <!-- Définit l'encodage des caractères en UTF-8 -->
+<title>Le Portfolio de Théo</title> <!-- Titre affiché dans l'onglet du navigateur -->
+
+<!-- CSS -->
+<link rel="stylesheet" href="css/style.css"> <!-- Lien vers la feuille de style principale -->
+<link rel="stylesheet" href="css/audio-player.css"> <!-- Lien vers la feuille de style du lecteur audio -->
+
+</head> <!-- Fin de l'en-tête -->
+
+<body> <!-- Corps du document, contenu visible -->
+
+<!--Contenu header-->
+<header> <!-- En-tête de la page -->
+    <nav> <!-- Barre de navigation -->
+      <ul> <!-- Liste non ordonnée pour les liens de navigation -->
+        <li><a href="cv2.html"><span class="nav-text">CV</span></a></li> <!-- Lien vers la page CV -->
+        <li><a href="motivation.html"><span class="nav-text">Lettre de motivation</span></a></li> <!-- Lien vers la lettre de motivation -->
+        <li class="dropdown">
+    <a href="#" class="dropbtn"><span class="nav-text">Projets ▾</span></a>
+    <div class="dropdown-content">
+        <a href="jeu.html">Tetris</a>
+        <a href="#">Serveur NAS</a>
+    </div>
+</li>
+        <li><a href="technologie.html"><span class="nav-text">Veille</span></a></li> <!-- Lien vers la veille technologique -->
+        <li><a href="contact.html"><span class="nav-text">Contact</span></a></li> <!-- Lien vers la page de contact -->
+        <li><a href="tp.html"><span class="nav-text">TPS</span></a></li> <!-- Lien vers la page TPS -->
+        <li><a href="competences.html"><span class="nav-text">Compétences</span></a></li> <!-- Lien vers la page des compétences -->
+        <li class="dropdown">
+    <a href="#" class="dropbtn"><span class="nav-text">Stages ▾</span></a>
+    <div class="dropdown-content">
+        <a href="stages.html">Stage(2024)</a>
+        <a href="stage1.html">1ère Année (2026)</a>
+        <a href="stage2.html">2ème Année (2027)</a>
+    </div>
+</li>
+      </ul> <!-- Fin de la liste de navigation -->
+    </nav> <!-- Fin de la barre de navigation -->
+</header> <!-- Fin de l'en-tête -->
+
+<!--Menu-->
+<div id="nav-container"></div> <!-- Conteneur pour un menu dynamique (probablement chargé via JavaScript) -->
+
+<!--Contenu Section-->
+<section class="texteaccueil"> <!-- Section principale de la page d'accueil -->
+	<u><h2>Présentation</h2></u> <!-- Titre de niveau 2 souligné -->
+    <p>Je m'appelle Théo, passionné dans le domaine de l'informatique, voici mon site dans toute sa splendeur</p> <!-- Paragraphe de présentation -->
+	
+    <u><h3>Sommaire</h3></u> <!-- Titre de niveau 3 souligné -->
+    <p>On y retrouve les fichiers essentiels à l'emploi</p> <!-- Description du contenu -->
+    <p>CV, Lettre de motivation et plus encore</p> <!-- Liste des éléments disponibles -->
+</section> <!-- Fin de la section d'accueil -->
+
+<!-- Image centrée automatiquement -->
+<div class="avatar-container-centered"> <!-- Conteneur pour centrer l'image -->
+    <img src="images/moicoffreend.png" alt="Avatar" class="avatar"> <!-- Image avatar avec texte alternatif -->
+</div> <!-- Fin du conteneur d'image -->
+
+<!-- Lecteur Audio Multi-Musiques -->
+<div class="audio-player" id="audioPlayer"> <!-- Conteneur principal du lecteur audio -->
+    <!-- Bouton Précédent -->
+    <button class="audio-btn nav-btn" id="prevBtn" title="Musique précédente"> <!-- Bouton pour passer à la musique précédente -->
+        <span>◀</span> <!-- Icône flèche gauche -->
+    </button> <!-- Fin du bouton précédent -->
+    
+    <!-- Contrôles principaux -->
+    <div class="audio-controls"> <!-- Conteneur des contrôles de lecture -->
+        <button class="audio-btn" id="playPauseBtn" title="Lecture/Pause"> <!-- Bouton lecture/pause -->
+            <span id="playIcon">▶</span> <!-- Icône play -->
+        </button> <!-- Fin du bouton lecture/pause -->
+    </div> <!-- Fin des contrôles principaux -->
+    
+    <!-- Bouton Suivant -->
+    <button class="audio-btn nav-btn" id="nextBtn" title="Musique suivante"> <!-- Bouton pour passer à la musique suivante -->
+        <span>▶</span> <!-- Icône flèche droite -->
+    </button> <!-- Fin du bouton suivant -->
+    
+    <!-- Contrôle du volume -->
+    <div class="volume-control"> <!-- Conteneur du contrôle de volume -->
+        <span class="volume-icon" id="volumeIcon">🔊</span> <!-- Icône de volume -->
+        <input type="range" min="0" max="100" value="70" class="volume-slider" id="volumeSlider"> <!-- Curseur de contrôle du volume (0-100, valeur par défaut 70) -->
+    </div> <!-- Fin du contrôle de volume -->
+    
+    <!-- Informations de la piste -->
+    <div class="audio-info-container"> <!-- Conteneur des informations sur la piste en cours -->
+        <span class="audio-info" id="trackInfo">C418 - Sweden</span> <!-- Nom de la piste actuelle -->
+        <span class="track-number" id="trackNumber">1/10</span> <!-- Numéro de piste (position/total) -->
+    </div> <!-- Fin des informations de piste -->
+    
+    <!-- Bouton minimiser -->
+    <button class="minimize-btn" id="minimizeBtn" title="Réduire">−</button> <!-- Bouton pour minimiser le lecteur -->
+</div> <!-- Fin du lecteur audio -->
+
+<!-- Audio caché -->
+<audio id="backgroundMusic" loop preload="metadata"> <!-- Élément audio HTML5, en boucle, précharge les métadonnées -->
+    <source src="" type="audio/mpeg"> <!-- Source du fichier audio (MP3), le src sera rempli dynamiquement -->
+</audio> <!-- Fin de l'élément audio -->
+
+<!--Fin de page -->
+<footer class="footer">2025 Dautrevaux. Droits réservés et exclusifs</footer> <!-- Pied de page avec copyright -->
+
+<!-- JavaScript -->
+<script src="js/load-nav.js"></script> <!-- Script pour charger la navigation dynamique -->
+<script src="js/script.js"></script> <!-- Script principal du site -->
+<script src="js/playlist.js"></script> <!-- Script gérant la playlist musicale -->
+<script src="js/audio-player.js"></script> <!-- Script contrôlant le lecteur audio -->
+
+</body> <!-- Fin du corps du document -->
+</html> <!-- Fin du document HTML -->
+
+<!--Résumé :
+
+Le <span class="nav-text"> dans le HTML entoure chaque texte de lien
+La classe .nav-text dans le CSS définit le style et les animations
+Ça permet de cibler précisément le texte pour des effets visuels sans affecter tout le <lien--></lien-->
