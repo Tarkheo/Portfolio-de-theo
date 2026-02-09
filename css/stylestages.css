@@ -1,0 +1,238 @@
+/* Style général du body */
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #000;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+  color: #fff;
+}
+
+/* Canvas Matrix en arrière-plan */
+#matrixCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Bouton retour style Matrix */
+.btn-matrix {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+  background: rgba(0, 255, 0, 0.1);
+  border: 2px solid rgb(162, 0, 255);
+  color: rgb(255, 255, 255);
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  font-family: 'Courier New', monospace;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-matrix:hover {
+  background: rgba(132, 0, 255, 0.3);
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(63, 20, 133, 0.6);
+}
+
+.btn-matrix:active {
+  transform: scale(0.98);
+}
+
+/* Conteneur principal */
+.stage-container {
+  position: relative;
+  z-index: 10;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 20px 50px;
+}
+
+/* Titre de la page */
+.page-title {
+  color: rgb(255, 255, 255);
+  font-size: 42px;
+  font-weight: 700;
+  text-align: center;
+  text-shadow: 0 0 20px rgba(162, 0, 255, 0.8);
+  margin-bottom: 60px;
+  font-family: 'Courier New', monospace;
+}
+
+/* Liste des stages */
+.stages-list {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* Carte de stage */
+.stage-card {
+  background: rgba(0, 0, 0, 0.8);
+  border: 2px solid rgba(162, 0, 255, 0.5);
+  border-radius: 15px;
+  padding: 30px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(119, 0, 255, 0.2);
+}
+
+.stage-card:hover {
+  transform: translateY(-5px);
+  border-color: rgb(212, 0, 255);
+  box-shadow: 0 8px 30px rgba(140, 0, 255, 0.4);
+}
+
+/* En-tête du stage */
+.stage-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.stage-title {
+  color: rgb(212, 0, 255);
+  font-size: 28px;
+  font-weight: 600;
+  margin: 0;
+  font-family: 'Courier New', monospace;
+}
+
+.stage-date {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 16px;
+  font-style: italic;
+  white-space: nowrap;
+}
+
+/* Entreprise */
+.stage-company {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.company-name {
+  color: rgb(255, 255, 255);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.company-location {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 16px;
+}
+
+/* Description du stage */
+.stage-description {
+  margin-bottom: 20px;
+}
+
+.stage-description p {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+/* Liste des tâches */
+.stage-tasks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.stage-tasks li {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 15px;
+  line-height: 1.8;
+  padding-left: 25px;
+  position: relative;
+}
+
+.stage-tasks li::before {
+  content: "▹";
+  position: absolute;
+  left: 0;
+  color: rgb(162, 0, 255);
+  font-size: 20px;
+}
+
+/* Compétences */
+.stage-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.skill-tag {
+  background: rgba(162, 0, 255, 0.2);
+  border: 1px solid rgb(162, 0, 255);
+  color: rgb(255, 255, 255);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.skill-tag:hover {
+  background: rgba(162, 0, 255, 0.4);
+  transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .stage-container {
+    padding: 80px 15px 30px;
+  }
+
+  .page-title {
+    font-size: 32px;
+    margin-bottom: 40px;
+  }
+
+  .stage-card {
+    padding: 20px;
+  }
+
+  .stage-title {
+    font-size: 22px;
+  }
+
+  .stage-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .stage-date {
+    font-size: 14px;
+  }
+
+  .company-name {
+    font-size: 16px;
+  }
+
+  .btn-matrix {
+    padding: 10px 20px;
+    font-size: 0.9em;
+  }
+}

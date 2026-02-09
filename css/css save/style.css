@@ -1,0 +1,541 @@
+/* ============================================
+   MENU DE NAVIGATION FIXE EN HAUT
+   ============================================ */
+
+/* Import de la police Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+/* ### CONTENEUR PRINCIPAL DU MENU ### */
+nav {
+  display: flex; /* Permet d'aligner les éléments horizontalement */
+  justify-content: center; /* Centre le contenu du menu */
+  background: rgba(120, 10, 209, 0.95);                                                                           /* ---------------Fond violet avec transparence--------------------- */
+  box-shadow: 0 4px 10px rgba(168, 167, 167, 0.37); /* Ombre sous le menu pour effet de profondeur */
+  font-family: 'Poppins', sans-serif; /* Police moderne */
+  position: fixed; /* Menu reste fixé en haut lors du scroll */
+  z-index: 1000; /* Place le menu au-dessus de tous les autres éléments */
+  top: 10px; /* Espacement de 10px depuis le haut de la page */
+  left: 50%; /* Point de départ à 50% de la largeur */
+  transform: translateX(-50%); /* Centre parfaitement le menu horizontalement */
+  border-radius: 15px; /* Coins arrondis */
+  padding: 0 40px; /* ### RALLONGÉ : Espacement intérieur gauche/droite augmenté ### */
+  width: 85%; /* ### RALLONGÉ : Largeur augmentée à 85% de l'écran ### */
+  max-width: 1400px; /* ### RALLONGÉ : Largeur maximale augmentée ### */
+}
+
+/* ### LISTE DES LIENS DU MENU ### */
+header nav ul {
+    list-style: none; /* Retire les puces de liste */
+    margin: 0; /* Supprime les marges par défaut */
+    padding: 0; /* Supprime le padding par défaut */
+    display: flex; /* Affiche les éléments en ligne */
+    gap: 2rem; /* ### Espacement de 2rem entre chaque lien ### */
+    justify-content: center; /* Centre tous les liens */
+    align-items: center; /* Aligne verticalement au centre */
+}
+
+/* ### CONTENEUR DE LA NAVIGATION ### */
+header nav {
+    display: flex; /* Utilise Flexbox */
+    justify-content: center; /* Centre le contenu */
+    align-items: center; /* Aligne verticalement */
+}
+
+/* ### ÉLÉMENTS INDIVIDUELS DU MENU ### */
+header nav ul li {
+    margin: 0; /* Pas de marge supplémentaire */
+}
+
+/* ### EFFET HOVER CRÈME SUR LES LIENS ### */
+header nav ul li a:hover {
+    background-color: rgb(255, 253, 208); /* ### Couleur crème au survol ### */
+    color: #333; /* ### Texte sombre pour le contraste ### */
+}
+
+/* ### STYLE DES LIENS ### */
+nav ul li {
+  position: relative; /* Permet le positionnement des sous-menus */
+  margin: 0 5px; /* Petite marge entre les éléments */
+}
+
+nav ul li a {
+  display: block; /* Le lien occupe tout l'espace disponible */
+  padding: 12px 20px; /* Espacement intérieur autour du texte */
+  color: rgb(255, 253, 208); /* Texte en blanc */                                          /*-----------------------------Couleur de la police d'écriture du menu --------------------------------------*/
+  text-decoration: none; /* Pas de soulignement */
+  white-space: nowrap; /* Le texte ne passe pas à la ligne */
+  border-radius: 5px; /* Coins légèrement arrondis */
+  transition: all 0.3s ease; /* Animation douce de 0.3 secondes */
+  font-weight: 500; /* Texte semi-gras */
+}
+
+/* ### EFFET HOVER ALTERNATIF (pour les sous-menus) ### */
+nav ul li a:hover {
+  background-color: #0d90c4; /* Fond bleu au survol */
+  transform: scale(1.05); /* Agrandissement léger de 5% */
+}
+
+/* ============================================
+   SOUS-MENUS DÉROULANTS
+   ============================================ */
+
+nav ul li ul {
+  display: none; /* Caché par défaut */
+  position: absolute; /* Positionné par rapport au parent */
+  top: 100%; /* S'affiche juste en dessous du menu parent */
+  left: 0; /* Aligné à gauche */
+  background-color: #0b74ca; /* Fond bleu pour le sous-menu */
+  padding: 5px 0; /* Petit espacement vertical */
+  margin: 0; /* Pas de marge */
+  min-width: 200px; /* Largeur minimale */
+  border-radius: 5px; /* Coins arrondis */
+  box-shadow: 0 4px 8px rgb(255, 255, 255); /* Ombre blanche */
+  opacity: 0; /* Invisible au départ */
+  visibility: hidden; /* Non visible */
+  transform: translateY(-10px); /* Décalé légèrement vers le haut */
+  transition: all 0.3s ease; /* Animation douce */
+}
+
+/* ### AFFICHAGE DU SOUS-MENU AU SURVOL ### */
+nav ul li:hover > ul {
+  display: block; /* Affiche le sous-menu */
+  opacity: 1; /* Devient visible */
+  visibility: visible; /* Devient visible */
+  transform: translateY(0); /* Revient à sa position normale */
+}
+
+/* ### LIENS DANS LES SOUS-MENUS ### */
+nav ul li ul li a {
+  padding: 10px 20px; /* Espacement intérieur */
+  color: #fff; /* Texte blanc */
+}
+
+nav ul li ul li a:hover {
+  background-color: #666; /* Fond gris au survol */
+}
+
+/* ============================================
+   CONFIGURATION DE BASE DU BODY
+   ============================================ */
+
+body {
+  margin: 0; /* Pas de marge autour de la page */
+  font-family: 'Poppins', sans-serif; /* Police par défaut */
+  overflow-x: hidden; /* Empêche le scroll horizontal */
+  padding-top: 80px; /* Espace pour le menu fixe */
+}
+
+/* ============================================
+   AUTRES ÉLÉMENTS DE LA PAGE
+   ============================================ */
+
+/* ### Arrière-plan noir ### */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(0, 0, 0);
+    z-index: -1; /* Derrière tout le contenu */
+    pointer-events: none; /* N'interfère pas avec les clics */
+}
+
+/* ### Texte de l'accueil ### */
+.texteaccueil {
+  color: #ffffff;                                    /*------------------------------------------------------Couleur de la police principale------------------------------------------------------------*/
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+}
+
+/* ### Footer en bas de page ### */
+.footer {
+  color: #ffffff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: transparent;
+  padding: 30px 40px;
+  font-size: 12px;
+}
+/*--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ----------------------------------------------------------------------------------------ANIMATION AVATAR-------------------------------------------------------------------------------------------------------- */
+
+/* Animation sautillement léger */
+@keyframes légerBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px); /* Monte de 8px */
+  }
+}
+
+.avatar {
+  border-radius: 50%;
+  width: 300px;  /* Largeur de l'image */
+  height: auto;  /* Hauteur automatique pour conserver les proportions */
+  margin-left: 800px;
+
+  /* Animation sautillement */
+  animation: légerBounce 2.5s ease-in-out infinite;
+  transition: transform 0.3s ease;
+  cursor: default; /* Pas interactif */
+}
+
+/* Optionnel : agrandir légèrement au survol */
+.avatar:hover {
+  transform: scale(1.05);
+}
+
+.avatar-container {
+  position: relative;
+  display: inline-block;
+  margin-left: 800px; /* même marge que l’avatar */
+}
+
+.avatar {
+  border-radius: 50%;
+  width: 300px;
+  height: auto;
+  animation: légerBounce 2.5s ease-in-out infinite;
+  transition: transform 0.3s ease;
+  cursor: default;
+}
+
+/* Animation de saut léger */
+@keyframes légerBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Petits blocs Tetris */
+.tetris {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: #2575fc;
+  border-radius: 3px;
+  animation: colorChange 5s linear infinite;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+
+/* Position des blocs autour (haut, droite, bas, gauche et coins) */
+.t1 { top: -10px; left: 50%; transform: translateX(-50%); }
+.t2 { top: 50%; right: -10px; transform: translateY(-50%); }
+.t3 { bottom: -10px; left: 50%; transform: translateX(-50%); }
+.t4 { top: 50%; left: -10px; transform: translateY(-50%); }
+.t5 { top: -10px; left: 20%; }
+.t6 { top: -10px; left: 80%; }
+.t7 { bottom: -10px; left: 20%; }
+.t8 { bottom: -10px; left: 80%; }
+
+/* Animation couleur en boucle */
+@keyframes colorChange {
+  0%, 100% { background-color: #2575fc; box-shadow: 0 0 5px #2575fc; }
+  25% { background-color: #ee0979; box-shadow: 0 0 10px #ee0979; }
+  50% { background-color: #38ef7d; box-shadow: 0 0 10px #38ef7d; }
+  75% { background-color: #f7971e; box-shadow: 0 0 10px #f7971e; }
+}
+
+
+
+
+
+
+/*-----------------------------------------------------------------------------------------------------------LECTEUR AUDIO MUSIQUES ------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+/* ===== LECTEUR AUDIO MULTI-MUSIQUES - THÈME ENDERMAN ===== */
+
+.audio-player {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(138, 43, 226, 0.9);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 15px 20px;
+    box-shadow: 0 8px 32px rgba(138, 43, 226, 0.4);
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 400px;
+    transition: all 0.3s ease;
+}
+
+.audio-player.collapsed {
+    min-width: auto;
+}
+
+/* Boutons de navigation (Précédent/Suivant) */
+.nav-btn {
+    background: rgba(255, 255, 255, 0.15) !important;
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 16px !important;
+}
+
+.nav-btn:hover {
+    background: rgba(255, 255, 255, 0.25) !important;
+}
+
+.audio-controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.audio-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    font-size: 18px;
+}
+
+.audio-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.audio-btn:active {
+    transform: scale(0.95);
+}
+
+.volume-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    min-width: 100px;
+}
+
+.volume-icon {
+    color: white;
+    font-size: 18px;
+    min-width: 20px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.volume-icon:hover {
+    transform: scale(1.2);
+}
+
+.volume-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 5px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.3);
+    outline: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.volume-slider:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    transition: all 0.2s ease;
+}
+
+.volume-slider::-webkit-slider-thumb:hover {
+    width: 18px;
+    height: 18px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+}
+
+.volume-slider::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    transition: all 0.2s ease;
+}
+
+.volume-slider::-moz-range-thumb:hover {
+    width: 18px;
+    height: 18px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+}
+
+/* Container pour les informations de piste */
+.audio-info-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 120px;
+}
+
+.audio-info {
+    color: white;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: 'Poppins', sans-serif;
+}
+
+.track-number {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 10px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.minimize-btn {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 0;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.minimize-btn:hover {
+    opacity: 1;
+    transform: rotate(180deg);
+}
+
+/* Animation d'apparition du lecteur */
+@keyframes slideIn {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.audio-player {
+    animation: slideIn 0.5s ease-out;
+}
+
+/* Animation du titre qui défile si trop long */
+@keyframes scrollText {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.audio-info.scrolling {
+    animation: scrollText 10s linear infinite;
+}
+
+/* Responsive - Mobile */
+@media (max-width: 768px) {
+    .audio-player {
+        bottom: 10px;
+        right: 10px;
+        min-width: 320px;
+        padding: 12px 15px;
+        gap: 8px;
+    }
+    
+    .audio-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 16px;
+    }
+    
+    .nav-btn {
+        width: 28px !important;
+        height: 28px !important;
+        font-size: 14px !important;
+    }
+    
+    .audio-info {
+        font-size: 11px;
+    }
+    
+    .track-number {
+        font-size: 9px;
+    }
+    
+    .volume-control {
+        min-width: 80px;
+    }
+}
+
+@media (max-width: 480px) {
+    .audio-player {
+        min-width: 280px;
+        padding: 10px 12px;
+    }
+    
+    .audio-info-container {
+        min-width: 90px;
+    }
+}

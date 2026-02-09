@@ -1,0 +1,429 @@
+/* Réinitialisation des marges et paddings par défaut */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Style général du body */
+body {
+  font-family: 'Times New Roman', Times, serif;
+  background: #000;
+  min-height: 100vh;
+  padding: 40px 20px;
+  line-height: 1.6;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Canvas Matrix */
+#matrixCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Bouton retour style Matrix */
+.btn-matrix {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  padding: 12px 24px;
+  background: rgba(138, 43, 226, 0.1);
+  color: #a855f7;
+  text-decoration: none;
+  border-radius: 25px;
+  border: 2px solid #a855f7;
+  font-weight: bold;
+  font-size: 1em;
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+  transition: all 0.3s ease;
+  z-index: 1000;
+  font-family: 'Courier New', monospace;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-matrix:hover {
+  background: rgba(138, 43, 226, 0.3);
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(168, 85, 247, 0.6);
+}
+
+.btn-matrix:active {
+  transform: scale(0.98);
+}
+
+/* Conteneur principal de la lettre */
+.letter-container {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 20px;
+  position: relative;
+  z-index: 10;
+}
+
+/* Papier blanc de la lettre */
+.letter-paper {
+  background: white;
+  padding: 60px 80px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  position: relative;
+  border: 2px solid rgba(0, 255, 0, 0.2);
+}
+
+/* Informations de l'expéditeur */
+.sender-info {
+  margin-bottom: 40px;
+}
+
+.sender-info p {
+  margin: 2px 0;
+  font-size: 14px;
+}
+
+/* Informations du destinataire */
+.recipient-info {
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.recipient-info p {
+  margin: 2px 0;
+  font-size: 14px;
+}
+
+/* Date et lieu */
+.date-location {
+  text-align: right;
+  margin-bottom: 30px;
+  font-style: italic;
+  font-size: 14px;
+}
+
+/* Objet de la lettre */
+.object {
+  margin-bottom: 25px;
+  font-size: 14px;
+}
+
+.object strong {
+  text-decoration: underline;
+}
+
+/* Formule d'appel */
+.greeting {
+  margin-bottom: 20px;
+  font-size: 15px;
+}
+
+/* Corps de la lettre */
+.letter-body {
+  text-align: justify;
+  margin-bottom: 30px;
+}
+
+.letter-body p {
+  margin-bottom: 15px;
+  font-size: 14px;
+  text-indent: 30px;
+}
+
+/* Section signature */
+.signature {
+  text-align: right;
+  margin-top: 40px;
+  margin-bottom: 30px;
+  font-size: 14px;
+}
+
+.signature p {
+  font-weight: bold;
+}
+
+/* ============================================
+   BOUTONS D'ACTION
+   ============================================ */
+
+.action-buttons {
+  text-align: center;
+  margin: 40px auto;
+  padding: 30px 20px;
+  max-width: 850px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 10;
+}
+
+.btn-action {
+  padding: 14px 30px;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 180px;
+  justify-content: center;
+}
+
+/* Bouton Visualiser */
+.btn-visualiser {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+}
+
+.btn-visualiser:hover {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
+}
+
+/* Bouton Télécharger */
+.btn-telecharger {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+}
+
+.btn-telecharger:hover {
+  background: linear-gradient(135deg, #059669, #047857);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.6);
+}
+
+/* Bouton Imprimer */
+.btn-imprimer {
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  color: white;
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+}
+
+.btn-imprimer:hover {
+  background: linear-gradient(135deg, #7c3aed, #6d28d9);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.6);
+}
+
+.btn-action:active {
+  transform: translateY(0);
+}
+
+/* ============================================
+   MODALE PDF
+   ============================================ */
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background: linear-gradient(135deg, rgba(20, 20, 30, 0.95), rgba(30, 30, 50, 0.95));
+  padding: 30px;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 900px;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 50px rgba(138, 43, 226, 0.5);
+  border: 2px solid rgba(168, 85, 247, 0.3);
+}
+
+.modal-content h2 {
+  color: #a855f7;
+  text-align: center;
+  margin-bottom: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 24px;
+}
+
+.close-modal {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  color: #a855f7;
+  font-size: 35px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.close-modal:hover {
+  color: #c084fc;
+  transform: scale(1.2) rotate(90deg);
+}
+
+.pdf-viewer {
+  width: 100%;
+  flex: 1;
+  border: 2px solid rgba(168, 85, 247, 0.3);
+  border-radius: 10px;
+  background: white;
+  margin-bottom: 20px;
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.btn-modal {
+  padding: 12px 30px;
+  border: none;
+  border-radius: 25px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.btn-download {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+}
+
+.btn-download:hover {
+  background: linear-gradient(135deg, #059669, #047857);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.6);
+}
+
+.btn-close {
+  background: linear-gradient(135deg, #6b7280, #4b5563);
+  color: white;
+  box-shadow: 0 4px 15px rgba(107, 114, 128, 0.4);
+}
+
+.btn-close:hover {
+  background: linear-gradient(135deg, #4b5563, #374151);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(107, 114, 128, 0.6);
+}
+
+/* ============================================
+   IMPRESSION
+   ============================================ */
+
+@media print {
+  body {
+    background: white;
+    padding: 0;
+  }
+
+  .btn-matrix,
+  .action-buttons,
+  .modal {
+    display: none !important;
+  }
+
+  .letter-paper {
+    box-shadow: none;
+    padding: 40px;
+    border-radius: 0;
+    border: none;
+  }
+
+  .letter-container {
+    max-width: 100%;
+    padding: 0;
+  }
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+  .letter-paper {
+    padding: 30px 25px;
+  }
+
+  .letter-body p,
+  .sender-info p,
+  .recipient-info p,
+  .date-location,
+  .object,
+  .greeting,
+  .signature {
+    font-size: 13px;
+  }
+
+  .btn-matrix {
+    font-size: 12px;
+    padding: 8px 16px;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .btn-action {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .modal-content {
+    width: 95%;
+    height: 95vh;
+    padding: 20px;
+  }
+
+  .modal-content h2 {
+    font-size: 20px;
+  }
+
+  .modal-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .btn-modal {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .letter-paper {
+    padding: 20px 15px;
+  }
+
+  .btn-action {
+    font-size: 14px;
+    padding: 12px 20px;
+    min-width: 150px;
+  }
+
+  .close-modal {
+    right: 10px;
+    top: 10px;
+    font-size: 28px;
+  }
+}

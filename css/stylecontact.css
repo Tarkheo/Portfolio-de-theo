@@ -1,0 +1,536 @@
+/* ### RESET CSS GLOBAL ### */
+* {
+    /* # Applique ces styles à TOUS les éléments HTML */
+    margin: 0;
+    /* # Supprime toutes les marges par défaut */
+    padding: 0;
+    /* # Supprime tous les espacements internes par défaut */
+    box-sizing: border-box;
+    /* # Inclut les bordures et padding dans la largeur totale */
+}
+
+/* ### STYLE DU BODY (FOND DE PAGE) ### */
+body {
+    /* # Style de tout le corps de la page */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* # Police d'écriture principale */
+    background: linear-gradient(135deg, #0a0015 0%, #1a0033 50%, #0f001f 100%);
+    /* # Dégradé de fond violet foncé en diagonale */
+    min-height: 100vh;
+    /* # Hauteur minimale = 100% de la hauteur de l'écran */
+    display: flex;
+    /* # Active le mode flexbox pour centrer le contenu */
+    justify-content: center;
+    /* # Centre horizontalement */
+    align-items: center;
+    /* # Centre verticalement */
+    padding: 20px;
+    /* # Espacement de 20px tout autour */
+    position: relative;
+    /* # Permet de positionner des éléments enfants en absolu */
+    overflow-x: hidden;
+    /* # Cache le défilement horizontal */
+}
+
+/* ### CANVAS ANIMATION DE FOND ### */
+#phoneCanvas {
+    /* # Style du canvas pour l'animation Matrix */
+    position: fixed;
+    /* # Position fixe, ne bouge pas au scroll */
+    top: 0;
+    /* # Collé en haut */
+    left: 0;
+    /* # Collé à gauche */
+    width: 100%;
+    /* # Largeur = 100% de l'écran */
+    height: 100%;
+    /* # Hauteur = 100% de l'écran */
+    z-index: 0;
+    /* # Placé derrière tout le reste */
+    pointer-events: none;
+    /* # Ne bloque pas les clics (on peut cliquer à travers) */
+}
+
+/* ### BOUTON RETOUR (CONTENEUR) ### */
+.btn-back {
+    /* # Style du lien bouton retour */
+    position: fixed;
+    /* # Position fixe, reste au même endroit au scroll */
+    top: 30px;
+    /* # 30px depuis le haut */
+    left: 30px;
+    /* # 30px depuis la gauche */
+    z-index: 1000;
+    /* # Au-dessus de tout (grand nombre = devant) */
+    text-decoration: none;
+    /* # Supprime le soulignement du lien */
+    transition: transform 0.3s ease;
+    /* # Animation fluide de 0.3 secondes sur la transformation */
+}
+
+/* ### TOUCHE DE CLAVIER ### */
+.keyboard-key {
+    /* # Conteneur de la touche de clavier */
+    position: relative;
+    /* # Permet de positionner les éléments enfants */
+    cursor: pointer;
+    /* # Change le curseur en main au survol */
+}
+
+/* ### PARTIE SUPÉRIEURE DE LA TOUCHE ### */
+.key-top {
+    /* # La partie visible de la touche */
+    display: flex;
+    /* # Mode flexbox pour aligner le contenu */
+    flex-direction: column;
+    /* # Empile les éléments verticalement */
+    align-items: center;
+    /* # Centre horizontalement */
+    justify-content: center;
+    /* # Centre verticalement */
+    width: 100px;
+    /* # Largeur de 100 pixels */
+    height: 80px;
+    /* # Hauteur de 80 pixels */
+    background: linear-gradient(145deg, #f0f0f0, #d0d0d0);
+    /* # Dégradé gris clair qui donne un effet 3D */
+    border-radius: 8px;
+    /* # Coins arrondis de 8px */
+    box-shadow: 
+        0 5px 15px rgba(0, 0, 0, 0.3),
+        inset 0 1px 2px rgba(255, 255, 255, 0.5);
+    /* # Première ombre : ombre extérieure noire */
+    /* # Deuxième ombre : ombre intérieure blanche (effet brillant) */
+    position: relative;
+    /* # Permet de déplacer la touche avec "top" */
+    top: 0;
+    /* # Position verticale de départ */
+    transition: all 0.1s ease;
+    /* # Animation rapide (0.1s) sur tous les changements */
+    border: 2px solid #a0a0a0;
+    /* # Bordure grise de 2px */
+}
+
+/* ### TOUCHE AU SURVOL ### */
+.btn-back:hover .key-top {
+    /* # Quand on survole le bouton */
+    top: -2px;
+    /* # Monte légèrement (effet de touche qui se lève) */
+    box-shadow: 
+        0 7px 20px rgba(0, 0, 0, 0.4),
+        inset 0 1px 2px rgba(255, 255, 255, 0.6);
+    /* # Ombres plus prononcées pour accentuer l'effet 3D */
+}
+
+/* ### TOUCHE CLIQUÉE ### */
+.btn-back:active .key-top {
+    /* # Quand on clique sur le bouton */
+    top: 3px;
+    /* # Descend (effet de touche enfoncée) */
+    box-shadow: 
+        0 2px 8px rgba(0, 0, 0, 0.3),
+        inset 0 1px 2px rgba(0, 0, 0, 0.2);
+    /* # Ombres réduites (touche enfoncée) */
+}
+
+/* ### CÔTÉ DE LA TOUCHE (EFFET 3D) ### */
+.key-side {
+    /* # Partie latérale qui donne l'épaisseur */
+    position: absolute;
+    /* # Position absolue par rapport à .keyboard-key */
+    bottom: -6px;
+    /* # 6px en dessous de la touche */
+    left: 2px;
+    /* # Décalé de 2px à gauche */
+    right: 2px;
+    /* # Décalé de 2px à droite */
+    height: 6px;
+    /* # Hauteur de 6px (épaisseur de la touche) */
+    background: linear-gradient(to bottom, #999, #666);
+    /* # Dégradé vertical gris (simule l'épaisseur) */
+    border-radius: 0 0 6px 6px;
+    /* # Arrondi seulement en bas */
+}
+
+/* ### FLÈCHE RETOUR ### */
+.arrow {
+    /* # Style de la flèche ← */
+    font-size: 32px;
+    /* # Taille de 32 pixels */
+    font-weight: bold;
+    /* # Caractères gras */
+    color: #667eea;
+    /* # Couleur violet/bleu */
+    line-height: 1;
+    /* # Hauteur de ligne = taille du texte (pas d'espace extra) */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    /* # Ombre portée légère */
+}
+
+/* ### TEXTE "RETOUR" ### */
+.key-label {
+    /* # Style du texte sous la flèche */
+    font-size: 12px;
+    /* # Petite taille de 12px */
+    font-weight: 600;
+    /* # Semi-gras */
+    color: #555;
+    /* # Gris foncé */
+    margin-top: 5px;
+    /* # Espacement de 5px au-dessus */
+    text-transform: uppercase;
+    /* # Transforme en MAJUSCULES */
+    letter-spacing: 1px;
+    /* # Espacement de 1px entre chaque lettre */
+}
+
+/* ### CONTENEUR PRINCIPAL ### */
+.container {
+    /* # Conteneur du formulaire */
+    width: 100%;
+    /* # Largeur = 100% de son parent */
+    max-width: 600px;
+    /* # Largeur maximale de 600px (ne s'agrandit pas plus) */
+    position: relative;
+    /* # Permet de gérer le positionnement des enfants */
+    z-index: 1;
+    /* # Au-dessus du canvas (z-index: 0) */
+}
+
+/* ### FORMULAIRE DE CONTACT ### */
+.contact-form {
+    /* # Style de la boîte du formulaire */
+    background: rgba(255, 255, 255, 0.95);
+    /* # Fond blanc presque opaque (95% opacité) */
+    padding: 40px;
+    /* # Espacement intérieur de 40px tout autour */
+    border-radius: 20px;
+    /* # Coins très arrondis (20px) */
+    box-shadow: 
+        0 20px 60px rgba(168, 85, 247, 0.3),
+        0 0 40px rgba(139, 92, 246, 0.2);
+    /* # Deux ombres violettes pour effet de profondeur */
+    backdrop-filter: blur(10px);
+    /* # Effet de flou sur le fond derrière (effet verre dépoli) */
+    border: 2px solid rgba(168, 85, 247, 0.3);
+    /* # Bordure violette semi-transparente */
+}
+
+/* ### TITRE DU FORMULAIRE ### */
+.contact-form h1 {
+    /* # Style du titre "Formulaire de contact" */
+    color: #333;
+    /* # Couleur gris foncé */
+    margin-bottom: 30px;
+    /* # Espacement de 30px en dessous */
+    text-align: center;
+    /* # Texte centré */
+    font-size: 28px;
+    /* # Taille de 28px */
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    /* # Dégradé de couleur bleu-violet */
+    -webkit-background-clip: text;
+    /* # Pour Safari : le dégradé s'applique au texte */
+    -webkit-text-fill-color: transparent;
+    /* # Pour Safari : rend le texte transparent pour voir le dégradé */
+    background-clip: text;
+    /* # Standard : applique le dégradé au texte */
+}
+
+/* ### GROUPE DE CHAMPS ### */
+.form-group {
+    /* # Conteneur de chaque champ du formulaire */
+    margin-bottom: 20px;
+    /* # Espacement de 20px entre chaque groupe */
+}
+
+/* ### ÉTIQUETTES (LABELS) ### */
+.form-group label {
+    /* # Style des labels (Nom, Email, etc.) */
+    display: block;
+    /* # Prend toute la largeur disponible */
+    margin-bottom: 8px;
+    /* # Espacement de 8px en dessous */
+    color: #555;
+    /* # Couleur gris moyen */
+    font-weight: 500;
+    /* # Légèrement gras */
+    font-size: 14px;
+    /* # Taille de 14px */
+}
+
+/* ### CHAMPS DE SAISIE ### */
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group select,
+.form-group textarea {
+    /* # Style de tous les champs de saisie */
+    width: 100%;
+    /* # Largeur = 100% du conteneur */
+    padding: 12px 15px;
+    /* # Espacement intérieur : 12px haut/bas, 15px gauche/droite */
+    border: 2px solid #e0e0e0;
+    /* # Bordure grise claire de 2px */
+    border-radius: 8px;
+    /* # Coins arrondis de 8px */
+    font-size: 14px;
+    /* # Taille du texte 14px */
+    font-family: inherit;
+    /* # Utilise la même police que le body */
+    transition: all 0.3s ease;
+    /* # Animation de 0.3s sur tous les changements */
+    background: rgba(255, 255, 255, 0.9);
+    /* # Fond blanc légèrement transparent */
+}
+
+/* ### CHAMPS EN FOCUS (CLIQUÉS) ### */
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    /* # Quand un champ est sélectionné/actif */
+    outline: none;
+    /* # Supprime le contour bleu par défaut du navigateur */
+    border-color: #8b5cf6;
+    /* # Change la couleur de bordure en violet */
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.2);
+    /* # Ajoute une lueur violette autour */
+    background: #fff;
+    /* # Fond blanc opaque */
+}
+
+/* ### ZONE DE TEXTE (TEXTAREA) ### */
+.form-group textarea {
+    /* # Style spécifique pour le champ message */
+    resize: vertical;
+    /* # Permet de redimensionner seulement verticalement */
+    min-height: 100px;
+    /* # Hauteur minimale de 100px */
+}
+
+/* ### MENU DÉROULANT (SELECT) ### */
+.form-group select {
+    /* # Style du menu déroulant */
+    cursor: pointer;
+    /* # Change le curseur en main */
+}
+
+/* ### GROUPE CHECKBOX ### */
+.checkbox-group {
+    /* # Conteneur des cases à cocher */
+    display: flex;
+    /* # Mode flexbox */
+    align-items: center;
+    /* # Aligne verticalement au centre */
+    gap: 10px;
+    /* # Espacement de 10px entre checkbox et label */
+}
+
+/* ### CASES À COCHER ### */
+.checkbox-group input[type="checkbox"] {
+    /* # Style des checkbox */
+    width: 18px;
+    /* # Largeur de 18px */
+    height: 18px;
+    /* # Hauteur de 18px */
+    cursor: pointer;
+    /* # Curseur en main */
+    accent-color: #8b5cf6;
+    /* # Couleur violette quand cochée */
+}
+
+/* ### LABEL DES CHECKBOX ### */
+.checkbox-group label {
+    /* # Label à côté de la checkbox */
+    margin-bottom: 0;
+    /* # Pas d'espacement en bas (annule le style précédent) */
+    cursor: pointer;
+    /* # Curseur en main */
+    font-weight: normal;
+    /* # Poids normal (pas gras) */
+}
+
+/* ### BOUTON ENVOYER ### */
+.btn-submit {
+    /* # Style du bouton d'envoi */
+    width: 100%;
+    /* # Largeur = 100% */
+    padding: 14px;
+    /* # Espacement intérieur de 14px */
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    /* # Dégradé bleu-violet */
+    color: white;
+    /* # Texte blanc */
+    border: none;
+    /* # Pas de bordure */
+    border-radius: 8px;
+    /* # Coins arrondis */
+    font-size: 16px;
+    /* # Taille du texte */
+    font-weight: 600;
+    /* # Texte semi-gras */
+    cursor: pointer;
+    /* # Curseur en main */
+    transition: all 0.3s ease;
+    /* # Animation de 0.3s */
+    margin-top: 10px;
+    /* # Espacement de 10px au-dessus */
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    /* # Ombre portée violette */
+    position: relative;
+    /* # Pour positionner le ::before */
+    overflow: hidden;
+    /* # Cache le débordement de l'effet de vague */
+}
+
+/* ### EFFET DE VAGUE AU SURVOL ### */
+.btn-submit::before {
+    /* # Élément virtuel pour l'effet de vague */
+    content: '';
+    /* # Contenu vide (obligatoire pour ::before) */
+    position: absolute;
+    /* # Position absolue par rapport au bouton */
+    top: 50%;
+    /* # 50% depuis le haut */
+    left: 50%;
+    /* # 50% depuis la gauche */
+    width: 0;
+    /* # Largeur initiale de 0 */
+    height: 0;
+    /* # Hauteur initiale de 0 */
+    background: rgba(255, 255, 255, 0.2);
+    /* # Fond blanc semi-transparent */
+    border-radius: 50%;
+    /* # Forme circulaire */
+    transform: translate(-50%, -50%);
+    /* # Centre parfaitement */
+    transition: width 0.6s ease, height 0.6s ease;
+    /* # Animation de 0.6s sur largeur et hauteur */
+}
+
+/* ### VAGUE ACTIVE AU SURVOL ### */
+.btn-submit:hover::before {
+    /* # Au survol du bouton */
+    width: 300px;
+    /* # La vague s'agrandit à 300px */
+    height: 300px;
+    /* # La vague s'agrandit à 300px */
+}
+
+/* ### BOUTON AU SURVOL ### */
+.btn-submit:hover {
+    /* # Quand on survole le bouton */
+    transform: translateY(-3px);
+    /* # Monte de 3px */
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+    /* # Ombre plus grande */
+}
+
+/* ### BOUTON CLIQUÉ ### */
+.btn-submit:active {
+    /* # Quand on clique sur le bouton */
+    transform: translateY(0);
+    /* # Revient à sa position normale */
+}
+
+/* ### NOTE EN BAS ### */
+.form-note {
+    /* # Texte "* Champs obligatoires" */
+    text-align: center;
+    /* # Centré */
+    color: #888;
+    /* # Gris clair */
+    font-size: 12px;
+    /* # Petite taille */
+    margin-top: 15px;
+    /* # Espacement de 15px au-dessus */
+}
+
+/* ### ANIMATION D'APPARITION ### */
+@keyframes fadeInUp {
+    /* # Définition de l'animation fadeInUp */
+    from {
+        /* # État de départ */
+        opacity: 0;
+        /* # Invisible */
+        transform: translateY(30px);
+        /* # Décalé de 30px vers le bas */
+    }
+    to {
+        /* # État d'arrivée */
+        opacity: 1;
+        /* # Visible */
+        transform: translateY(0);
+        /* # Position normale */
+    }
+}
+
+/* ### APPLICATION DE L'ANIMATION ### */
+.contact-form {
+    /* # Applique l'animation au formulaire */
+    animation: fadeInUp 0.8s ease-out;
+    /* # Animation fadeInUp pendant 0.8s avec ralentissement à la fin */
+}
+
+/* ### RESPONSIVE - TABLETTES ### */
+@media (max-width: 768px) {
+    /* # Ces styles s'appliquent sur écrans de 768px ou moins */
+    
+    .btn-back {
+        top: 15px;
+        /* # Bouton plus proche du bord sur mobile */
+        left: 15px;
+    }
+
+    .keyboard-key .key-top {
+        width: 80px;
+        /* # Touche plus petite */
+        height: 65px;
+    }
+
+    .arrow {
+        font-size: 24px;
+        /* # Flèche plus petite */
+    }
+
+    .key-label {
+        font-size: 10px;
+        /* # Texte plus petit */
+    }
+
+    .contact-form {
+        padding: 25px;
+        /* # Moins d'espacement intérieur */
+    }
+
+    .contact-form h1 {
+        font-size: 24px;
+        /* # Titre plus petit */
+    }
+
+    body {
+        padding: 80px 15px 20px 15px;
+        /* # Espacement adapté pour mobile */
+    }
+}
+
+/* ### RESPONSIVE - SMARTPHONES ### */
+@media (max-width: 480px) {
+    /* # Ces styles s'appliquent sur petits écrans de 480px ou moins */
+    
+    .keyboard-key .key-top {
+        width: 70px;
+        /* # Touche encore plus petite */
+        height: 55px;
+    }
+
+    .arrow {
+        font-size: 20px;
+        /* # Flèche encore plus petite */
+    }
+
+    .key-label {
+        font-size: 9px;
+        /* # Texte encore plus petit */
+    }
+}

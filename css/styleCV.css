@@ -1,0 +1,122 @@
+/* Style général du body */
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #000;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Canvas Matrix en arrière-plan */
+#matrixCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Conteneur principal du CV */
+.cv-container {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Image du CV */
+.image {
+  display: block;
+  width: 550px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(119, 0, 255, 0.3);
+  margin-bottom: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 2px solid rgba(140, 0, 255, 0.3);
+}
+
+.image:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 25px rgba(132, 0, 255, 0.5);
+}
+
+/* Texte de téléchargement */
+.download-text {
+  color: rgb(255, 255, 255);
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+  text-shadow: 0 0 10px rgba(129, 103, 153, 0.8);
+  background: rgba(0, 0, 0, 0.8);
+  padding: 15px 30px;
+  border-radius: 25px;
+  border: 2px solid rgb(212, 0, 255);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 0 0 30px 0;
+  font-family: 'Courier New', monospace;
+}
+
+.download-text:hover {
+  background: rgba(204, 0, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(140, 0, 255, 0.6);
+}
+
+/* Bouton retour style Matrix */
+.btn-matrix {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+  background: rgba(0, 255, 0, 0.1);
+  border: 2px solid rgb(162, 0, 255);
+  color: rgb(255, 255, 255);
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  font-family: 'Courier New', monospace;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-matrix:hover {
+  background: rgba(132, 0, 255, 0.3);
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(63, 20, 133, 0.6);
+}
+
+.btn-matrix:active {
+  transform: scale(0.98);
+}
+
+/* Responsive pour les petits écrans */
+@media (max-width: 768px) {
+  .image {
+    width: 90%;
+    max-width: 400px;
+  }
+  
+  .download-text {
+    font-size: 18px;
+    padding: 12px 25px;
+  }
+
+  .btn-matrix {
+    padding: 10px 20px;
+    font-size: 0.9em;
+  }
+}
