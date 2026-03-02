@@ -50,6 +50,14 @@ const tpsList = [
         pdfPath: "images/Linux_utilisateurs.pdf",
         imagePath: "images/images_tp/P.png", // 🎨 AJOUTEZ VOTRE IMAGE ICI
         disponible: true
+    },
+    {
+        numero: 7,
+        titre: "TP Apache2",
+        description: "Installer un serveur Http",
+        pdfPath: "images/TP8.pdf",
+        imagePath: "images/images_tp/cmd.jpeg", // 🎨 AJOUTEZ VOTRE IMAGE ICI
+        disponible: true
     }
 ];
 
