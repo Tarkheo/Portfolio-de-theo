@@ -58,6 +58,22 @@ const tpsList = [
         pdfPath: "images/TP8.pdf",
         imagePath: "images/images_tp/cmd.jpeg", // 🎨 AJOUTEZ VOTRE IMAGE ICI
         disponible: true
+    },
+    {
+        numero: 8,
+        titre: "Windows & Linux",
+        description: "Installation Windows & Linux en Dual Boot (Grub)",
+        pdfPath: "images/Guide Ultime Dual Boot Windows & Linux.pdf",
+        imagePath: "images/images_tp/cmd.jpeg", // 🎨 AJOUTEZ VOTRE IMAGE ICI
+        disponible: true
+    },
+    {
+        numero: 9,
+        titre: "Windows Permissions Utilisateurs",
+        description: "Attribution des Permissions éléves & Administrateurs",
+        pdfPath: "images/permissionsWindows.pdf",
+        imagePath: "images/images_tp/cmd.jpeg", // 🎨 AJOUTEZ VOTRE IMAGE ICI
+        disponible: true
     }
 ];
 
