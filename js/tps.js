@@ -64,7 +64,7 @@ const tpsList = [
         titre: "Windows & Linux",
         description: "Installation Windows & Linux en Dual Boot (Grub)",
         pdfPath: "images/Guide Ultime Dual Boot Windows & Linux.pdf",
-        imagePath: "images/images_tp/wmint2.png", // 🎨 AJOUTEZ VOTRE IMAGE ICI
+        imagePath: "images/images_tp/Wmint2.png", // 🎨 AJOUTEZ VOTRE IMAGE ICI
         disponible: true
     },
     {
