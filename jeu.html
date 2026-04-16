@@ -11,49 +11,83 @@
             box-sizing: border-box;
         }
 
+        /* Arrière-plan Violet Profond / Noir */
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Poppins', 'Arial', sans-serif;
+            background: linear-gradient(135deg, #2b0f4c 0%, #0d0415 100%);
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             color: white;
+            overflow: hidden;
         }
 
+        /* ============================================
+           BOUTON RETOUR : STYLE INVITE DE COMMANDE DORÉ
+           ============================================ */
         .back-btn {
             position: fixed;
             top: 20px;
             left: 20px;
-            background: rgba(255, 255, 255, 0.3);
-            border: 2px solid white;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-size: 1em;
+            z-index: 1000;
+            background: #050505;
+            border: 2px solid #D4AF37; 
+            color: #D4AF37; 
+            padding: 15px 30px;
+            border-radius: 4px;
+            font-size: 1.2em;
+            font-weight: bold;
             cursor: pointer;
-            transition: all 0.3s;
-            z-index: 1001;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            font-family: 'Consolas', 'Courier New', monospace;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 4px 4px 0px rgba(212, 175, 55, 0.3);
+        }
+
+        .back-btn::after {
+            content: "_";
+            animation: blinkCursor 1s step-end infinite;
+        }
+
+        @keyframes blinkCursor {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
 
         .back-btn:hover {
-            background: rgba(255, 255, 255, 0.5);
-            transform: scale(1.05);
+            background: rgba(212, 175, 55, 0.1);
+            box-shadow: 6px 6px 0px rgba(212, 175, 55, 0.5);
+            transform: translate(-2px, -2px);
         }
 
+        .back-btn:active {
+            transform: translate(4px, 4px);
+            box-shadow: 0px 0px 0px rgba(212, 175, 55, 0);
+        }
+
+        /* ============================================
+           INTERFACE DU JEU
+           ============================================ */
         .container {
             text-align: center;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(15, 5, 25, 0.6); /* Fond légèrement violet/noir transparent */
             padding: 30px;
             border-radius: 20px;
             backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(212, 175, 55, 0.2);
         }
 
         h1 {
             margin-bottom: 20px;
             font-size: 3em;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            color: #D4AF37; /* Titre Doré */
+            text-shadow: 2px 2px 10px rgba(212, 175, 55, 0.3);
+            font-family: 'Consolas', 'Courier New', monospace;
         }
 
         .game-info {
@@ -61,43 +95,59 @@
             justify-content: space-around;
             margin-bottom: 20px;
             font-size: 1.2em;
+            color: #e0e0e0;
         }
 
         .info-item {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
             padding: 10px 20px;
             border-radius: 10px;
+            color: #D4AF37;
+        }
+
+        .info-item span {
+            color: white;
+            font-weight: bold;
         }
 
         #gameCanvas {
-            border: 3px solid white;
+            border: 3px solid #D4AF37; /* Bordure du jeu dorée */
             border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.2);
             display: block;
             margin: 0 auto;
+            background-color: #0a0a0a;
         }
 
         .controls {
             margin-top: 20px;
             font-size: 0.9em;
             opacity: 0.8;
+            color: #b0a8ba; /* Texte violet très clair */
         }
 
+        /* Boutons d'action (Nouvelle Partie, Rejouer) harmonisés en Doré */
         .btn {
-            background: rgba(255, 255, 255, 0.3);
-            border: 2px solid white;
-            color: white;
+            background: rgba(15, 15, 15, 0.85);
+            border: 2px solid #D4AF37;
+            color: #D4AF37;
             padding: 10px 30px;
             border-radius: 25px;
             font-size: 1.1em;
+            font-weight: 600;
             cursor: pointer;
             margin-top: 15px;
             transition: all 0.3s;
+            font-family: 'Poppins', sans-serif;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
         }
 
         .btn:hover {
-            background: rgba(255, 255, 255, 0.5);
-            transform: scale(1.05);
+            background: #D4AF37;
+            color: #111111;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
         }
 
         #gameOver {
@@ -106,15 +156,46 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(15, 5, 25, 0.95);
             padding: 40px;
             border-radius: 20px;
+            border: 2px solid #D4AF37;
+            box-shadow: 0 0 50px rgba(212, 175, 55, 0.3);
             z-index: 1000;
+            text-align: center;
         }
 
         #gameOver h2 {
             font-size: 2.5em;
             margin-bottom: 20px;
+            color: #D4AF37;
+        }
+        
+        #gameOver p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        #finalScore {
+            color: #D4AF37;
+            font-weight: bold;
+            font-size: 1.5em;
+        }
+
+        /* Responsive pour les petits écrans */
+        @media (max-width: 768px) {
+            .back-btn {
+                padding: 10px 20px;
+                font-size: 1em;
+                box-shadow: 3px 3px 0px rgba(212, 175, 55, 0.3);
+            }
+            h1 {
+                font-size: 2.2em;
+            }
+            .game-info {
+                flex-direction: column;
+                gap: 10px;
+            }
         }
     </style>
 </head>
@@ -126,13 +207,13 @@
         
         <div class="game-info">
             <div class="info-item">
-                <strong>Score:</strong> <span id="score">0</span>
+                Score: <span id="score">0</span>
             </div>
             <div class="info-item">
-                <strong>Niveau:</strong> <span id="level">1</span>
+                Niveau: <span id="level">1</span>
             </div>
             <div class="info-item">
-                <strong>Lignes:</strong> <span id="lines">0</span>
+                Lignes: <span id="lines">0</span>
             </div>
         </div>
 
@@ -208,6 +289,14 @@
                                 BLOCK_SIZE - 1,
                                 BLOCK_SIZE - 1
                             );
+                            // Ajout d'une petite bordure pour un effet plus net des blocs
+                            ctx.strokeStyle = 'rgba(0,0,0,0.5)';
+                            ctx.strokeRect(
+                                (this.x + col) * BLOCK_SIZE,
+                                (this.y + row) * BLOCK_SIZE,
+                                BLOCK_SIZE - 1,
+                                BLOCK_SIZE - 1
+                            );
                         }
                     }
                 }
@@ -269,7 +358,8 @@
         }
 
         function drawBoard() {
-            ctx.fillStyle = '#1a1a2e';
+            // Fond du canvas très légèrement transparent pour laisser deviner le fond du site
+            ctx.fillStyle = 'rgba(10, 10, 15, 0.9)'; 
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
             for (let row = 0; row < ROWS; row++) {
@@ -277,6 +367,13 @@
                     if (board[row][col]) {
                         ctx.fillStyle = board[row][col];
                         ctx.fillRect(
+                            col * BLOCK_SIZE,
+                            row * BLOCK_SIZE,
+                            BLOCK_SIZE - 1,
+                            BLOCK_SIZE - 1
+                        );
+                        ctx.strokeStyle = 'rgba(0,0,0,0.5)';
+                        ctx.strokeRect(
                             col * BLOCK_SIZE,
                             row * BLOCK_SIZE,
                             BLOCK_SIZE - 1,
@@ -361,6 +458,11 @@
 
         document.addEventListener('keydown', (e) => {
             if (!gameRunning) return;
+            
+            // Empêcher le défilement de la page avec les flèches
+            if(['Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].indexOf(e.code) > -1) {
+                e.preventDefault();
+            }
             
             switch(e.key) {
                 case 'ArrowLeft':
