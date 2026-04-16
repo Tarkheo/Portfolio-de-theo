@@ -15,7 +15,7 @@ const certificationsList = [
         organisme: "Cisco",
         description: "Certification réseau Cisco Certified Network Associate",
         imagePath: "images/cisco.pdf", // Peut être PDF ou image (jpg, png)
-        dateObtention: "Décembre 2024",
+        dateObtention: "Décembre 2025",
         logo: "🌐", // Emoji ou icône
         badge: "✅", // Badge de validation
         type: "pdf" // "pdf" ou "image"
@@ -25,7 +25,7 @@ const certificationsList = [
         organisme: "ANSSI",
         description: "Formation à la sécurité numérique - ANSSI",
         imagePath: "images/secnum_certif.pdf",
-        dateObtention: "Novembre 2024",
+        dateObtention: "Novembre 2025",
         logo: "🔒",
         badge: "✅",
         type: "pdf"
@@ -172,8 +172,7 @@ document.addEventListener('keydown', (event) => {
 });
 
 // ========================================
-// ### ANIMATION MATRIX EN ARRIÈRE-PLAN ###
-// (Identique au code TPS mais avec couleurs dorées)
+// ### ANIMATION ICÔNES DORÉES (MANETTES/CLAVIERS) ###
 // ========================================
 
 const canvas = document.getElementById('matrixCanvas');
@@ -182,65 +181,76 @@ const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-const matrixChars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789@#$%^&*()';
-const chars = matrixChars.split('');
+// Liste des objets qui vont flotter en arrière-plan
+const floatingIcons = [];
+const iconList = ['🎮', '⌨️'];
 
-const fontSize = 16;
-const columns = canvas.width / fontSize;
+function drawIcons() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-const drops = [];
-for (let i = 0; i < columns; i++) {
-    drops[i] = Math.random() * -100;
-}
-
-function drawMatrix() {
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.font = fontSize + 'px monospace';
-
-    for (let i = 0; i < drops.length; i++) {
-        const char = chars[Math.floor(Math.random() * chars.length)];
-        
-        const brightness = Math.random();
-        // Couleurs dorées au lieu de violettes
-        if (brightness > 0.95) {
-            ctx.fillStyle = '#fbbf24';
-        } else if (brightness > 0.8) {
-            ctx.fillStyle = '#f59e0b';
-        } else if (brightness > 0.6) {
-            ctx.fillStyle = '#d97706';
-        } else if (brightness > 0.4) {
-            ctx.fillStyle = '#b45309';
-        } else {
-            ctx.fillStyle = '#92400e';
-        }
-
-        const x = i * fontSize;
-        const y = drops[i] * fontSize;
-        ctx.fillText(char, x, y);
-
-        if (y > canvas.height && Math.random() > 0.975) {
-            drops[i] = 0;
-        }
-
-        drops[i]++;
+    // Ajout aléatoire d'une icône (fréquence très faible pour ne pas surcharger)
+    // Environ 1 à 2% de chance par frame qu'une icône apparaisse
+    if (Math.random() < 0.015) { 
+        floatingIcons.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            icon: iconList[Math.random() > 0.5 ? 1 : 0],
+            life: 0,
+            maxLife: 150 + Math.random() * 150, // Durée de vie aléatoire
+            size: 25 + Math.random() * 35, // Taille entre 25px et 60px
+            speedY: -0.1 - Math.random() * 0.4 // Mouvement lent vers le haut
+        });
     }
+
+    for (let i = floatingIcons.length - 1; i >= 0; i--) {
+        const item = floatingIcons[i];
+        item.life++;
+        item.y += item.speedY;
+
+        // Effet d'apparition (fade in) et disparition (fade out)
+        let opacity = 0;
+        const fadeTime = 40; // Nombre de frames pour le fondu
+        if (item.life < fadeTime) {
+            opacity = item.life / fadeTime;
+        } else if (item.life > item.maxLife - fadeTime) {
+            opacity = (item.maxLife - item.life) / fadeTime;
+        } else {
+            opacity = 1;
+        }
+        
+        // Opacité globale réduite pour rester discret et pro en arrière-plan
+        opacity *= 0.25;
+
+        ctx.save();
+        ctx.globalAlpha = opacity;
+        ctx.font = item.size + 'px Arial';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        
+        // Teinte dorée via filtre CSS et ombre
+        ctx.filter = "sepia(1) saturate(5) hue-rotate(-30deg) brightness(1.2)";
+        ctx.shadowColor = '#fbbf24';
+        ctx.shadowBlur = 20;
+        
+        ctx.fillText(item.icon, item.x, item.y);
+        ctx.restore();
+
+        // Supprimer l'icône une fois sa durée de vie écoulée
+        if (item.life >= item.maxLife) {
+            floatingIcons.splice(i, 1);
+        }
+    }
+    
+    requestAnimationFrame(drawIcons);
 }
 
-setInterval(drawMatrix, 50);
+// Lancer l'animation
+drawIcons();
 
 // Redimensionnement du canvas
 window.addEventListener('resize', () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    
-    const newColumns = canvas.width / fontSize;
-    drops.length = newColumns;
-    for (let i = 0; i < newColumns; i++) {
-        if (drops[i] === undefined) {
-            drops[i] = Math.random() * -100;
-        }
-    }
 });
 
 // ========================================
@@ -382,15 +392,3 @@ window.addEventListener('DOMContentLoaded', () => {
     generateCertCards();
     console.log('📜 ' + certificationsList.length + ' certification(s) chargée(s)');
 });
-
-
-//{ AJOUTER PDF / IMAGES 
-    // nom: "Votre Certification",
-    //organisme: "Organisation",
-   // description: "Description de la certification",
-  //  imagePath: "images/certifications/votre-certif.pdf",
-    //dateObtention: "Janvier 2025",
-  //  logo: "🔐", // Emoji de votre choix
- //   badge: "✅",
-//    type: "pdf" // ou "image"
-//}
