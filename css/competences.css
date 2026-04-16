@@ -19,7 +19,7 @@ body {
     min-height: 100vh;
 }
 
-/* ### CANVAS MATRIX EN ARRIÈRE-PLAN ### */
+/* ### CANVAS EN ARRIÈRE-PLAN ### */
 #matrixCanvas {
     position: fixed;
     top: 0;
@@ -27,10 +27,9 @@ body {
     width: 100%;
     height: 100%;
     z-index: 0;
-    opacity: 0.4;
+    /* Opacité gérée directement dans le JS maintenant */
 }
 
-/* ### CANVAS PARTICULES ### */
 #particlesCanvas {
     position: fixed;
     top: 0;
@@ -41,146 +40,54 @@ body {
     pointer-events: none;
 }
 
-/* ========================================
-   BOUTON RETOUR EN FORME DE FENÊTRE CMD
-   ======================================== */
-
-.btn-back-cmd {
+/* ============================================
+   BOUTON RETOUR : STYLE INVITE DE COMMANDE DORÉ
+   ============================================ */
+.btn-back {
     position: fixed;
-    top: 30px;
-    left: 30px;
+    top: 20px;
+    left: 20px;
     z-index: 1000;
+    background: #050505; /* Fond très noir comme un terminal */
+    border: 2px solid #fbbf24; /* Bordure dorée */
+    color: #fbbf24; 
+    padding: 15px 30px;
+    border-radius: 4px; /* Bords presque carrés pour l'effet console */
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
     text-decoration: none;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.btn-back-cmd:hover {
-    transform: translateY(-5px);
-}
-
-.cmd-window {
-    width: 220px;
-    background: #0c0c0c;
-    border: 1px solid #1f1f1f;
-    border-radius: 6px;
-    box-shadow: 
-        0 10px 30px rgba(0, 0, 0, 0.5),
-        0 0 0 1px rgba(255, 255, 255, 0.1);
-    overflow: hidden;
-    cursor: pointer;
-}
-
-.btn-back-cmd:hover .cmd-window {
-    box-shadow: 
-        0 15px 40px rgba(168, 85, 247, 0.4),
-        0 0 20px rgba(168, 85, 247, 0.3),
-        0 0 0 1px rgba(168, 85, 247, 0.5);
-}
-
-/* Barre de titre CMD */
-.cmd-title-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 6px 10px;
-    background: linear-gradient(180deg, #2d2d2d 0%, #1f1f1f 100%);
-    border-bottom: 1px solid #000;
-}
-
-.cmd-title {
-    display: flex;
+    font-family: 'Consolas', 'Courier New', monospace; /* Police de terminal */
+    display: inline-flex;
     align-items: center;
     gap: 8px;
-    font-size: 12px;
-    color: #fff;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-shadow: 4px 4px 0px rgba(251, 191, 36, 0.3); /* Ombre décalée type rétro/console */
 }
 
-.cmd-icon {
-    font-weight: bold;
-    color: #a855f7;
-    font-family: 'Courier New', monospace;
+/* Effet curseur clignotant type invite de commande */
+.btn-back::after {
+    content: "_"; /* Le petit tiret à la fin du bouton */
+    animation: blinkCursor 1s step-end infinite;
 }
 
-.cmd-text {
-    font-weight: 600;
+/* Animation pour faire clignoter le curseur */
+@keyframes blinkCursor {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
 }
 
-.cmd-buttons {
-    display: flex;
-    gap: 8px;
+/* Effet au survol du bouton retour */
+.btn-back:hover {
+    background: rgba(251, 191, 36, 0.1);
+    box-shadow: 6px 6px 0px rgba(251, 191, 36, 0.5);
+    transform: translate(-2px, -2px); /* Se soulève légèrement */
 }
 
-.cmd-btn {
-    width: 16px;
-    height: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    font-weight: bold;
-    border-radius: 2px;
-    cursor: pointer;
-    transition: background 0.2s ease;
-}
-
-.cmd-btn.minimize {
-    background: #3a3a3a;
-    color: #fff;
-}
-
-.cmd-btn.maximize {
-    background: #3a3a3a;
-    color: #fff;
-}
-
-.cmd-btn.close {
-    background: #c42b1c;
-    color: #fff;
-}
-
-.cmd-btn:hover {
-    opacity: 0.8;
-}
-
-/* Contenu CMD */
-.cmd-content {
-    padding: 12px;
-    background: #0c0c0c;
-    color: #a855f7;
-    font-family: 'Consolas', 'Courier New', monospace;
-    font-size: 13px;
-    line-height: 1.5;
-    min-height: 50px;
-}
-
-.cmd-prompt {
-    color: #a855f7;
-    font-weight: bold;
-}
-
-.cmd-command {
-    color: #c084fc;
-    margin-left: 5px;
-}
-
-.cmd-cursor {
-    color: #fff;
-    animation: blink 1s infinite;
-    margin-left: 2px;
-}
-
-@keyframes blink {
-    0%, 49% {
-        opacity: 1;
-    }
-    50%, 100% {
-        opacity: 0;
-    }
-}
-
-.btn-back-cmd:active .cmd-window {
-    transform: scale(0.95);
+/* Effet au clic du bouton retour */
+.btn-back:active {
+    transform: translate(4px, 4px); /* S'enfonce façon bouton d'arcade */
+    box-shadow: 0px 0px 0px rgba(251, 191, 36, 0); /* L'ombre disparaît */
 }
 
 /* ### CONTENEUR PRINCIPAL ### */
@@ -490,12 +397,8 @@ header h1 {
 
 /* ### ANIMATIONS ### */
 @keyframes fadeIn {
-    from { 
-        opacity: 0;
-    }
-    to { 
-        opacity: 1;
-    }
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 @keyframes fadeInDown {
@@ -524,18 +427,11 @@ header h1 {
 
 /* Tablettes */
 @media (max-width: 768px) {
-    .btn-back-cmd {
-        top: 15px;
-        left: 15px;
-    }
-
-    .cmd-window {
-        width: 180px;
-    }
-
-    .cmd-content {
-        font-size: 11px;
-        padding: 10px;
+    /* Ajustement du bouton retour terminal sur mobile */
+    .btn-back {
+        padding: 12px 22px;
+        font-size: 1.05em;
+        box-shadow: 3px 3px 0px rgba(251, 191, 36, 0.3);
     }
 
     header h1 {
@@ -569,15 +465,6 @@ header h1 {
 
 /* Mobiles */
 @media (max-width: 480px) {
-    .cmd-window {
-        width: 160px;
-    }
-
-    .cmd-content {
-        font-size: 10px;
-        padding: 8px;
-    }
-
     header h1 {
         font-size: 1.8em;
     }

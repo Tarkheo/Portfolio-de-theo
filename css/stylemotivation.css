@@ -27,37 +27,60 @@ body {
   pointer-events: none;
 }
 
-/* Bouton retour style Matrix */
+/* ============================================
+   BOUTON RETOUR : STYLE INVITE DE COMMANDE DORÉ
+   ============================================ */
+
 .btn-matrix {
   position: fixed;
   top: 20px;
   left: 20px;
-  padding: 12px 24px;
-  background: rgba(138, 43, 226, 0.1);
-  color: #a855f7;
-  text-decoration: none;
-  border-radius: 25px;
-  border: 2px solid #a855f7;
-  font-weight: bold;
-  font-size: 1em;
-  box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
-  transition: all 0.3s ease;
   z-index: 1000;
-  font-family: 'Courier New', monospace;
+  background: #050505; /* Fond très noir comme un terminal */
+  border: 2px solid #D4AF37; 
+  color: #D4AF37; 
+  padding: 15px 30px;
+  border-radius: 4px; /* Bords presque carrés pour l'effet console */
+  font-size: 1.2em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  font-family: 'Consolas', 'Courier New', monospace; /* Police de terminal */
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  box-shadow: 4px 4px 0px rgba(212, 175, 55, 0.3); /* Ombre décalée type rétro/console */
 }
 
+/* Effet curseur clignotant type invite de commande */
+.btn-matrix::after {
+  content: "_"; /* Le petit tiret à la fin du bouton */
+  animation: blinkCursor 1s step-end infinite;
+}
+
+/* Animation pour faire clignoter le curseur */
+@keyframes blinkCursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Effet au survol du bouton retour */
 .btn-matrix:hover {
-  background: rgba(138, 43, 226, 0.3);
-  transform: scale(1.05);
-  box-shadow: 0 0 30px rgba(168, 85, 247, 0.6);
+  background: rgba(212, 175, 55, 0.1);
+  box-shadow: 6px 6px 0px rgba(212, 175, 55, 0.5);
+  transform: translate(-2px, -2px); /* Se soulève légèrement */
 }
 
+/* Effet au clic du bouton retour */
 .btn-matrix:active {
-  transform: scale(0.98);
+  transform: translate(4px, 4px); /* S'enfonce façon bouton d'arcade */
+  box-shadow: 0px 0px 0px rgba(212, 175, 55, 0); /* L'ombre disparaît */
 }
+
+/* ============================================
+   CONTENU DE LA LETTRE
+   ============================================ */
 
 /* Conteneur principal de la lettre */
 .letter-container {
@@ -375,9 +398,11 @@ body {
     font-size: 13px;
   }
 
+  /* Ajustement du bouton retour terminal sur mobile */
   .btn-matrix {
-    font-size: 12px;
-    padding: 8px 16px;
+    padding: 12px 22px;
+    font-size: 1.05em;
+    box-shadow: 3px 3px 0px rgba(212, 175, 55, 0.3);
   }
 
   .action-buttons {

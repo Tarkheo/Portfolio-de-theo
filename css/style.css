@@ -1,753 +1,600 @@
 /* ============================================
    IMPORT DE LA POLICE
    ============================================ */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap'); /* Importe la police Poppins depuis Google Fonts avec différentes épaisseurs */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
 /* ============================================
-   ANIMATIONS THÈME ENDERMAN
+   ANIMATIONS THÈME LUXE (VIOLET & OR)
    ============================================ */
 
-/* Animation de pulsation violette (aura Enderman) */
-@keyframes endermanGlow { /* Définit une animation nommée "endermanGlow" */
-  0%, 100% { /* État au début (0%) et à la fin (100%) de l'animation */
-    box-shadow: 0 4px 20px rgba(138, 43, 226, 0.6), /* Ombre portée violette moyenne */
-                0 0 30px rgba(168, 85, 247, 0.4), /* Halo violet clair */
-                inset 0 0 20px rgba(138, 43, 226, 0.1); /* Ombre intérieure subtile */
+/* Animation de pulsation Dorée/Violette */
+@keyframes royalGlow { 
+  0%, 100% { 
+    box-shadow: 0 4px 20px rgba(75, 27, 107, 0.6), 
+                0 0 30px rgba(212, 175, 55, 0.3),
+                inset 0 0 20px rgba(75, 27, 107, 0.2); 
   }
-  50% { /* État au milieu (50%) de l'animation - pic de luminosité */
-    box-shadow: 0 4px 30px rgba(138, 43, 226, 0.9), /* Ombre portée violette intense */
-                0 0 50px rgba(168, 85, 247, 0.6), /* Halo violet plus large et visible */
-                inset 0 0 30px rgba(138, 43, 226, 0.2); /* Ombre intérieure plus prononcée */
+  50% { 
+    box-shadow: 0 4px 30px rgba(75, 27, 107, 0.9), 
+                0 0 50px rgba(212, 175, 55, 0.6),
+                inset 0 0 30px rgba(75, 27, 107, 0.4); 
   }
 }
 
 /* Animation de particules flottantes */
-@keyframes particleFloat { /* Définit une animation pour les particules qui flottent */
-  0% { /* État initial de la particule */
-    transform: translateY(0) translateX(0); /* Position de départ (pas de déplacement) */
-    opacity: 0; /* Invisible au départ */
-  }
-  50% { /* Milieu de l'animation */
-    opacity: 1; /* Particule complètement visible */
-  }
-  100% { /* État final de la particule */
-    transform: translateY(-20px) translateX(10px); /* Déplacement vers le haut et la droite */
-    opacity: 0; /* Redevient invisible */
-  }
+@keyframes particleFloat { 
+  0% { transform: translateY(0) translateX(0); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateY(-20px) translateX(10px); opacity: 0; }
 }
 
 /* Animation de téléportation (apparition) */
-@keyframes teleportIn { /* Définit une animation d'apparition style téléportation */
-  0% { /* État initial */
-    opacity: 0; /* Invisible */
-    transform: scale(0.8) translateY(-10px); /* Réduit à 80% et légèrement en haut */
+@keyframes teleportIn { 
+  0% { opacity: 0; transform: scale(0.8) translateY(-10px); }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* Lueur dorée pour le texte */
+@keyframes goldTextGlow { 
+  0%, 100% { 
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.5), 
+                 0 0 20px rgba(212, 175, 55, 0.3); 
   }
-  50% { /* Milieu de l'animation */
-    opacity: 0.5; /* Semi-transparent */
-  }
-  100% { /* État final */
-    opacity: 1; /* Complètement visible */
-    transform: scale(1) translateY(0); /* Taille normale et position normale */
+  50% { 
+    text-shadow: 0 0 15px rgba(212, 175, 55, 0.8),
+                 0 0 30px rgba(212, 175, 55, 0.5); 
   }
 }
 
-/* Animation yeux Enderman (clignotement) */
-@keyframes eyeGlow { /* Définit une animation de clignotement lumineux */
-  0%, 90%, 100% { /* État normal (début, presque fin, et fin) */
-    text-shadow: 0 0 10px rgba(199, 36, 177, 0.8), /* Lueur rose proche */
-                 0 0 20px rgba(199, 36, 177, 0.6), /* Lueur rose moyenne */
-                 0 0 30px rgba(199, 36, 177, 0.4); /* Lueur rose éloignée */
-  }
-  95% { /* Moment du "clignotement" */
-    text-shadow: 0 0 5px rgba(199, 36, 177, 0.3); /* Lueur réduite */
-  }
-}
-
-/* Animation de glitch (effet de téléportation) */
-@keyframes glitchEffect { /* Définit une animation de glitch/tremblement */
-  0%, 100% { /* Position normale au début et à la fin */
-    transform: translate(0); /* Pas de déplacement */
-  }
-  20% { /* Premier décalage */
-    transform: translate(-2px, 2px); /* Déplacement vers gauche-bas */
-  }
-  40% { /* Deuxième décalage */
-    transform: translate(2px, -2px); /* Déplacement vers droite-haut */
-  }
-  60% { /* Troisième décalage */
-    transform: translate(-2px, -2px); /* Déplacement vers gauche-haut */
-  }
-  80% { /* Quatrième décalage */
-    transform: translate(2px, 2px); /* Déplacement vers droite-bas */
-  }
+/* Animation de glitch */
+@keyframes glitchEffect { 
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(2px, -2px); }
+  60% { transform: translate(-2px, -2px); }
+  80% { transform: translate(2px, 2px); }
 }
 
 /* Animation ondulation violette */
-@keyframes purpleWave { /* Définit une animation d'ondulation de fond */
-  0% { /* Position de départ du dégradé */
-    background-position: 0% 50%; /* Dégradé au début (gauche) */
-  }
-  50% { /* Milieu de l'animation */
-    background-position: 100% 50%; /* Dégradé à la fin (droite) */
-  }
-  100% { /* Retour à la position de départ */
-    background-position: 0% 50%; /* Dégradé au début (gauche) */
-  }
+@keyframes purpleWave { 
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Scintillement des étoiles dans la barre de nav */
+@keyframes navStarTwinkle {
+  0% { opacity: 0.2; transform: scale(0.9); }
+  100% { opacity: 1; transform: scale(1.1); filter: drop-shadow(0 0 4px rgba(212, 175, 55, 0.8)); }
 }
 
 /* ============================================
-   MENU DE NAVIGATION - THÈME ENDERMAN
+   MENU DE NAVIGATION - THÈME LUXE
    ============================================ */
 
-nav { /* Style de la barre de navigation */
-  display: flex; /* Utilise Flexbox pour la disposition */
-  justify-content: center; /* Centre le contenu horizontalement */
-  background: linear-gradient(135deg, /* Dégradé diagonal de 135° */
-              rgba(138, 43, 226, 0.95) 0%, /* Violet foncé au début */
-              rgba(120, 10, 209, 0.95) 50%, /* Violet très foncé au milieu */
-              rgba(138, 43, 226, 0.95) 100%); /* Violet foncé à la fin */
-  background-size: 200% 200%; /* Taille du dégradé doublée pour l'animation */
-  font-family: 'Poppins', sans-serif; /* Police Poppins */
-  position: fixed; /* Position fixe (ne bouge pas au scroll) */
-  z-index: 1000; /* Au-dessus de tous les autres éléments */
-  top: 0; /* Collé en haut */
-  left: 0; /* Aligné à gauche */
-  right: 0; /* Aligné à droite */
-  margin: 10px auto; /* Marge de 10px en haut/bas, centré horizontalement */
-  border-radius: 15px; /* Coins arrondis de 15px */
-  padding: 0 20px; /* Padding horizontal de 20px */
-  width: calc(100% - 40px); /* Largeur = 100% moins 40px (pour les marges) */
-  max-width: 1400px; /* Largeur maximale de 1400px */
-  
-  /* Animations appliquées au menu */
-  animation: endermanGlow 3s ease-in-out infinite, /* Animation de lueur sur 3s en boucle */
-             purpleWave 8s ease infinite, /* Animation d'ondulation sur 8s en boucle */
-             teleportIn 0.6s ease-out; /* Animation d'apparition sur 0.6s une fois */
-  
-  /* Bordure avec effet lumineux */
-  border: 2px solid rgba(168, 85, 247, 0.5); /* Bordure violette semi-transparente */
-  
-  /* Particules violettes en pseudo-élément */
-  position: fixed; /* Position fixe (répété) */
-  overflow: visible; /* Permet aux éléments de dépasser */
+nav { 
+  display: flex; 
+  justify-content: center; 
+  background: linear-gradient(135deg, rgba(43, 10, 61, 0.95) 0%, rgba(20, 5, 30, 0.95) 50%, rgba(43, 10, 61, 0.95) 100%); 
+  background-size: 200% 200%; 
+  font-family: 'Poppins', sans-serif; 
+  font-size: 25px;
+  position: fixed; 
+  z-index: 1000; 
+  top: 25px; /* Décolle la barre du haut */
+  left: 0; right: 0; 
+  margin: 0 auto; 
+  border-radius: 15px; 
+  padding: 0 20px; 
+  width: calc(100% - 40px); 
+  max-width: 1400px; 
+  animation: royalGlow 4s ease-in-out infinite, purpleWave 8s ease infinite, teleportIn 0.6s ease-out; 
+  border: 1px solid rgba(212, 175, 55, 0.4); 
+  overflow: visible; 
 }
 
-/* Particules flottantes autour du menu */
-nav::before, /* Pseudo-élément avant le nav */
-nav::after { /* Pseudo-élément après le nav */
-  content: ''; /* Contenu vide (nécessaire pour afficher le pseudo-élément) */
-  position: absolute; /* Position absolue par rapport au nav */
-  width: 4px; /* Largeur de la particule */
-  height: 4px; /* Hauteur de la particule */
-  background: rgba(168, 85, 247, 0.8); /* Couleur violette */
-  border-radius: 50%; /* Forme circulaire */
-  animation: particleFloat 3s ease-in-out infinite; /* Animation de flottement en boucle */
-  box-shadow: 0 0 10px rgba(168, 85, 247, 0.8); /* Halo lumineux autour */
+/* Particule dorée flottante à l'extérieur */
+nav::before { 
+  content: ''; 
+  position: absolute; 
+  width: 4px; height: 4px; 
+  background: rgba(212, 175, 55, 0.8); 
+  border-radius: 50%; 
+  animation: particleFloat 3s ease-in-out infinite; 
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.8); 
+  top: -10px; left: 20%; 
 }
 
-nav::before { /* Particule avant */
-  top: -10px; /* Positionnée au-dessus du nav */
-  left: 20%; /* À 20% de la gauche */
-  animation-delay: 0s; /* Démarre immédiatement */
-}
-
-nav::after { /* Particule après */
-  bottom: -10px; /* Positionnée en-dessous du nav */
-  right: 30%; /* À 30% de la droite */
-  animation-delay: 1.5s; /* Démarre après 1.5 secondes */
+/* Étoiles scintillantes À L'INTÉRIEUR de la barre de navigation */
+nav::after { 
+  content: ''; 
+  position: absolute; 
+  top: 0; left: 0; width: 100%; height: 100%; 
+  border-radius: 15px; 
+  pointer-events: none; /* Empêche de bloquer les clics sur les liens */
+  background-image: 
+    radial-gradient(1.5px 1.5px at 10% 30%, #d4af37 100%, transparent),
+    radial-gradient(1px 1px at 25% 70%, #ffffff 100%, transparent),
+    radial-gradient(2px 2px at 45% 20%, #d4af37 100%, transparent),
+    radial-gradient(1px 1px at 60% 80%, #ffffff 100%, transparent),
+    radial-gradient(1.5px 1.5px at 80% 40%, #d4af37 100%, transparent),
+    radial-gradient(1px 1px at 95% 60%, #ffffff 100%, transparent);
+  animation: navStarTwinkle 1.5s ease-in-out infinite alternate;
+  z-index: 0; 
 }
 
 /* ============================================
    LISTE DES LIENS
    ============================================ */
 
-header nav ul { /* Liste des liens dans le header */
-  list-style: none; /* Supprime les puces de liste */
-  margin: 0; /* Supprime les marges */
-  padding: 0; /* Supprime le padding */
-  display: flex; /* Utilise Flexbox */
-  gap: 1.5rem; /* Espace de 1.5rem entre chaque élément */
-  justify-content: center; /* Centre les éléments horizontalement */
-  align-items: center; /* Centre les éléments verticalement */
-  flex-wrap: wrap; /* Permet aux éléments de passer à la ligne */
+header nav ul { 
+  list-style: none; margin: 0; padding: 0; 
+  display: flex; gap: 1.5rem; 
+  justify-content: center; align-items: center; 
+  flex-wrap: wrap; 
+  position: relative; /* Très important : garde le texte AU-DESSUS des étoiles */
+  z-index: 2; 
 }
 
-header nav { /* Navigation dans le header */
-  display: flex; /* Utilise Flexbox */
-  justify-content: center; /* Centre le contenu horizontalement */
-  align-items: center; /* Centre le contenu verticalement */
-}
-
-header nav ul li { /* Éléments de liste dans la navigation */
-  margin: 0; /* Pas de marge */
-  position: relative; /* Position relative pour les sous-menus */
-}
+header nav { display: flex; justify-content: center; align-items: center; }
+header nav ul li { margin: 0; position: relative; }
 
 /* ============================================
-   STYLE DES LIENS - ANIMATIONS ENDERMAN
+   STYLE DES LIENS - ANIMATIONS LUXE
    ============================================ */
 
-nav ul li a { /* Style des liens dans la navigation */
-  display: block; /* Affichage en bloc (occupe toute la largeur) */
-  padding: 12px 20px; /* Padding vertical 12px, horizontal 20px */
-  color: rgb(255, 253, 208); /* Couleur jaune clair */
-  text-decoration: none; /* Supprime le soulignement */
-  white-space: nowrap; /* Empêche le texte de passer à la ligne */
-  border-radius: 8px; /* Coins arrondis de 8px */
-  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Transition avec effet rebond sur 0.4s */
-  font-weight: 500; /* Épaisseur de police moyenne */
-  position: relative; /* Position relative pour les effets */
-  overflow: hidden; /* Cache les débordements */
+nav ul li a { 
+  display: block; padding: 12px 20px; 
+  color: #d4af37; /* Texte en couleur dorée par défaut */
+  text-decoration: none; white-space: nowrap; 
+  border-radius: 8px; 
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); 
+  font-weight: 500; position: relative; overflow: hidden; 
 }
 
-/* Effet de lueur Enderman sur les liens */
-nav ul li a .nav-text { /* Texte des liens */
-  position: relative; /* Position relative */
-  z-index: 2; /* Au-dessus des autres éléments du lien */
-  display: inline-block; /* Affichage en ligne-bloc */
-  transition: all 0.3s ease; /* Transition douce sur 0.3s */
+nav ul li a .nav-text { 
+  position: relative; z-index: 2; 
+  display: inline-block; transition: all 0.3s ease; 
 }
 
-/* Effet de fond animé au survol */
-nav ul li a::before { /* Pseudo-élément avant le lien */
-  content: ''; /* Contenu vide */
-  position: absolute; /* Position absolue */
-  top: 0; /* Collé en haut */
-  left: -100%; /* Positionné complètement à gauche (hors vue) */
-  width: 100%; /* Largeur totale */
-  height: 100%; /* Hauteur totale */
-  background: linear-gradient(90deg, /* Dégradé horizontal */
-              transparent, /* Transparent au début */
-              rgba(199, 36, 177, 0.4), /* Rose au milieu */
-              transparent); /* Transparent à la fin */
-  transition: left 0.5s ease; /* Transition de la position sur 0.5s */
-  z-index: 1; /* En-dessous du texte */
+nav ul li a::before { 
+  content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; 
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent); 
+  transition: left 0.5s ease; z-index: 1; 
 }
 
-nav ul li a:hover::before { /* Au survol du lien */
-  left: 100%; /* Déplace le dégradé vers la droite (traverse le lien) */
+nav ul li a:hover::before { left: 100%; }
+
+/* Animation au survol */
+nav ul li a:hover { 
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(75, 27, 107, 0.3)); 
+  transform: translateY(-2px) scale(1.05); 
+  box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2); 
 }
 
-/* Animation au survol - Effet Enderman */
-nav ul li a:hover { /* Au survol du lien */
-  background: linear-gradient(135deg, /* Dégradé diagonal */
-              rgba(199, 36, 177, 0.3), /* Rose clair */
-              rgba(168, 85, 247, 0.3)); /* Violet clair */
-  transform: translateY(-3px) scale(1.05); /* Monte de 3px et agrandit de 5% */
-  box-shadow: 0 5px 20px rgba(138, 43, 226, 0.6), /* Ombre portée violette */
-              0 0 30px rgba(168, 85, 247, 0.4); /* Halo violet */
-  animation: eyeGlow 0.3s ease-in-out; /* Animation de lueur sur 0.3s */
+nav ul li:nth-child(3n) a:hover { animation: glitchEffect 0.3s ease-in-out; }
+
+nav ul li a::after { 
+  content: ''; position: absolute; width: 3px; height: 3px; 
+  background: rgba(212, 175, 55, 0.8); border-radius: 50%; 
+  top: 50%; left: 10%; opacity: 0; 
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.8); transition: all 0.6s ease; 
 }
 
-/* Effet de glitch aléatoire sur certains liens */
-nav ul li:nth-child(3n) a:hover { /* Chaque 3ème élément (3, 6, 9...) au survol */
-  animation: glitchEffect 0.3s ease-in-out; /* Animation de glitch sur 0.3s */
-}
+nav ul li a:hover::after { opacity: 1; animation: particleFloat 1s ease-out forwards; }
 
-/* Particules au survol */
-nav ul li a::after { /* Pseudo-élément après le lien */
-  content: ''; /* Contenu vide */
-  position: absolute; /* Position absolue */
-  width: 3px; /* Largeur de la particule */
-  height: 3px; /* Hauteur de la particule */
-  background: rgba(168, 85, 247, 0.8); /* Couleur violette */
-  border-radius: 50%; /* Forme circulaire */
-  top: 50%; /* Centré verticalement */
-  left: 10%; /* À 10% de la gauche */
-  opacity: 0; /* Invisible par défaut */
-  box-shadow: 0 0 8px rgba(168, 85, 247, 0.8); /* Halo lumineux */
-  transition: all 0.6s ease; /* Transition sur 0.6s */
-}
-
-nav ul li a:hover::after { /* Au survol */
-  opacity: 1; /* Devient visible */
-  animation: particleFloat 1s ease-out forwards; /* Animation de flottement sur 1s */
-}
-
-/* Effet de bordure animée */
-nav ul li a:hover .nav-text { /* Texte au survol */
-  animation: eyeGlow 1s ease-in-out infinite; /* Animation de lueur en boucle sur 1s */
+nav ul li a:hover .nav-text { 
+  animation: goldTextGlow 1.5s ease-in-out infinite; 
 }
 
 /* ============================================
    SOUS-MENUS DÉROULANTS
    ============================================ */
 
-nav ul li ul { /* Sous-menus dans la navigation */
-  display: none; /* Caché par défaut */
-  position: absolute; /* Position absolue par rapport au li parent */
-  top: 100%; /* Positionné juste en-dessous du li parent */
-  left: 0; /* Aligné à gauche */
-  background: linear-gradient(135deg, /* Dégradé diagonal */
-              rgba(138, 43, 226, 0.95), /* Violet foncé */
-              rgba(120, 10, 209, 0.95)); /* Violet très foncé */
-  padding: 5px 0; /* Padding vertical de 5px */
-  margin: 0; /* Pas de marge */
-  min-width: 200px; /* Largeur minimale de 200px */
-  border-radius: 8px; /* Coins arrondis */
-  box-shadow: 0 8px 25px rgba(138, 43, 226, 0.6); /* Ombre portée violette */
-  opacity: 0; /* Invisible par défaut */
-  visibility: hidden; /* Non visible (ne prend pas d'espace) */
-  transform: translateY(-10px); /* Décalé vers le haut de 10px */
-  transition: all 0.3s ease; /* Transition sur 0.3s */
-  border: 2px solid rgba(168, 85, 247, 0.5); /* Bordure violette */
-  animation: endermanGlow 3s ease-in-out infinite; /* Animation de lueur en boucle */
+nav ul li ul { 
+  display: none; position: absolute; top: 100%; left: 0; 
+  background: linear-gradient(135deg, rgba(30, 10, 45, 0.95), rgba(15, 5, 25, 0.95)); 
+  padding: 5px 0; margin: 0; min-width: 200px; border-radius: 8px; 
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.8); 
+  opacity: 0; visibility: hidden; transform: translateY(-10px); 
+  transition: all 0.3s ease; border: 1px solid rgba(212, 175, 55, 0.3); 
 }
 
-nav ul li:hover > ul { /* Au survol du li parent qui contient un sous-menu */
-  display: block; /* Affiche le sous-menu */
-  opacity: 1; /* Devient visible */
-  visibility: visible; /* Devient visible */
-  transform: translateY(0); /* Retourne à sa position normale */
-  animation: teleportIn 0.4s ease-out; /* Animation d'apparition */
+nav ul li:hover > ul { 
+  display: block; opacity: 1; visibility: visible; 
+  transform: translateY(0); animation: teleportIn 0.4s ease-out; 
 }
 
-nav ul li ul li a { /* Liens dans les sous-menus */
-  padding: 10px 20px; /* Padding réduit */
-  color: #fff; /* Couleur blanche */
-}
+nav ul li ul li a { padding: 10px 20px; color: #d4af37; } /* Liens des sous-menus en doré */
 
-nav ul li ul li a:hover { /* Liens des sous-menus au survol */
-  background: rgba(199, 36, 177, 0.3); /* Fond rose transparent */
+nav ul li ul li a:hover { 
+  background: rgba(212, 175, 55, 0.15); 
 }
 
 /* ============================================
    CONFIGURATION DE BASE
    ============================================ */
 
-body { /* Corps du document */
-  margin: 0; /* Supprime les marges par défaut */
-  font-family: 'Poppins', sans-serif; /* Police Poppins */
-  overflow-x: hidden; /* Cache le défilement horizontal */
-  padding-top: 100px; /* Espace en haut pour le menu fixe */
+body { 
+  margin: 0; font-family: 'Poppins', sans-serif; 
+  overflow-x: hidden; 
+  padding-top: 130px; /* Ajusté pour éviter que le texte ne passe sous la barre abaissée */
 }
 
-body::before { /* Pseudo-élément avant le body */
-  content: ''; /* Contenu vide */
-  position: fixed; /* Position fixe (fond fixe) */
-  top: 0; /* Collé en haut */
-  left: 0; /* Collé à gauche */
-  width: 100%; /* Largeur totale */
-  height: 100%; /* Hauteur totale */
-  background: rgb(0, 0, 0); /* Fond noir */
-  z-index: -1; /* Derrière tout le contenu */
-  pointer-events: none; /* N'intercepte pas les événements de souris */
+body::before { 
+  content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+  background: radial-gradient(circle at center, #1a0a2e 0%, #0a0310 100%); 
+  z-index: -1; pointer-events: none; 
 }
 
 /* ============================================
-   TEXTE ET FOOTER
+   TEXTE ET FOOTER (AVEC ANIMATION CASCADE)
    ============================================ */
 
-.texteaccueil { /* Section de texte d'accueil */
-  color: #ffffff; /* Texte blanc */
-  font-family: 'Poppins', sans-serif; /* Police Poppins */
-  text-align: center; /* Texte centré */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.footer { /* Pied de page */
-  color: #ffffff; /* Texte blanc */
-  position: fixed; /* Position fixe */
-  bottom: 0; /* Collé en bas */
-  left: 0; /* Aligné à gauche */
-  background-color: transparent; /* Fond transparent */
-  padding: 30px 40px; /* Padding de 30px vertical et 40px horizontal */
-  font-size: 12px; /* Taille de police de 12px */
+@keyframes titleGlow {
+  0%, 100% { text-shadow: 0 0 5px rgba(212, 175, 55, 0.2); }
+  50% { text-shadow: 0 0 15px rgba(212, 175, 55, 0.7); }
+}
+
+.texteaccueil { 
+  color: #ffffff; 
+  font-family: 'Poppins', sans-serif; 
+  text-align: center; 
+}
+
+.texteaccueil h2, .texteaccueil h3 {
+  color: #d4af37; 
+  text-decoration: none; 
+  border-bottom: 1px solid rgba(212, 175, 55, 0.3); 
+  display: inline-block;
+  padding-bottom: 5px;
+  opacity: 0; 
+  animation: fadeInUp 0.8s ease-out forwards, titleGlow 4s ease-in-out infinite alternate;
+}
+
+.texteaccueil h2 {
+  font-size: 2em;
+}
+
+.texteaccueil h3 {
+  font-size: 2em;
+}
+
+.texteaccueil p {
+  color: #e6e6e6; 
+  opacity: 0; 
+  animation: fadeInUp 0.8s ease-out forwards;
+  font-size: 1.2em;
+}
+
+/* Délais d'apparition pour la cascade */
+.texteaccueil h2 { animation-delay: 0.2s, 1s; } 
+.texteaccueil p:nth-of-type(1) { animation-delay: 0.5s; }
+.texteaccueil h3 { animation-delay: 0.8s, 1.6s; }
+.texteaccueil p:nth-of-type(2) { animation-delay: 1.1s; }
+.texteaccueil p:nth-of-type(3) { animation-delay: 1.3s; }
+
+.footer { 
+  color: #ffffff; position: fixed; bottom: 0; left: 0; 
+  background-color: transparent; padding: 30px 40px; font-size: 12px; 
 }
 
 /* ============================================
    AVATAR - CENTRÉ AUTOMATIQUEMENT
    ============================================ */
 
-/* Container pour centrer l'image */
-.avatar-container-centered { /* Conteneur de l'avatar */
-  display: flex; /* Utilise Flexbox */
-  justify-content: center; /* Centre horizontalement */
-  align-items: center; /* Centre verticalement */
-  width: 100%; /* Largeur totale */
-  margin: 40px 0; /* Marge de 40px en haut et en bas */
-  position: relative; /* Position relative */
+.avatar-container-centered { 
+  display: flex; justify-content: center; align-items: center; 
+  width: 100%; margin: 40px 0; position: relative; 
 }
 
-/* Animation sautillement léger */
-@keyframes légerBounce { /* Définit une animation de rebond */
-  0%, 100% { /* État de départ et d'arrivée */
-    transform: translateY(0); /* Position normale */
-  }
-  50% { /* Milieu de l'animation */
-    transform: translateY(-8px); /* Monte de 8px */
-  }
+@keyframes légerBounce { 
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
 }
 
-.avatar { /* Image avatar */
-  border-radius: 50%; /* Forme circulaire */
-  width: 300px; /* Largeur de 300px */
-  height: auto; /* Hauteur automatique (garde les proportions) */
-  animation: légerBounce 2.5s ease-in-out infinite; /* Animation de rebond sur 2.5s en boucle */
-  transition: transform 0.3s ease; /* Transition de transformation sur 0.3s */
-  cursor: default; /* Curseur par défaut */
-  box-shadow: 0 0 40px rgba(138, 43, 226, 0.6); /* Ombre/halo violet */
+.avatar { 
+  border-radius: 50%; width: 300px; height: auto; 
+  animation: légerBounce 2.5s ease-in-out infinite; transition: transform 0.3s ease; cursor: default; 
+  box-shadow: 0 0 30px rgba(75, 27, 107, 0.6), 0 0 15px rgba(212, 175, 55, 0.3);
+  border: 2px solid rgba(212, 175, 55, 0.5);
 }
 
-.avatar:hover { /* Avatar au survol */
-  transform: scale(1.05); /* Agrandit de 5% */
-  box-shadow: 0 0 60px rgba(168, 85, 247, 0.8); /* Halo violet plus intense */
+.avatar:hover { 
+  transform: scale(1.05); 
+  box-shadow: 0 0 50px rgba(75, 27, 107, 0.8), 0 0 25px rgba(212, 175, 55, 0.6); 
 }
 
-/* ============================================
-   LECTEUR AUDIO
-   ============================================ */
+/* ========================================
+   LECTEUR AUDIO - STYLE VINYLE
+   ======================================== */
 
-.audio-player { /* Conteneur du lecteur audio */
-  position: fixed; /* Position fixe */
-  bottom: 20px; /* À 20px du bas */
-  right: 20px; /* À 20px de la droite */
-  background: rgba(138, 43, 226, 0.9); /* Fond violet semi-transparent */
-  backdrop-filter: blur(10px); /* Effet de flou d'arrière-plan */
-  border-radius: 15px; /* Coins arrondis */
-  padding: 15px 20px; /* Padding de 15px vertical et 20px horizontal */
-  box-shadow: 0 8px 32px rgba(138, 43, 226, 0.4); /* Ombre portée violette */
-  z-index: 1001; /* Au-dessus du menu de navigation */
-  display: flex; /* Utilise Flexbox */
-  align-items: center; /* Centre les éléments verticalement */
-  gap: 12px; /* Espace de 12px entre les éléments */
-  min-width: 400px; /* Largeur minimale de 400px */
-  transition: all 0.3s ease; /* Transition sur 0.3s */
+.vinyl-player-container {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: rgba(15, 5, 25, 0.85); /* Fond sombre transparent */
+    border: 2px solid #D4AF37; /* Bordure or */
+    border-radius: 20px;
+    padding: 25px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9), 0 0 20px rgba(212, 175, 55, 0.2);
+    backdrop-filter: blur(10px);
+    z-index: 9999;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+    width: 260px;
+    animation: slideIn 0.5s ease-out;
 }
 
-.audio-player.collapsed { /* Lecteur audio réduit */
-  min-width: auto; /* Largeur minimale automatique (plus petite) */
+@keyframes slideIn { 
+    from { transform: translateX(400px); opacity: 0; } 
+    to { transform: translateX(0); opacity: 1; } 
 }
 
-.nav-btn { /* Boutons de navigation (précédent/suivant) */
-  background: rgba(255, 255, 255, 0.15) !important; /* Fond blanc transparent (prioritaire) */
-  width: 32px !important; /* Largeur de 32px (prioritaire) */
-  height: 32px !important; /* Hauteur de 32px (prioritaire) */
-  font-size: 16px !important; /* Taille de police de 16px (prioritaire) */
+/* État réduit */
+.vinyl-player-container.collapsed {
+    transform: translateY(calc(100% - 60px));
+    opacity: 0.8;
 }
 
-.nav-btn:hover { /* Boutons de navigation au survol */
-  background: rgba(255, 255, 255, 0.25) !important; /* Fond blanc plus visible (prioritaire) */
+.vinyl-player-container.collapsed:hover {
+    transform: translateY(calc(100% - 65px));
+    opacity: 1;
 }
 
-.audio-controls { /* Conteneur des contrôles audio */
-  display: flex; /* Utilise Flexbox */
-  gap: 10px; /* Espace de 10px entre les éléments */
-  align-items: center; /* Centre les éléments verticalement */
+/* Le Disque Vinyle */
+.vinyl-record {
+    width: 140px;
+    height: 140px;
+    background: #111;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Effet rainures du vinyle avec des ombres internes répétées */
+    box-shadow: 
+        0 5px 15px rgba(0,0,0,0.8), 
+        inset 0 0 0 4px #1a1a1a, 
+        inset 0 0 0 8px #0a0a0a, 
+        inset 0 0 0 12px #1a1a1a, 
+        inset 0 0 0 16px #0a0a0a, 
+        inset 0 0 0 20px #1a1a1a, 
+        inset 0 0 0 24px #0a0a0a;
+    transition: transform 0.2s;
+    border: 2px solid #333;
 }
 
-.audio-btn { /* Boutons audio */
-  background: rgba(255, 255, 255, 0.2); /* Fond blanc transparent */
-  border: none; /* Pas de bordure */
-  color: white; /* Texte blanc */
-  width: 35px; /* Largeur de 35px */
-  height: 35px; /* Hauteur de 35px */
-  border-radius: 50%; /* Forme circulaire */
-  cursor: pointer; /* Curseur pointeur */
-  display: flex; /* Utilise Flexbox */
-  align-items: center; /* Centre le contenu verticalement */
-  justify-content: center; /* Centre le contenu horizontalement */
-  transition: all 0.3s ease; /* Transition sur 0.3s */
-  font-size: 18px; /* Taille de police de 18px */
+/* Animation de rotation quand la musique joue */
+.vinyl-record.playing {
+    animation: spinVinyl 3s linear infinite;
 }
 
-.audio-btn:hover { /* Boutons audio au survol */
-  background: rgba(255, 255, 255, 0.3); /* Fond blanc plus visible */
-  transform: scale(1.1); /* Agrandit de 10% */
+@keyframes spinVinyl {
+    100% { transform: rotate(360deg); }
 }
 
-.audio-btn:active { /* Boutons audio lors du clic */
-  transform: scale(0.95); /* Réduit de 5% */
+/* Étiquette centrale du vinyle (Rouge bordeaux et Or) */
+.vinyl-label {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #D4AF37, #9E0E40);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 5px rgba(0,0,0,0.8);
+    border: 1px solid #F3E5AB;
 }
 
-.volume-control { /* Conteneur du contrôle de volume */
-  display: flex; /* Utilise Flexbox */
-  align-items: center; /* Centre les éléments verticalement */
-  gap: 10px; /* Espace de 10px entre les éléments */
-  flex: 1; /* Occupe l'espace disponible */
-  min-width: 100px; /* Largeur minimale de 100px */
+/* Trou central */
+.vinyl-hole {
+    width: 10px;
+    height: 10px;
+    background: #000;
+    border-radius: 50%;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.9);
 }
 
-.volume-icon { /* Icône de volume */
-  color: white; /* Couleur blanche */
-  font-size: 18px; /* Taille de 18px */
-  min-width: 20px; /* Largeur minimale de 20px */
-  cursor: pointer; /* Curseur pointeur */
-  transition: transform 0.2s ease; /* Transition de transformation sur 0.2s */
+/* Contrôles */
+.vinyl-controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
-.volume-icon:hover { /* Icône de volume au survol */
-  transform: scale(1.2); /* Agrandit de 20% */
+.ctrl-btn {
+    background: transparent;
+    border: none;
+    color: #D4AF37;
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
-.volume-slider { /* Curseur de volume */
-  -webkit-appearance: none; /* Supprime l'apparence par défaut sur Safari/Chrome */
-  appearance: none; /* Supprime l'apparence par défaut */
-  width: 100%; /* Largeur totale */
-  height: 5px; /* Hauteur de 5px */
-  border-radius: 5px; /* Coins arrondis */
-  background: rgba(255, 255, 255, 0.3); /* Fond blanc transparent */
-  outline: none; /* Supprime le contour au focus */
-  transition: all 0.3s ease; /* Transition sur 0.3s */
-  cursor: pointer; /* Curseur pointeur */
+.ctrl-btn:hover {
+    color: #F3E5AB;
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
+    transform: scale(1.1);
 }
 
-.volume-slider:hover { /* Curseur de volume au survol */
-  background: rgba(255, 255, 255, 0.4); /* Fond blanc plus visible */
+.play-btn {
+    font-size: 1.8em;
+    background: rgba(212, 175, 55, 0.1);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid #D4AF37;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.volume-slider::-webkit-slider-thumb { /* Poignée du curseur pour Safari/Chrome */
-  -webkit-appearance: none; /* Supprime l'apparence par défaut */
-  appearance: none; /* Supprime l'apparence par défaut */
-  width: 15px; /* Largeur de 15px */
-  height: 15px; /* Hauteur de 15px */
-  border-radius: 50%; /* Forme circulaire */
-  background: white; /* Fond blanc */
-  cursor: pointer; /* Curseur pointeur */
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Halo blanc */
-  transition: all 0.2s ease; /* Transition sur 0.2s */
+.play-btn:hover {
+    background: #D4AF37;
+    color: #050505;
+    text-shadow: none;
 }
 
-.volume-slider::-webkit-slider-thumb:hover { /* Poignée au survol pour Safari/Chrome */
-  width: 18px; /* Largeur augmentée à 18px */
-  height: 18px; /* Hauteur augmentée à 18px */
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.8); /* Halo blanc plus intense */
+/* Textes et infos */
+.vinyl-info {
+    width: 100%;
+    text-align: center;
 }
 
-.volume-slider::-moz-range-thumb { /* Poignée du curseur pour Firefox */
-  width: 15px; /* Largeur de 15px */
-  height: 15px; /* Hauteur de 15px */
-  border-radius: 50%; /* Forme circulaire */
-  background: white; /* Fond blanc */
-  cursor: pointer; /* Curseur pointeur */
-  border: none; /* Pas de bordure */
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Halo blanc */
-  transition: all 0.2s ease; /* Transition sur 0.2s */
+.track-title {
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 500;
 }
 
-.volume-slider::-moz-range-thumb:hover { /* Poignée au survol pour Firefox */
-  width: 18px; /* Largeur augmentée à 18px */
-  height: 18px; /* Hauteur augmentée à 18px */
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.8); /* Halo blanc plus intense */
+.track-progress {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    font-size: 0.8em;
+    color: #D4AF37;
+    font-family: 'Consolas', monospace;
 }
 
-.audio-info-container { /* Conteneur des informations de piste */
-  display: flex; /* Utilise Flexbox */
-  flex-direction: column; /* Disposition en colonne */
-  gap: 3px; /* Espace de 3px entre les éléments */
-  min-width: 120px; /* Largeur minimale de 120px */
+.volume-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-.audio-info { /* Informations de la piste (titre) */
-  color: white; /* Texte blanc */
-  font-size: 12px; /* Taille de police de 12px */
-  font-weight: 500; /* Épaisseur moyenne */
-  white-space: nowrap; /* Empêche le passage à la ligne */
-  overflow: hidden; /* Cache le débordement */
-  text-overflow: ellipsis; /* Affiche "..." si le texte est trop long */
-  font-family: 'Poppins', sans-serif; /* Police Poppins */
+/* Curseur volume stylisé */
+input[type=range] {
+    width: 80px;
+    -webkit-appearance: none;
+    appearance: none; /* Ajoute cette ligne pour satisfaire l'éditeur ! */
+    background: transparent;
+    cursor: pointer;
 }
 
-.track-number { /* Numéro de piste */
-  color: rgba(255, 255, 255, 0.7); /* Blanc semi-transparent */
-  font-size: 10px; /* Taille de police de 10px */
-  font-family: 'Poppins', sans-serif; /* Police Poppins */
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 5px;
+    background: rgba(212, 175, 55, 0.3);
+    border-radius: 5px;
 }
 
-.minimize-btn { /* Bouton pour minimiser */
-  background: none; /* Pas de fond */
-  border: none; /* Pas de bordure */
-  color: white; /* Texte blanc */
-  cursor: pointer; /* Curseur pointeur */
-  font-size: 20px; /* Taille de police de 20px */
-  padding: 0; /* Pas de padding */
-  width: 25px; /* Largeur de 25px */
-  height: 25px; /* Hauteur de 25px */
-  display: flex; /* Utilise Flexbox */
-  align-items: center; /* Centre le contenu verticalement */
-  justify-content: center; /* Centre le contenu horizontalement */
-  opacity: 0.7; /* Opacité de 70% */
-  transition: all 0.3s ease; /* Transition sur 0.3s */
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    background: #D4AF37;
+    margin-top: -3.5px;
+    box-shadow: 0 0 5px #9E0E40;
 }
 
-.minimize-btn:hover { /* Bouton minimiser au survol */
-  opacity: 1; /* Opacité complète (100%) */
-  transform: rotate(180deg); /* Rotation de 180 degrés */
+.minimize-vinyl {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: transparent;
+    border: none;
+    color: #D4AF37;
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
-@keyframes slideIn { /* Définit une animation de glissement */
-  from { /* État de départ */
-    transform: translateX(400px); /* Décalé de 400px vers la droite */
-    opacity: 0; /* Invisible */
-  }
-  to { /* État d'arrivée */
-    transform: translateX(0); /* Position normale */
-    opacity: 1; /* Complètement visible */
-  }
+.minimize-vinyl:hover {
+    color: #fff;
+    transform: scale(1.2);
 }
 
-.audio-player { /* Lecteur audio (ajout de l'animation) */
-  animation: slideIn 0.5s ease-out; /* Animation de glissement sur 0.5s */
+/* Sous menu déroulant de la navbar */
+.dropdown { position: relative; display: inline-block; }
+.dropdown-content { 
+  display: none; position: absolute; 
+  background-color: #1a0a2e; 
+  min-width: 160px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); 
+  z-index: 1; border-radius: 4px; top: 100%; border: 1px solid rgba(212, 175, 55, 0.3);
 }
+.dropdown-content a { color: #d4af37; padding: 12px 16px; text-decoration: none; display: block; font-size: 14px; }
+.dropdown-content a:hover { background-color: rgba(212, 175, 55, 0.2); color: #d4af37; }
+.dropdown:hover .dropdown-content { display: block; }
 
-@keyframes scrollText { /* Définit une animation de défilement de texte */
-  0% { /* État de départ */
-    transform: translateX(0); /* Position normale */
-  }
-  100% { /* État final */
-    transform: translateX(-50%); /* Décalé de 50% vers la gauche */
-  }
-}
-
-.audio-info.scrolling { /* Texte des infos audio en défilement */
-  animation: scrollText 10s linear infinite; /* Animation de défilement sur 10s en boucle linéaire */
-}
 
 /* ============================================
    RESPONSIVE - MOBILE
    ============================================ */
 
-/* Tablettes et petits écrans */
-@media (max-width: 1024px) { /* Pour les écrans de 1024px et moins */
-  nav { /* Navigation */
-    width: calc(100% - 30px); /* Largeur = 100% moins 30px */
-    padding: 0 15px; /* Padding horizontal de 15px */
+@media (max-width: 1024px) { 
+  nav { width: calc(100% - 30px); padding: 0 15px; }
+  header nav ul { gap: 1rem; }
+  nav ul li a { padding: 10px 15px; font-size: 14px; }
+}
+
+@media (max-width: 768px) { 
+  nav { width: calc(100% - 20px); padding: 0 10px; margin: 5px auto; }
+  header nav ul { gap: 0.5rem; padding: 5px 0; }
+  nav ul li a { padding: 8px 12px; font-size: 12px; }
+  body { padding-top: 100px; }
+  .avatar { width: 200px; }
+
+  /* Ajustements du vinyle pour tablette */
+  .vinyl-player-container {
+      bottom: 15px;
+      right: 15px;
+      width: 220px;
+      padding: 15px;
   }
-  
-  header nav ul { /* Liste de navigation */
-    gap: 1rem; /* Espace réduit à 1rem */
+  .vinyl-record {
+      width: 100px;
+      height: 100px;
   }
-  
-  nav ul li a { /* Liens de navigation */
-    padding: 10px 15px; /* Padding réduit à 10px vertical et 15px horizontal */
-    font-size: 14px; /* Taille de police réduite à 14px */
+  .play-btn {
+      width: 40px; height: 40px; font-size: 1.5em;
   }
 }
 
-@media (max-width: 768px) { /* Pour les écrans de 768px et moins (tablettes) */
-  nav { /* Navigation */
-    width: calc(100% - 20px); /* Largeur = 100% moins 20px */
-    padding: 0 10px; /* Padding horizontal de 10px */
-    margin: 5px auto; /* Marge réduite à 5px */
-  }
-  
-  header nav ul { /* Liste de navigation */
-    gap: 0.5rem; /* Espace encore plus réduit à 0.5rem */
-    padding: 5px 0; /* Padding vertical de 5px */
-  }
-  
-  nav ul li a { /* Liens de navigation */
-    padding: 8px 12px; /* Padding réduit à 8px vertical et 12px horizontal */
-    font-size: 12px; /* Taille de police réduite à 12px */
-  }
-  
-  body { /* Corps du document */
-    padding-top: 80px; /* Espace en haut réduit à 80px */
-  }
-  
-  .audio-player { /* Lecteur audio */
-    bottom: 10px; /* Marge du bas réduite à 10px */
-    right: 10px; /* Marge de droite réduite à 10px */
-    min-width: 320px; /* Largeur minimale réduite à 320px */
-    padding: 12px 15px; /* Padding réduit à 12px vertical et 15px horizontal */
-    gap: 8px; /* Espace entre éléments réduit à 8px */
-  }
-  
-  .audio-btn { /* Boutons audio */
-    width: 30px; /* Largeur réduite à 30px */
-    height: 30px; /* Hauteur réduite à 30px */
-    font-size: 16px; /* Taille de police réduite à 16px */
-  }
-  
-  .nav-btn { /* Boutons de navigation */
-    width: 28px !important; /* Largeur réduite à 28px (prioritaire) */
-    height: 28px !important; /* Hauteur réduite à 28px (prioritaire) */
-    font-size: 14px !important; /* Taille de police réduite à 14px (prioritaire) */
-  }
-  
-  .audio-info { /* Informations de la piste */
-    font-size: 11px; /* Taille de police réduite à 11px */
-  }
-  
-  .track-number { /* Numéro de piste */
-    font-size: 9px; /* Taille de police réduite à 9px */
-  }
-  
-  .volume-control { /* Contrôle du volume */
-    min-width: 80px; /* Largeur minimale réduite à 80px */
-  }
-  
-  .avatar { /* Image avatar */
-    width: 200px; /* Largeur réduite à 200px */
-  }
-}
+@media (max-width: 480px) { 
+  nav { width: calc(100% - 10px); padding: 0 5px; }
+  header nav ul { gap: 0.3rem; flex-wrap: wrap; }
+  nav ul li a { padding: 6px 10px; font-size: 11px; }
+  body { padding-top: 140px; }
+  .avatar { width: 150px; }
 
-@media (max-width: 480px) { /* Pour les écrans de 480px et moins (smartphones) */
-  nav { /* Navigation */
-    width: calc(100% - 10px); /* Largeur = 100% moins 10px */
-    padding: 0 5px; /* Padding horizontal de 5px */
+  /* Ajustements du vinyle pour smartphone */
+  .vinyl-player-container {
+      bottom: 10px;
+      right: 10px;
+      width: 180px;
+      padding: 10px;
+      gap: 10px;
   }
-  
-  header nav ul { /* Liste de navigation */
-    gap: 0.3rem; /* Espace minimal de 0.3rem */
-    flex-wrap: wrap; /* Permet aux éléments de passer à la ligne */
+  .vinyl-record {
+      width: 80px;
+      height: 80px;
   }
-  
-  nav ul li a { /* Liens de navigation */
-    padding: 6px 10px; /* Padding minimal de 6px vertical et 10px horizontal */
-    font-size: 11px; /* Taille de police minimale de 11px */
+  .vinyl-label {
+      width: 30px;
+      height: 30px;
   }
-  
-  body { /* Corps du document */
-    padding-top: 120px; /* Espace en haut augmenté à 120px (pour le menu qui wrap) */
+  .vinyl-controls {
+      gap: 10px;
   }
-  
-  .audio-player { /* Lecteur audio */
-    min-width: 280px; /* Largeur minimale réduite à 280px */
-    padding: 10px 12px; /* Padding minimal de 10px vertical et 12px horizontal */
+  .play-btn {
+      width: 35px; height: 35px; font-size: 1.2em;
   }
-  
-  .audio-info-container { /* Conteneur des informations de piste */
-    min-width: 90px; /* Largeur minimale réduite à 90px */
+  input[type=range] {
+      width: 50px;
   }
-  
-  .avatar { /* Image avatar */
-    width: 150px; /* Largeur minimale de 150px pour smartphones */
-  }
-}
-
-/* Style du conteneur dropdown */
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-/* Style du contenu caché par défaut */
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #5e0dc9; /* À adapter selon tes couleurs */
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-    border-radius: 4px;
-    top: 100%; /* Place le menu juste en dessous du bouton */
-}
-
-/* Style des liens à l'intérieur du menu */
-.dropdown-content a {
-    color: white;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    font-size: 14px;
-}
-
-/* Changement de couleur au survol des liens internes */
-.dropdown-content a:hover {
-    background-color: #4906c5;
-}
-
-/* Affiche le menu au survol de l'élément parent */
-.dropdown:hover .dropdown-content {
-    display: block;
 }
