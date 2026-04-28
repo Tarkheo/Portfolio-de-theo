@@ -93,19 +93,19 @@ const tpsList = [
     },
     {
         numero: 12,
-        titre: "",
-        description: "",
-        pdfPath: "images/.pdf",
-        imagePath: "images/images_tp/.jpeg",
-        disponible: false
+        titre: "Configuration Switch Cisco",
+        description: "Packet Tracer",
+        pdfPath: "images/switch_cisco.pdf",
+        imagePath: "images/images_tp/Cisco.jpeg",
+        disponible: true
     },
     {
         numero: 13,
-        titre: "",
-        description: "",
-        pdfPath: "images/.pdf",
+        titre: "Machine Virtuelle",
+        description: "Etapes d'installation",
+        pdfPath: "images/Etape_diapo.pdf",
         imagePath: "images/images_tp/.jpeg",
-        disponible: false
+        disponible: true
     },
     {
         numero: 14,
