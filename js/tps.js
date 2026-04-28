@@ -8,15 +8,15 @@ const tpsList = [
         titre: "TP 1 - Commandes CMD",
         description: "Premiers pas avec l'invite de commandes Windows",
         pdfPath: "images/TP3.pdf",
-        imagePath: "images/images_tp/cmd.jpeg", // 🎨 AJOUTEZ VOTRE IMAGE ICI
-        disponible: true  // true = disponible, false = verrouillé
+        imagePath: "images/images_tp/cmd1.jpeg",
+        disponible: true
     },
     {
         numero: 2,
         titre: "TP 2 - CMD Avancé",
         description: "Commandes avancées et scripts batch",
         pdfPath: "images/TP4.pdf",
-        imagePath: "images/images_tp/cmd.jpeg", // 🎨 AJOUTEZ VOTRE IMAGE ICI
+        imagePath: "images/images_tp/cmd1.jpeg",
         disponible: true
     },
     {
@@ -24,7 +24,7 @@ const tpsList = [
         titre: "TP Bash",
         description: "Administration système et réseau",
         pdfPath: "images/TP4.2.pdf",
-        imagePath: "images/images_tp/cmd.jpeg", // 🎨 AJOUTEZ VOTRE IMAGE ICI
+        imagePath: "images/images_tp/cmd1.jpeg",
         disponible: true
     },
     {
@@ -32,7 +32,7 @@ const tpsList = [
         titre: "TP Powershell",
         description: "",
         pdfPath: "images/TP5.pdf",
-        imagePath: "images/images_tp/powershell.jpeg", // 🎨 AJOUTEZ VOTRE IMAGE ICI
+        imagePath: "images/images_tp/powershell.jpeg",
         disponible: true
     },
     {
@@ -40,7 +40,7 @@ const tpsList = [
         titre: "Commandes CMD",
         description: "TP 6.1",
         pdfPath: "images/TP6.1.pdf",
-        imagePath: "images/images_tp/cmd.jpeg", // 🎨 AJOUTEZ VOTRE IMAGE ICI
+        imagePath: "images/images_tp/cmd1.jpeg",
         disponible: true
     },
     {
@@ -48,7 +48,7 @@ const tpsList = [
         titre: "Linux",
         description: "Utilisateurs Linux",
         pdfPath: "images/Linux_utilisateurs.pdf",
-        imagePath: "images/images_tp/P.png", // 🎨 AJOUTEZ VOTRE IMAGE ICI
+        imagePath: "images/images_tp/P.png",
         disponible: true
     },
     {
@@ -56,7 +56,7 @@ const tpsList = [
         titre: "TP Apache2",
         description: "Installer un serveur Http",
         pdfPath: "images/TP8.pdf",
-        imagePath: "images/images_tp/cmd.jpeg", // 🎨 AJOUTEZ VOTRE IMAGE ICI
+        imagePath: "images/images_tp/cmd1.jpeg",
         disponible: true
     },
     {
@@ -64,7 +64,7 @@ const tpsList = [
         titre: "Windows & Linux",
         description: "Installation Windows & Linux en Dual Boot (Grub)",
         pdfPath: "images/Guide Ultime Dual Boot Windows & Linux.pdf",
-        imagePath: "images/images_tp/wmint.png", // 🎨 AJOUTEZ VOTRE IMAGE ICI
+        imagePath: "images/images_tp/logowmint.png",
         disponible: true
     },
     {
@@ -72,8 +72,48 @@ const tpsList = [
         titre: "Windows Permissions Utilisateurs",
         description: "Attribution des Permissions éléves & Administrateurs",
         pdfPath: "images/permissionsWindows.pdf",
-        imagePath: "images/images_tp/win.jpeg", // 🎨 AJOUTEZ VOTRE IMAGE ICI
+        imagePath: "images/images_tp/win.jpeg",
         disponible: true
+    },
+    {
+        numero: 10,
+        titre: "Packet Tracer",
+        description: "Packet Tracer",
+        pdfPath: "images/TP_Cisco.pdf",
+        imagePath: "images/images_tp/Cisco.jpeg",
+        disponible: true
+    },
+    {
+        numero: 11,
+        titre: "Variable Subnet Lenght Mask",
+        description: "Packet Tracer",
+        pdfPath: "images/TD_VLSM.pdf",
+        imagePath: "images/images_tp/vslm.jpeg",
+        disponible: true
+    },
+    {
+        numero: 12,
+        titre: "Configuration Switch Cisco",
+        description: "Packet Tracer",
+        pdfPath: "images/switch_cisco.pdf",
+        imagePath: "images/images_tp/switch.jpeg",
+        disponible: true
+    },
+    {
+        numero: 13,
+        titre: "Machine Virtuelle",
+        description: "Etapes d'installation",
+        pdfPath: "images/Etape_diapo.pdf",
+        imagePath: "images/images_tp/.jpeg",
+        disponible: true
+    },
+    {
+        numero: 14,
+        titre: "",
+        description: "",
+        pdfPath: "images/.pdf",
+        imagePath: "images/images_tp/.jpeg",
+        disponible: false
     }
 ];
 
@@ -84,10 +124,14 @@ const tpsList = [
 function generateTPCards() {
     const grid = document.getElementById('tpGrid');
     
-    tpsList.forEach(tp => {
+    tpsList.forEach((tp, index) => {
         const card = document.createElement('div');
         card.className = 'tp-card';
         card.setAttribute('data-tp', tp.numero);
+        
+        // Animation d'apparition en cascade (Stagger effect)
+        card.style.animation = `cardEntrance 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards`;
+        card.style.animationDelay = `${index * 0.1}s`;
         
         const statusClass = tp.disponible ? 'available' : 'locked';
         const statusText = tp.disponible ? '✓ Disponible' : '🔒 Verrouillé';
@@ -95,7 +139,6 @@ function generateTPCards() {
         const iconEmoji = tp.disponible ? '📄' : '🔒';
         const disabled = tp.disponible ? '' : 'disabled';
         
-        // Utiliser l'image personnalisée si elle existe, sinon utiliser l'icône emoji
         const imageContent = tp.imagePath 
             ? `<img src="${tp.imagePath}" alt="${tp.titre}" class="tp-image ${iconClass}">`
             : `<div class="tp-icon ${iconClass}">${iconEmoji}</div>`;
@@ -153,25 +196,11 @@ function initializeCardEffects() {
                 clearInterval(card.particleInterval);
             }
         });
-        
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            card.style.setProperty('--mouse-x', x + 'px');
-            card.style.setProperty('--mouse-y', y + 'px');
-        });
-        
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(40px)';
-        card.style.transition = 'all 0.8s ease-out';
-        observer.observe(card);
     });
 }
 
 // ========================================
-// ANIMATION MATRIX VIOLET EN ARRIÈRE-PLAN
+// ANIMATION MATRIX (OR & ROUGE)
 // ========================================
 
 const canvas = document.getElementById('matrixCanvas');
@@ -180,7 +209,7 @@ const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-const matrixChars = 'ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ0123456789@#$%^&*()';
+const matrixChars = '0101011010100101XYZABCDEFGHIJKLMNOPQRSTUVWｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄ';
 const chars = matrixChars.split('');
 
 const fontSize = 16;
@@ -201,16 +230,17 @@ function drawMatrix() {
         const char = chars[Math.floor(Math.random() * chars.length)];
         
         const brightness = Math.random();
+        // Palette Or et Rouge
         if (brightness > 0.95) {
-            ctx.fillStyle = '#a855f7';
+            ctx.fillStyle = '#F3E5AB'; // Or très clair
         } else if (brightness > 0.8) {
-            ctx.fillStyle = '#8b5cf6';
+            ctx.fillStyle = '#D4AF37'; // Or classique
         } else if (brightness > 0.6) {
-            ctx.fillStyle = '#7c3aed';
+            ctx.fillStyle = '#9E0E40'; // Rouge bordeaux
         } else if (brightness > 0.4) {
-            ctx.fillStyle = '#6d28d9';
+            ctx.fillStyle = '#7a0a30'; // Rouge sombre
         } else {
-            ctx.fillStyle = '#5b21b6';
+            ctx.fillStyle = '#4d051e'; // Rouge très sombre
         }
 
         const x = i * fontSize;
@@ -258,12 +288,12 @@ class Particle {
     reset() {
         this.x = Math.random() * particlesCanvas.width;
         this.y = Math.random() * particlesCanvas.height;
-        this.size = Math.random() * 3 + 1;
-        this.speedX = Math.random() * 0.5 - 0.25;
-        this.speedY = Math.random() * 0.5 - 0.25;
-        this.opacity = Math.random() * 0.5 + 0.2;
+        this.size = Math.random() * 2 + 1;
+        this.speedX = Math.random() * 0.4 - 0.2;
+        this.speedY = Math.random() * 0.4 - 0.2;
+        this.opacity = Math.random() * 0.4 + 0.1;
         
-        const colors = ['#a855f7', '#8b5cf6', '#c084fc', '#e9d5ff', '#ec4899'];
+        const colors = ['#D4AF37', '#9E0E40', '#b3154b', '#e6c86e'];
         this.color = colors[Math.floor(Math.random() * colors.length)];
     }
 
@@ -271,12 +301,8 @@ class Particle {
         this.x += this.speedX;
         this.y += this.speedY;
 
-        if (this.x < 0 || this.x > particlesCanvas.width) {
-            this.speedX *= -1;
-        }
-        if (this.y < 0 || this.y > particlesCanvas.height) {
-            this.speedY *= -1;
-        }
+        if (this.x < 0 || this.x > particlesCanvas.width) this.speedX *= -1;
+        if (this.y < 0 || this.y > particlesCanvas.height) this.speedY *= -1;
     }
 
     draw() {
@@ -287,7 +313,7 @@ class Particle {
         pCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         pCtx.fill();
         
-        pCtx.shadowBlur = 15;
+        pCtx.shadowBlur = 10;
         pCtx.shadowColor = this.color;
         pCtx.fill();
         
@@ -296,7 +322,7 @@ class Particle {
 }
 
 const globalParticles = [];
-const particleCount = 80;
+const particleCount = 60; // Légèrement réduit pour plus de netteté
 
 for (let i = 0; i < particleCount; i++) {
     globalParticles.push(new Particle());
@@ -314,11 +340,6 @@ function animateGlobalParticles() {
 }
 
 animateGlobalParticles();
-
-window.addEventListener('resize', () => {
-    particlesCanvas.width = window.innerWidth;
-    particlesCanvas.height = window.innerHeight;
-});
 
 // ========================================
 // PARTICULES LOCALES SUR LES CARTES
@@ -339,11 +360,11 @@ class LocalParticle {
     reset() {
         this.x = Math.random() * 100;
         this.y = 100;
-        this.size = Math.random() * 4 + 2;
-        this.speedY = -(Math.random() * 2 + 1);
-        this.opacity = Math.random() * 0.8 + 0.2;
+        this.size = Math.random() * 3 + 1;
+        this.speedY = -(Math.random() * 1.5 + 0.5);
+        this.opacity = Math.random() * 0.6 + 0.2;
         
-        const colors = ['#a855f7', '#8b5cf6', '#c084fc', '#e9d5ff', '#ec4899'];
+        const colors = ['#D4AF37', '#9E0E40', '#F3E5AB', '#7a0a30'];
         this.color = colors[Math.floor(Math.random() * colors.length)];
         
         this.update();
@@ -359,7 +380,7 @@ class LocalParticle {
         this.element.style.height = this.size + 'px';
         this.element.style.backgroundColor = this.color;
         this.element.style.opacity = this.opacity;
-        this.element.style.boxShadow = `0 0 10px ${this.color}`;
+        this.element.style.boxShadow = `0 0 8px ${this.color}`;
         
         if (this.y < -20 || this.opacity <= 0) {
             this.reset();
@@ -405,50 +426,35 @@ document.addEventListener('keydown', (event) => {
 });
 
 // ========================================
-// EFFETS SUPPLÉMENTAIRES
+// EFFET DE CURSEUR (TRAÎNÉE OR/ROUGE)
 // ========================================
 
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
-
-// Effet de curseur personnalisé avec traînée violette
 document.addEventListener('mousemove', (e) => {
     const trail = document.createElement('div');
     trail.style.position = 'fixed';
-    trail.style.width = '8px';
-    trail.style.height = '8px';
+    trail.style.width = '6px';
+    trail.style.height = '6px';
     trail.style.borderRadius = '50%';
-    trail.style.background = 'rgba(168, 85, 247, 0.6)';
+    trail.style.background = 'rgba(212, 175, 55, 0.8)'; // Base or
     trail.style.pointerEvents = 'none';
     trail.style.left = e.clientX + 'px';
     trail.style.top = e.clientY + 'px';
     trail.style.transform = 'translate(-50%, -50%)';
     trail.style.zIndex = '9999';
-    trail.style.boxShadow = '0 0 15px rgba(168, 85, 247, 0.8)';
-    trail.style.transition = 'all 0.5s ease-out';
+    trail.style.boxShadow = '0 0 15px rgba(158, 14, 64, 0.9)'; // Lueur rouge
+    trail.style.transition = 'all 0.6s cubic-bezier(0.1, 0.8, 0.3, 1)';
     
     document.body.appendChild(trail);
     
     setTimeout(() => {
         trail.style.opacity = '0';
-        trail.style.width = '20px';
-        trail.style.height = '20px';
+        trail.style.width = '25px';
+        trail.style.height = '25px';
     }, 10);
     
     setTimeout(() => {
         trail.remove();
-    }, 500);
+    }, 600);
 });
 
 // ========================================
