@@ -146,6 +146,7 @@ function generateTPCards() {
         card.innerHTML = `
             <div class="card-glow"></div>
             <div class="particle-container"></div>
+            <div class="tp-number">${index + 1}</div>
             <div class="tp-content">
                 ${imageContent}
                 <h2>${tp.titre}</h2>
@@ -423,38 +424,6 @@ document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
         closeModal();
     }
-});
-
-// ========================================
-// EFFET DE CURSEUR (TRAÎNÉE OR/ROUGE)
-// ========================================
-
-document.addEventListener('mousemove', (e) => {
-    const trail = document.createElement('div');
-    trail.style.position = 'fixed';
-    trail.style.width = '6px';
-    trail.style.height = '6px';
-    trail.style.borderRadius = '50%';
-    trail.style.background = 'rgba(212, 175, 55, 0.8)'; // Base or
-    trail.style.pointerEvents = 'none';
-    trail.style.left = e.clientX + 'px';
-    trail.style.top = e.clientY + 'px';
-    trail.style.transform = 'translate(-50%, -50%)';
-    trail.style.zIndex = '9999';
-    trail.style.boxShadow = '0 0 15px rgba(158, 14, 64, 0.9)'; // Lueur rouge
-    trail.style.transition = 'all 0.6s cubic-bezier(0.1, 0.8, 0.3, 1)';
-    
-    document.body.appendChild(trail);
-    
-    setTimeout(() => {
-        trail.style.opacity = '0';
-        trail.style.width = '25px';
-        trail.style.height = '25px';
-    }, 10);
-    
-    setTimeout(() => {
-        trail.remove();
-    }, 600);
 });
 
 // ========================================
