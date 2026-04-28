@@ -146,7 +146,6 @@ function generateTPCards() {
         card.innerHTML = `
             <div class="card-glow"></div>
             <div class="particle-container"></div>
-            <div class="tp-number">${index + 1}</div>
             <div class="tp-content">
                 ${imageContent}
                 <h2>${tp.titre}</h2>
