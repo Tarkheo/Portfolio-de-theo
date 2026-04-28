@@ -104,7 +104,7 @@ const tpsList = [
         titre: "Machine Virtuelle",
         description: "Etapes d'installation",
         pdfPath: "images/Etape_diapo.pdf",
-        imagePath: "images/images_tp/.jpeg",
+        imagePath: "images/images_tp/cmd1.jpeg",
         disponible: true
     },
     {
