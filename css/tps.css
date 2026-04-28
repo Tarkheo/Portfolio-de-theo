@@ -260,27 +260,6 @@ header h1 {
 
 .tp-card:hover .particle-container { opacity: 1; }
 
-/* Badge de numéro pour les TPs */
-.tp-number {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: linear-gradient(135deg, #D4AF37, #9E0E40);
-    color: #fff;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2em;
-    font-weight: bold;
-    font-family: 'Segoe UI', sans-serif;
-    box-shadow: 0 5px 15px rgba(158, 14, 64, 0.6);
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    z-index: 10;
-}
-
 /* Contenu TP */
 .tp-content {
     position: relative;
