@@ -122,7 +122,7 @@ const tpsList = [
         pdfPath: "images/Cmd_Window.pdf",
         imagePath: "images/images_tp/win.png",
         disponible: true
-    }
+    },
 ];
 
 // ========================================
