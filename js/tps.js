@@ -109,11 +109,11 @@ const tpsList = [
     },
     {
         numero: 14,
-        titre: "",
-        description: "",
-        pdfPath: "images/.pdf",
-        imagePath: "images/images_tp/.jpeg",
-        disponible: false
+        titre: "Commandes Linux",
+        description: "Les commandes à connaitre",
+        pdfPath: "images/Cmd_Linux.pdf",
+        imagePath: "images/images_tp/P.png",
+        disponible: true
     }
 ];
 
