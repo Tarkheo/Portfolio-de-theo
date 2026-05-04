@@ -114,7 +114,7 @@ const tpsList = [
         pdfPath: "images/Cmd_Linux.pdf",
         imagePath: "images/images_tp/P.png",
         disponible: true
-    }
+    },
     {
         numero: 15,
         titre: "Commandes Windows",
