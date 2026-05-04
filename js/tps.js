@@ -115,6 +115,14 @@ const tpsList = [
         imagePath: "images/images_tp/P.png",
         disponible: true
     }
+    {
+        numero: 15,
+        titre: "Commandes Windows",
+        description: "Les commandes à connaitre",
+        pdfPath: "images/Cmd_Window.pdf",
+        imagePath: "images/images_tp/win.png",
+        disponible: true
+    }
 ];
 
 // ========================================
