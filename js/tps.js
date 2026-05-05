@@ -111,7 +111,7 @@ const tpsList = [
         numero: 14,
         titre: "Commandes Linux",
         description: "Les commandes à connaitre",
-        pdfPath: "images/Cmd_Linux.pdf",
+        pdfPath: "images/commandes.pdf",
         imagePath: "images/images_tp/P.png",
         disponible: true
     },
@@ -121,7 +121,7 @@ const tpsList = [
         description: "Les commandes à connaitre",
         pdfPath: "images/Cmd_Window.pdf",
         imagePath: "images/images_tp/win.jpeg",
-        disponible: true
+        disponible: false
     },
 ];
 
