@@ -5,6 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mes Stages</title>
   <link rel="stylesheet" href="css/stylestages.css">
+  <style>
+    /* Styles locaux pour la section documents */
+    .stage-docs { max-width: 920px; margin: 22px auto; }
+    .stage-docs h3 { color: #d4af37; margin-bottom: 12px; }
+    .pdf-grid { display: flex; gap: 12px; flex-wrap: wrap; }
+    .pdf-card { flex: 1 1 280px; background: rgba(10,3,20,0.9); border: 1px solid rgba(212,175,55,0.14); padding: 12px; border-radius: 10px; box-shadow: 0 8px 20px rgba(0,0,0,0.25); }
+    .pdf-title { color: #fff; font-weight:600; margin-bottom:10px; font-size:0.98rem; }
+    .pdf-actions { display:flex; gap:8px; }
+    .pdf-actions a { text-decoration:none; padding:8px 10px; border-radius:8px; background:rgba(212,175,55,0.12); color:#fff; border:1px solid rgba(212,175,55,0.25); font-size:0.9rem; }
+    .pdf-actions a:hover { background:#D4AF37; color:#050505; transform:translateY(-2px); }
+  </style>
 </head>
 <body>
   <!-- Canvas pour l'effet Matrix -->
@@ -23,8 +34,8 @@
       <!-- Stage 1 -->
       <div class="stage-card">
         <div class="stage-header">
-          <h2 class="stage-title">Prochainement Stage à Bonduelle</h2>
-          <span class="stage-date">En cours Juin 2026</span>
+          <h2 class="stage-title">Stage chez Bonduelle</h2>
+          <span class="stage-date">Juin 2026</span>
         </div>
         <div class="stage-company">
           <span class="company-name">Bonduelle</span>
@@ -44,6 +55,33 @@
           <span class="skill-tag">*</span>
           <span class="skill-tag">*</span>
           <span class="skill-tag">*</span>
+        </div>
+      </div>
+
+      <!-- Documents liés au stage -->
+      <div class="stage-docs">
+        <h3>Documents et supports</h3>
+        <div class="pdf-grid">
+          <div class="pdf-card">
+            <div class="pdf-title">Rapport de stage - Premère Semaine </div>
+            <div class="pdf-actions">
+              <a href="images/1.pdf" target="_blank" rel="noopener">Visualiser</a>
+            </div>
+          </div>
+
+          <div class="pdf-card">
+            <div class="pdf-title">Rapport de stage - deuxième Semaine</div>
+            <div class="pdf-actions">
+              <a href="images/2.pdf" target="_blank" rel="noopener">Visualiser</a>
+            </div>
+          </div>
+
+          <div class="pdf-card">
+            <div class="pdf-title">Rapport de stage - troisième Semaine</div>
+            <div class="pdf-actions">
+              <a href="images/3.pdf" target="_blank" rel="noopener">Visualiser</a>
+            </div>
+          </div>
         </div>
       </div>
 
