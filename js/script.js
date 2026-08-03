@@ -191,7 +191,6 @@ class Enderman {
     }
 }
 
-// ===== CLASSE PORTAIL =====
 class PortalParticle {
     constructor(centerX, centerY) {
         this.centerX = centerX;
@@ -218,7 +217,6 @@ class PortalParticle {
     }
 }
 
-// ===== CLASSE PRINCIPALE =====
 class EndermanBackground {
     constructor(canvasId) {
         this.canvas = document.getElementById(canvasId);
@@ -340,7 +338,6 @@ class EndermanBackground {
     }
 }
 
-// ===== INITIALISATION =====
 function initEndermanBackground(canvasId = 'enderman-background', autoStart = true) {
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', () => {
@@ -366,7 +363,6 @@ function createBackground(canvasId, autoStart) {
 // ===== AUTO-DÉMARRAGE =====
 initEndermanBackground();
 
-// ===== EXPORTS =====
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         EndermanBackground,
@@ -375,11 +371,9 @@ if (typeof module !== 'undefined' && module.exports) {
 }
 
 
-//--------------------------------------------------------------SEPARATION MUSIQUES DOSSIER  AUDIO-----------------------------------------------------------------------------------------------------------
-
 const MINECRAFT_PLAYLIST = [
     {
-        title: "C418 - Aria Math ",
+        title: "C418 - Aria Math",
         src: "audio/minecraft/Aria Math.mp3"
     },
     {
@@ -397,32 +391,10 @@ const MINECRAFT_PLAYLIST = [
     {
         title: "C418 - Sweden",
         src: "audio/minecraft/Sweden.mp3"
-    },
-    {
-        title: "C418 - Haggstrom",
-        src: "audio/minecraft/haggs.mp3"
-    },
-    {
-        title: "C418 - Minecraft",
-        src: "audio/minecraft/minecraft.mp3"
-    },
-    {
-        title: "C418 - Dry Hands",
-        src: "audio/minecraft/dry-hands.mp3"
-    },
-    {
-        title: "C418 - Clark",
-        src: "audio/minecraft/clark.mp3"
-    },
-    {
-        title: "C418 - Danny",
-        src: "audio/minecraft/danny.mp3"
     }
 ];
 
 window.MINECRAFT_PLAYLIST = MINECRAFT_PLAYLIST;
-
-//-----------------------------------------------------------------------LECTEUR----------------------------------------------------------------------------------------------------------------------------------------------
 
 document.addEventListener('DOMContentLoaded', function() {
     initAudioPlayer();
@@ -435,7 +407,6 @@ function initAudioPlayer() {
     const volumeSlider = document.getElementById('volumeSlider');
     const volumeIcon = document.getElementById('volumeIcon');
     const audioPlayer = document.getElementById('audioPlayer');
-    const minimizeBtn = document.getElementById('minimizeBtn');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     const trackInfo = document.getElementById('trackInfo');
@@ -443,8 +414,8 @@ function initAudioPlayer() {
     const vinylRecord = document.getElementById('vinylRecord'); // Notre vinyle !
 
     if (!audio || !playPauseBtn || !playIcon || !volumeSlider || !volumeIcon || 
-        !audioPlayer || !minimizeBtn || !prevBtn || !nextBtn || !trackInfo || !trackNumber || !vinylRecord) {
-        console.error('Certains éléments du lecteur audio (vinyle) sont manquants');
+        !audioPlayer || !prevBtn || !nextBtn || !trackInfo || !trackNumber || !vinylRecord) {
+        console.error('Certains éléments du lecteur audio sont manquants');
         return;
     }
 
@@ -563,27 +534,6 @@ function initAudioPlayer() {
             audio.volume = previousVolume;
             volumeSlider.value = previousVolume * 100;
             updateVolumeIcon(previousVolume);
-        }
-    });
-
-    // Gestion propre du bouton réduire pour la forme vinyle
-    minimizeBtn.addEventListener('click', function() {
-        isMinimized = !isMinimized;
-        
-        if (isMinimized) {
-            audioPlayer.classList.add('collapsed');
-            document.querySelector('.vinyl-controls').style.display = 'none';
-            document.querySelector('.track-progress').style.display = 'none';
-            document.querySelector('.vinyl-info').style.display = 'none';
-            minimizeBtn.textContent = '+';
-            minimizeBtn.title = 'Agrandir';
-        } else {
-            audioPlayer.classList.remove('collapsed');
-            document.querySelector('.vinyl-controls').style.display = 'flex';
-            document.querySelector('.track-progress').style.display = 'flex';
-            document.querySelector('.vinyl-info').style.display = 'block';
-            minimizeBtn.textContent = '−';
-            minimizeBtn.title = 'Réduire';
         }
     });
 
