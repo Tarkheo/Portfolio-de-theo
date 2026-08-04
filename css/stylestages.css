@@ -1,117 +1,57 @@
-/* Style général du body */
+/* ============================================================
+   PAGES STAGES — cohérentes avec le thème (violet / or).
+   Fond + particules : style.css (body::before) + js/script.js.
+   ============================================================ */
+
 body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
-  padding: 0;
-  background: #000;
   overflow-x: hidden;
   position: relative;
   min-height: 100vh;
   color: #fff;
 }
 
-/* Canvas Matrix en arrière-plan */
-#matrixCanvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  pointer-events: none;
-}
-
-/* ============================================
-   BOUTON RETOUR : STYLE INVITE DE COMMANDE DORÉ
-   ============================================ */
-.btn-matrix {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  z-index: 1000;
-  background: #050505; /* Fond très noir comme un terminal */
-  border: 2px solid #D4AF37; 
-  color: #D4AF37; 
-  padding: 15px 30px;
-  border-radius: 4px; /* Bords presque carrés pour l'effet console */
-  font-size: 1.2em;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  text-decoration: none;
-  font-family: 'Consolas', 'Courier New', monospace; /* Police de terminal */
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  box-shadow: 4px 4px 0px rgba(212, 175, 55, 0.3); /* Ombre décalée type rétro/console */
-}
-
-/* Effet curseur clignotant type invite de commande */
-.btn-matrix::after {
-  content: "_"; /* Le petit tiret à la fin du bouton */
-  animation: blinkCursor 1s step-end infinite;
-}
-
-/* Animation pour faire clignoter le curseur */
-@keyframes blinkCursor {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
-/* Effet au survol du bouton retour */
-.btn-matrix:hover {
-  background: rgba(212, 175, 55, 0.1);
-  box-shadow: 6px 6px 0px rgba(212, 175, 55, 0.5);
-  transform: translate(-2px, -2px); /* Se soulève légèrement */
-}
-
-/* Effet au clic du bouton retour */
-.btn-matrix:active {
-  transform: translate(4px, 4px); /* S'enfonce façon bouton d'arcade */
-  box-shadow: 0px 0px 0px rgba(212, 175, 55, 0); /* L'ombre disparaît */
-}
+/* Canvas Matrix d'origine : inutilisé, le fond vient de script.js */
+#matrixCanvas { display: none; }
 
 /* Conteneur principal */
 .stage-container {
   position: relative;
   z-index: 10;
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 100px 20px 50px;
+  padding: 10px 20px 60px;
 }
 
-/* Titre de la page */
+/* Titre de la page — doré, lueur douce */
 .page-title {
-  color: rgb(255, 255, 255);
-  font-size: 42px;
+  color: #D4AF37;
+  font-size: clamp(30px, 4vw, 44px);
   font-weight: 700;
   text-align: center;
-  text-shadow: 0 0 20px rgba(162, 0, 255, 0.8);
-  margin-bottom: 60px;
-  font-family: 'Courier New', monospace;
+  letter-spacing: 0.03em;
+  text-shadow: 0 0 20px rgba(212, 175, 55, 0.45);
+  margin: 0 0 44px;
+  font-family: 'Poppins', sans-serif;
 }
 
 /* Liste des stages */
-.stages-list {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-}
+.stages-list { display: flex; flex-direction: column; gap: 30px; }
 
-/* Carte de stage */
+/* Carte de stage — carte sombre dorée */
 .stage-card {
-  background: rgba(0, 0, 0, 0.8);
-  border: 2px solid rgba(162, 0, 255, 0.5);
-  border-radius: 15px;
-  padding: 30px;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(119, 0, 255, 0.2);
+  background: rgba(10, 3, 20, 0.88);
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  border-radius: 16px;
+  padding: 28px 30px;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
 }
-
 .stage-card:hover {
   transform: translateY(-5px);
-  border-color: rgb(212, 0, 255);
-  box-shadow: 0 8px 30px rgba(140, 0, 255, 0.4);
+  border-color: rgba(212, 175, 55, 0.55);
+  box-shadow: 0 18px 40px rgba(75, 27, 107, 0.45), 0 0 20px rgba(212, 175, 55, 0.15);
 }
 
 /* En-tête du stage */
@@ -119,140 +59,66 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 15px;
+  margin-bottom: 14px;
   flex-wrap: wrap;
   gap: 10px;
 }
-
 .stage-title {
-  color: rgb(212, 0, 255);
-  font-size: 28px;
+  color: #D4AF37;
+  font-size: 24px;
   font-weight: 600;
   margin: 0;
-  font-family: 'Courier New', monospace;
+  font-family: 'Poppins', sans-serif;
 }
-
-.stage-date {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 16px;
-  font-style: italic;
-  white-space: nowrap;
-}
+.stage-date { color: rgba(255, 255, 255, 0.65); font-size: 15px; font-style: italic; white-space: nowrap; }
 
 /* Entreprise */
-.stage-company {
-  display: flex;
-  gap: 15px;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
-}
+.stage-company { display: flex; gap: 15px; margin-bottom: 18px; flex-wrap: wrap; }
+.company-name { color: #fff; font-size: 17px; font-weight: 600; }
+.company-location { color: rgba(255, 255, 255, 0.55); font-size: 15px; }
 
-.company-name {
-  color: rgb(255, 255, 255);
-  font-size: 18px;
-  font-weight: 600;
-}
-
-.company-location {
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 16px;
-}
-
-/* Description du stage */
-.stage-description {
-  margin-bottom: 20px;
-}
-
-.stage-description p {
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 16px;
-  line-height: 1.6;
-  margin-bottom: 15px;
-}
+/* Description */
+.stage-description { margin-bottom: 18px; }
+.stage-description p { color: #e0e0e0; font-size: 15px; line-height: 1.65; margin-bottom: 12px; }
 
 /* Liste des tâches */
-.stage-tasks {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
+.stage-tasks { list-style: none; padding: 0; margin: 0; }
 .stage-tasks li {
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.8);
   font-size: 15px;
-  line-height: 1.8;
-  padding-left: 25px;
+  line-height: 1.75;
+  padding-left: 24px;
   position: relative;
 }
-
 .stage-tasks li::before {
   content: "▹";
   position: absolute;
   left: 0;
-  color: rgb(162, 0, 255);
-  font-size: 20px;
+  color: #D4AF37;
+  font-size: 18px;
 }
 
-/* Compétences */
-.stage-skills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 20px;
-}
-
+/* Compétences — pastilles dorées */
+.stage-skills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
 .skill-tag {
-  background: rgba(162, 0, 255, 0.2);
-  border: 1px solid rgb(162, 0, 255);
-  color: rgb(255, 255, 255);
+  background: rgba(212, 175, 55, 0.12);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  color: #f0e6c8;
   padding: 6px 16px;
   border-radius: 20px;
   font-size: 14px;
   font-weight: 500;
-  transition: all 0.3s ease;
+  transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
 }
+.skill-tag:hover { background: #D4AF37; color: #050505; transform: scale(1.05); }
 
-.skill-tag:hover {
-  background: rgba(162, 0, 255, 0.4);
-  transform: scale(1.05);
-}
+/* Blocs "documents PDF" (stage1.html a des styles inline compatibles) */
 
 /* Responsive */
 @media (max-width: 768px) {
-  .stage-container {
-    padding: 80px 15px 30px;
-  }
-
-  .page-title {
-    font-size: 32px;
-    margin-bottom: 40px;
-  }
-
-  .stage-card {
-    padding: 20px;
-  }
-
-  .stage-title {
-    font-size: 22px;
-  }
-
-  .stage-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .stage-date {
-    font-size: 14px;
-  }
-
-  .company-name {
-    font-size: 16px;
-  }
-
-  /* Ajustement du bouton retour terminal sur mobile */
-  .btn-matrix {
-    padding: 12px 22px;
-    font-size: 1.05em;
-    box-shadow: 3px 3px 0px rgba(212, 175, 55, 0.3);
-  }
+  .stage-container { padding: 6px 15px 40px; }
+  .page-title { margin-bottom: 32px; }
+  .stage-card { padding: 22px; }
+  .stage-title { font-size: 20px; }
+  .stage-header { flex-direction: column; align-items: flex-start; }
 }

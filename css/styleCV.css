@@ -1,25 +1,13 @@
-/* Style général du body */
-body {
-  font-family: 'Poppins', sans-serif;
-  margin: 0;
-  padding: 0;
-  background: #000;
-  overflow: hidden;
-  position: relative;
-}
+/* ============================================================
+   PAGE CV — thème commun (violet / or), CV visible en ENTIER
+   (sans scroll), centré, 3 boutons dorés (comme la Lettre).
+   Fond + particules : style.css (body::before) + js/script.js.
+   ============================================================ */
 
-/* Canvas Matrix en arrière-plan */
-#matrixCanvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  pointer-events: none;
-}
+/* Ancien canvas Matrix : non utilisé, masqué s'il est présent */
+#matrixCanvas { display: none !important; }
 
-/* Conteneur principal du CV */
+/* Conteneur : centre le CV + les boutons dans l'écran restant */
 .cv-container {
   position: relative;
   z-index: 10;
@@ -27,116 +15,76 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
-  padding: 20px;
+  gap: 20px;
+  min-height: calc(100vh - 150px);
+  padding: 10px 20px 24px;
+  text-align: center;
 }
 
-/* Image du CV (Adaptée aux couleurs dorées) */
+/* Image du CV : tient dans la hauteur d'écran disponible */
 .image {
   display: block;
-  width: 550px;
+  width: auto;
   height: auto;
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
-  margin-bottom: 20px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  max-width: min(700px, 92vw);
+  max-height: calc(100vh - 280px);
+  object-fit: contain;
+  border-radius: 14px;
   border: 2px solid rgba(212, 175, 55, 0.3);
+  box-shadow: 0 12px 32px rgba(75, 27, 107, 0.5), 0 0 18px rgba(212, 175, 55, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 .image:hover {
   transform: scale(1.02);
-  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+  box-shadow: 0 16px 42px rgba(75, 27, 107, 0.65), 0 0 28px rgba(212, 175, 55, 0.35);
 }
 
-/* Bouton Téléchargement - Style Doré */
-.download-text {
-  color: #D4AF37; /* Texte doré */
-  font-size: 24px;
-  font-weight: 600;
-  text-align: center;
-  background: rgba(15, 15, 15, 0.85); /* Fond sombre */
-  padding: 15px 30px;
-  border-radius: 25px;
-  border: 2px solid #D4AF37; /* Bordure dorée */
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin: 0 0 30px 0;
-  font-family: 'Poppins', sans-serif;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-}
-
-/* Effet au survol du bouton de téléchargement */
-.download-text:hover {
-  background: #D4AF37;
-  color: #111111; /* Texte sombre pour contraster */
-  transform: translateY(-2px);
-  box-shadow: 0 6px 25px rgba(212, 175, 55, 0.5); /* Ombre dorée brillante */
-}
-
-/* Bouton retour : Style Invite de Commande Doré (Plus Gros) */
-.btn-matrix {
+/* ============================================
+   MODALE D'APERÇU DU CV
+   ============================================ */
+.cv-modal {
+  display: none;
   position: fixed;
-  top: 20px;
-  left: 20px;
-  z-index: 1000;
-  background: #050505; /* Fond très noir comme un terminal */
-  border: 2px solid #D4AF37; 
-  color: #D4AF37; 
-  padding: 15px 30px; /* Beaucoup plus gros */
-  border-radius: 4px; /* Bords presque carrés pour l'effet console */
-  font-size: 1.2em; /* Police plus grande */
+  inset: 0;
+  z-index: 2000;
+  background: rgba(0, 0, 0, 0.85);
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.cv-modal-content {
+  position: relative;
+  max-width: 900px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.cv-modal-content img {
+  max-width: 100%;
+  max-height: 88vh;
+  border-radius: 12px;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+}
+.cv-close {
+  position: absolute;
+  top: -14px;
+  right: -6px;
+  color: #D4AF37;
+  font-size: 40px;
   font-weight: bold;
   cursor: pointer;
-  transition: all 0.2s ease;
-  text-decoration: none;
-  font-family: 'Consolas', 'Courier New', monospace; /* Police de terminal */
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  box-shadow: 4px 4px 0px rgba(212, 175, 55, 0.3); /* Ombre décalée type rétro/console */
+  line-height: 1;
+  transition: transform 0.3s ease, color 0.3s ease;
 }
+.cv-close:hover { color: #fff; transform: scale(1.2) rotate(90deg); }
 
-/* Effet curseur clignotant type invite de commande */
-.btn-matrix::after {
-  content: "_"; /* Le petit tiret à la fin du bouton */
-  animation: blinkCursor 1s step-end infinite;
-}
-
-/* Animation pour faire clignoter le curseur */
-@keyframes blinkCursor {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
-/* Effet au survol du bouton retour */
-.btn-matrix:hover {
-  background: rgba(212, 175, 55, 0.1);
-  box-shadow: 6px 6px 0px rgba(212, 175, 55, 0.5);
-  transform: translate(-2px, -2px); /* Se soulève légèrement */
-}
-
-/* Effet au clic du bouton retour */
-.btn-matrix:active {
-  transform: translate(4px, 4px); /* S'enfonce façon bouton d'arcade */
-  box-shadow: 0px 0px 0px rgba(212, 175, 55, 0); /* L'ombre disparaît */
-}
-
-/* Responsive pour les petits écrans */
+/* ============================================
+   RESPONSIVE
+   ============================================ */
 @media (max-width: 768px) {
-  .image {
-    width: 90%;
-    max-width: 400px;
-  }
-  
-  .download-text {
-    font-size: 18px;
-    padding: 12px 25px;
-  }
-
-  /* Ajustement du bouton retour terminal sur mobile */
-  .btn-matrix {
-    padding: 12px 22px;
-    font-size: 1.05em;
-    box-shadow: 3px 3px 0px rgba(212, 175, 55, 0.3);
-  }
+  .cv-container { min-height: calc(100vh - 140px); gap: 16px; }
+  .image { max-height: calc(100vh - 300px); max-width: 94vw; }
+  .action-buttons { flex-direction: column; align-items: center; }
+  .btn-action { width: 100%; max-width: 300px; }
 }

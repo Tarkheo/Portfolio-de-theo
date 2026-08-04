@@ -1,417 +1,141 @@
-/* ### RESET CSS GLOBAL ### */
-* {
-    /* # Applique ces styles à TOUS les éléments HTML */
-    margin: 0;
-    /* # Supprime toutes les marges par défaut */
-    padding: 0;
-    /* # Supprime tous les espacements internes par défaut */
-    box-sizing: border-box;
-    /* # Inclut les bordures et padding dans la largeur totale */
-}
+/* ============================================================
+   PAGE CONTACT — formulaire cohérent avec le thème (violet/or).
+   Fond + particules : style.css (body::before) + js/script.js.
+   ============================================================ */
 
-/* ### STYLE DU BODY (FOND DE PAGE) ### */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
 body {
-    /* # Style de tout le corps de la page */
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    /* # Police d'écriture principale */
-    background: linear-gradient(135deg, #0a0015 0%, #1a0033 50%, #0f001f 100%);
-    /* # Dégradé de fond violet foncé en diagonale */
-    min-height: 100vh;
-    /* # Hauteur minimale = 100% de la hauteur de l'écran */
-    display: flex;
-    /* # Active le mode flexbox pour centrer le contenu */
-    justify-content: center;
-    /* # Centre horizontalement */
-    align-items: center;
-    /* # Centre verticalement */
-    padding: 20px;
-    /* # Espacement de 20px tout autour */
-    position: relative;
-    /* # Permet de positionner des éléments enfants en absolu */
-    overflow-x: hidden;
-    /* # Cache le défilement horizontal */
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+  overflow-x: hidden;
 }
 
-/* ### CANVAS ANIMATION DE FOND ### */
-#phoneCanvas {
-    /* # Style du canvas pour l'animation Matrix */
-    position: fixed;
-    /* # Position fixe, ne bouge pas au scroll */
-    top: 0;
-    /* # Collé en haut */
-    left: 0;
-    /* # Collé à gauche */
-    width: 100%;
-    /* # Largeur = 100% de l'écran */
-    height: 100%;
-    /* # Hauteur = 100% de l'écran */
-    z-index: 0;
-    /* # Placé derrière tout le reste */
-    pointer-events: none;
-    /* # Ne bloque pas les clics (on peut cliquer à travers) */
-}
+/* Canvas d'origine (inutilisé) : le fond animé vient de script.js */
+#phoneCanvas { display: none; }
 
-/* ============================================
-   BOUTON RETOUR : STYLE INVITE DE COMMANDE DORÉ
-   ============================================ */
-.btn-back {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    z-index: 1000;
-    background: #050505; /* Fond très noir comme un terminal */
-    border: 2px solid #D4AF37; 
-    color: #D4AF37; 
-    padding: 15px 30px;
-    border-radius: 4px; /* Bords presque carrés pour l'effet console */
-    font-size: 1.2em;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    text-decoration: none;
-    font-family: 'Consolas', 'Courier New', monospace; /* Police de terminal */
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    box-shadow: 4px 4px 0px rgba(212, 175, 55, 0.3); /* Ombre décalée type rétro/console */
-}
-
-/* Effet curseur clignotant type invite de commande */
-.btn-back::after {
-    content: "_"; /* Le petit tiret à la fin du bouton */
-    animation: blinkCursor 1s step-end infinite;
-}
-
-/* Animation pour faire clignoter le curseur */
-@keyframes blinkCursor {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-}
-
-/* Effet au survol du bouton retour */
-.btn-back:hover {
-    background: rgba(212, 175, 55, 0.1);
-    box-shadow: 6px 6px 0px rgba(212, 175, 55, 0.5);
-    transform: translate(-2px, -2px); /* Se soulève légèrement */
-}
-
-/* Effet au clic du bouton retour */
-.btn-back:active {
-    transform: translate(4px, 4px); /* S'enfonce façon bouton d'arcade */
-    box-shadow: 0px 0px 0px rgba(212, 175, 55, 0); /* L'ombre disparaît */
-}
-
-/* ### CONTENEUR PRINCIPAL ### */
+/* ### CONTENEUR ### */
 .container {
-    /* # Conteneur du formulaire */
-    width: 100%;
-    /* # Largeur = 100% de son parent */
-    max-width: 600px;
-    /* # Largeur maximale de 600px (ne s'agrandit pas plus) */
-    position: relative;
-    /* # Permet de gérer le positionnement des enfants */
-    z-index: 1;
-    /* # Au-dessus du canvas (z-index: 0) */
+  width: 100%;
+  max-width: 620px;
+  position: relative;
+  z-index: 1;
 }
 
-/* ### FORMULAIRE DE CONTACT ### */
+/* ### FORMULAIRE — carte sombre dorée ### */
 .contact-form {
-    /* # Style de la boîte du formulaire */
-    background: rgba(255, 255, 255, 0.95);
-    /* # Fond blanc presque opaque (95% opacité) */
-    padding: 40px;
-    /* # Espacement intérieur de 40px tout autour */
-    border-radius: 20px;
-    /* # Coins très arrondis (20px) */
-    box-shadow: 
-        0 20px 60px rgba(168, 85, 247, 0.3),
-        0 0 40px rgba(139, 92, 246, 0.2);
-    /* # Deux ombres violettes pour effet de profondeur */
-    backdrop-filter: blur(10px);
-    /* # Effet de flou sur le fond derrière (effet verre dépoli) */
-    border: 2px solid rgba(168, 85, 247, 0.3);
-    /* # Bordure violette semi-transparente */
+  background: rgba(10, 3, 20, 0.9);
+  padding: 34px 38px;
+  border-radius: 18px;
+  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(212, 175, 55, 0.28);
+  animation: fadeInUp 0.8s ease-out;
 }
 
-/* ### TITRE DU FORMULAIRE ### */
+/* ### TITRE ### */
 .contact-form h1 {
-    /* # Style du titre "Formulaire de contact" */
-    color: #333;
-    /* # Couleur gris foncé */
-    margin-bottom: 30px;
-    /* # Espacement de 30px en dessous */
-    text-align: center;
-    /* # Texte centré */
-    font-size: 28px;
-    /* # Taille de 28px */
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    /* # Dégradé de couleur bleu-violet */
-    -webkit-background-clip: text;
-    /* # Pour Safari : le dégradé s'applique au texte */
-    -webkit-text-fill-color: transparent;
-    /* # Pour Safari : rend le texte transparent pour voir le dégradé */
-    background-clip: text;
-    /* # Standard : applique le dégradé au texte */
+  color: #D4AF37;
+  margin-bottom: 24px;
+  text-align: center;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-shadow: 0 0 15px rgba(212, 175, 55, 0.35);
 }
 
-/* ### GROUPE DE CHAMPS ### */
-.form-group {
-    /* # Conteneur de chaque champ du formulaire */
-    margin-bottom: 20px;
-    /* # Espacement de 20px entre chaque groupe */
-}
+/* ### CHAMPS ### */
+.form-group { margin-bottom: 16px; }
 
-/* ### ÉTIQUETTES (LABELS) ### */
 .form-group label {
-    /* # Style des labels (Nom, Email, etc.) */
-    display: block;
-    /* # Prend toute la largeur disponible */
-    margin-bottom: 8px;
-    /* # Espacement de 8px en dessous */
-    color: #555;
-    /* # Couleur gris moyen */
-    font-weight: 500;
-    /* # Légèrement gras */
-    font-size: 14px;
-    /* # Taille de 14px */
+  display: block;
+  margin-bottom: 7px;
+  color: #e6e6e6;
+  font-weight: 500;
+  font-size: 14px;
 }
 
-/* ### CHAMPS DE SAISIE ### */
 .form-group input[type="text"],
 .form-group input[type="email"],
 .form-group input[type="tel"],
 .form-group select,
 .form-group textarea {
-    /* # Style de tous les champs de saisie */
-    width: 100%;
-    /* # Largeur = 100% du conteneur */
-    padding: 12px 15px;
-    /* # Espacement intérieur : 12px haut/bas, 15px gauche/droite */
-    border: 2px solid #e0e0e0;
-    /* # Bordure grise claire de 2px */
-    border-radius: 8px;
-    /* # Coins arrondis de 8px */
-    font-size: 14px;
-    /* # Taille du texte 14px */
-    font-family: inherit;
-    /* # Utilise la même police que le body */
-    transition: all 0.3s ease;
-    /* # Animation de 0.3s sur tous les changements */
-    background: rgba(255, 255, 255, 0.9);
-    /* # Fond blanc légèrement transparent */
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid rgba(212, 175, 55, 0.28);
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: inherit;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  background: rgba(255, 255, 255, 0.04);
+  color: #fff;
 }
 
-/* ### CHAMPS EN FOCUS (CLIQUÉS) ### */
+.form-group input::placeholder,
+.form-group textarea::placeholder { color: rgba(255, 255, 255, 0.4); }
+
+/* Menu déroulant lisible (options sur fond sombre) */
+.form-group select { cursor: pointer; }
+.form-group select option { background: #1a0a2e; color: #fff; }
+
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
-    /* # Quand un champ est sélectionné/actif */
-    outline: none;
-    /* # Supprime le contour bleu par défaut du navigateur */
-    border-color: #8b5cf6;
-    /* # Change la couleur de bordure en violet */
-    box-shadow: 0 0 15px rgba(139, 92, 246, 0.2);
-    /* # Ajoute une lueur violette autour */
-    background: #fff;
-    /* # Fond blanc opaque */
+  outline: none;
+  border-color: #D4AF37;
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+  background: rgba(255, 255, 255, 0.06);
 }
 
-/* ### ZONE DE TEXTE (TEXTAREA) ### */
-.form-group textarea {
-    /* # Style spécifique pour le champ message */
-    resize: vertical;
-    /* # Permet de redimensionner seulement verticalement */
-    min-height: 100px;
-    /* # Hauteur minimale de 100px */
-}
+.form-group textarea { resize: vertical; min-height: 110px; }
 
-/* ### MENU DÉROULANT (SELECT) ### */
-.form-group select {
-    /* # Style du menu déroulant */
-    cursor: pointer;
-    /* # Change le curseur en main */
-}
-
-/* ### GROUPE CHECKBOX ### */
-.checkbox-group {
-    /* # Conteneur des cases à cocher */
-    display: flex;
-    /* # Mode flexbox */
-    align-items: center;
-    /* # Aligne verticalement au centre */
-    gap: 10px;
-    /* # Espacement de 10px entre checkbox et label */
-}
-
-/* ### CASES À COCHER ### */
+/* ### CHECKBOX ### */
+.checkbox-group { display: flex; align-items: center; gap: 10px; }
 .checkbox-group input[type="checkbox"] {
-    /* # Style des checkbox */
-    width: 18px;
-    /* # Largeur de 18px */
-    height: 18px;
-    /* # Hauteur de 18px */
-    cursor: pointer;
-    /* # Curseur en main */
-    accent-color: #8b5cf6;
-    /* # Couleur violette quand cochée */
+  width: 18px; height: 18px; cursor: pointer; accent-color: #D4AF37;
 }
-
-/* ### LABEL DES CHECKBOX ### */
 .checkbox-group label {
-    /* # Label à côté de la checkbox */
-    margin-bottom: 0;
-    /* # Pas d'espacement en bas (annule le style précédent) */
-    cursor: pointer;
-    /* # Curseur en main */
-    font-weight: normal;
-    /* # Poids normal (pas gras) */
+  margin-bottom: 0; cursor: pointer; font-weight: normal; color: #cfcfcf;
 }
 
-/* ### BOUTON ENVOYER ### */
+/* ### BOUTON ENVOYER — doré ### */
 .btn-submit {
-    /* # Style du bouton d'envoi */
-    width: 100%;
-    /* # Largeur = 100% */
-    padding: 14px;
-    /* # Espacement intérieur de 14px */
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    /* # Dégradé bleu-violet */
-    color: white;
-    /* # Texte blanc */
-    border: none;
-    /* # Pas de bordure */
-    border-radius: 8px;
-    /* # Coins arrondis */
-    font-size: 16px;
-    /* # Taille du texte */
-    font-weight: 600;
-    /* # Texte semi-gras */
-    cursor: pointer;
-    /* # Curseur en main */
-    transition: all 0.3s ease;
-    /* # Animation de 0.3s */
-    margin-top: 10px;
-    /* # Espacement de 10px au-dessus */
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-    /* # Ombre portée violette */
-    position: relative;
-    /* # Pour positionner le ::before */
-    overflow: hidden;
-    /* # Cache le débordement de l'effet de vague */
+  width: 100%;
+  padding: 14px;
+  background: rgba(212, 175, 55, 0.14);
+  color: #fff;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+  margin-top: 8px;
 }
-
-/* ### EFFET DE VAGUE AU SURVOL ### */
-.btn-submit::before {
-    /* # Élément virtuel pour l'effet de vague */
-    content: '';
-    /* # Contenu vide (obligatoire pour ::before) */
-    position: absolute;
-    /* # Position absolue par rapport au bouton */
-    top: 50%;
-    /* # 50% depuis le haut */
-    left: 50%;
-    /* # 50% depuis la gauche */
-    width: 0;
-    /* # Largeur initiale de 0 */
-    height: 0;
-    /* # Hauteur initiale de 0 */
-    background: rgba(255, 255, 255, 0.2);
-    /* # Fond blanc semi-transparent */
-    border-radius: 50%;
-    /* # Forme circulaire */
-    transform: translate(-50%, -50%);
-    /* # Centre parfaitement */
-    transition: width 0.6s ease, height 0.6s ease;
-    /* # Animation de 0.6s sur largeur et hauteur */
-}
-
-/* ### VAGUE ACTIVE AU SURVOL ### */
-.btn-submit:hover::before {
-    /* # Au survol du bouton */
-    width: 300px;
-    /* # La vague s'agrandit à 300px */
-    height: 300px;
-    /* # La vague s'agrandit à 300px */
-}
-
-/* ### BOUTON AU SURVOL ### */
 .btn-submit:hover {
-    /* # Quand on survole le bouton */
-    transform: translateY(-3px);
-    /* # Monte de 3px */
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
-    /* # Ombre plus grande */
+  background: #D4AF37;
+  color: #050505;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(212, 175, 55, 0.4);
 }
+.btn-submit:active { transform: translateY(0); }
 
-/* ### BOUTON CLIQUÉ ### */
-.btn-submit:active {
-    /* # Quand on clique sur le bouton */
-    transform: translateY(0);
-    /* # Revient à sa position normale */
-}
+/* ### NOTE ### */
+.form-note { text-align: center; color: #9a8f7a; font-size: 12px; margin-top: 14px; }
 
-/* ### NOTE EN BAS ### */
-.form-note {
-    /* # Texte "* Champs obligatoires" */
-    text-align: center;
-    /* # Centré */
-    color: #888;
-    /* # Gris clair */
-    font-size: 12px;
-    /* # Petite taille */
-    margin-top: 15px;
-    /* # Espacement de 15px au-dessus */
-}
-
-/* ### ANIMATION D'APPARITION ### */
 @keyframes fadeInUp {
-    /* # Définition de l'animation fadeInUp */
-    from {
-        /* # État de départ */
-        opacity: 0;
-        /* # Invisible */
-        transform: translateY(30px);
-        /* # Décalé de 30px vers le bas */
-    }
-    to {
-        /* # État d'arrivée */
-        opacity: 1;
-        /* # Visible */
-        transform: translateY(0);
-        /* # Position normale */
-    }
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* ### APPLICATION DE L'ANIMATION ### */
-.contact-form {
-    /* # Applique l'animation au formulaire */
-    animation: fadeInUp 0.8s ease-out;
-    /* # Animation fadeInUp pendant 0.8s avec ralentissement à la fin */
-}
-
-/* ### RESPONSIVE - TABLETTES ET SMARTPHONES ### */
+/* ### RESPONSIVE ### */
 @media (max-width: 768px) {
-    /* # Ces styles s'appliquent sur écrans de 768px ou moins */
-    
-    /* Ajustement du bouton retour terminal sur mobile */
-    .btn-back {
-        padding: 12px 22px;
-        font-size: 1.05em;
-        box-shadow: 3px 3px 0px rgba(212, 175, 55, 0.3);
-    }
-
-    .contact-form {
-        padding: 25px;
-        /* # Moins d'espacement intérieur */
-    }
-
-    .contact-form h1 {
-        font-size: 24px;
-        /* # Titre plus petit */
-    }
-
-    body {
-        padding: 80px 15px 20px 15px;
-        /* # Espacement adapté pour mobile */
-    }
+  .contact-form { padding: 24px 22px; }
+  .contact-form h1 { font-size: 24px; }
+  body { padding: 20px 15px; }
 }
