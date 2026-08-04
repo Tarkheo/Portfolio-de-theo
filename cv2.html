@@ -3,21 +3,59 @@
 <head> <!-- En-tête du document contenant les métadonnées -->
   <meta charset="UTF-8" /> <!-- Définit l'encodage des caractères en UTF-8 -->
   <title>Télécharger le CV</title> <!-- Titre affiché dans l'onglet du navigateur -->
+  <link rel="stylesheet" href="css/style.css"> <!-- Thème commun + navbar partagée -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
   <link rel="stylesheet" href="css/styleCV.css"> <!-- Lien vers la feuille de style spécifique pour la page CV -->
 </head> <!-- Fin de l'en-tête -->
 <body> <!-- Corps du document, contenu visible -->
+  <script src="js/navbar.js"></script> <!-- Navbar partagée (injectée en haut) -->
   <!-- Canvas pour l'effet Matrix (sera créé par le JS) --> <!-- Commentaire expliquant qu'un canvas sera ajouté dynamiquement par JavaScript pour l'effet Matrix -->
   
   <!-- Bouton retour style Matrix --> <!-- Commentaire décrivant le bouton de retour -->
   <a href="javascript:history.back()" class="btn-matrix">← Retour</a> <!-- Lien qui revient à la page précédente en utilisant l'historique du navigateur, avec flèche et texte "Retour" -->
 
   <div class="cv-container"> <!-- Conteneur principal pour le CV -->
-    <!-- H1 cliquable pour télécharger --> <!-- Commentaire expliquant que le titre est cliquable -->
-    <a href="images/cvtheo.zip" class="download-text" download="images/cvtheo.pdf">Télécharger</a> <!-- Lien de téléchargement vers le fichier ZIP du CV, avec nom de fichier suggéré "theocv.pdf" lors du téléchargement -->
-     <!-- H1 cliquable pour télécharger  <h1 class="download-text">Télécharger le CV</h1>--> <!-- Code commenté (désactivé) qui montrait une ancienne version avec balise H1 -->
-    <img src="images/cvtheo.jpg" alt="Mon CV" class="image"> <!-- Image affichant un aperçu du CV, avec texte alternatif "Mon CV" pour l'accessibilité -->
+    <img src="images/cvtheo.jpg" alt="Mon CV" class="image"> <!-- Aperçu du CV -->
+
+    <!-- Boutons d'action (identiques à la Lettre de motivation) -->
+    <div class="action-buttons">
+      <button onclick="visualiserCV()" class="btn-action">
+        <svg class="lucide" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg> Visualiser
+      </button>
+      <a href="images/cvtheo.zip" download="CV_Theo_Dautrevaux.zip" class="btn-action">
+        <svg class="lucide" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg> Télécharger
+      </a>
+      <button onclick="imprimerCV()" class="btn-action">
+        <svg class="lucide" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8" rx="1"/></svg> Imprimer
+      </button>
+    </div>
   </div> <!-- Fin du conteneur du CV -->
 
-  <script src="js/script.js"></script> <!-- Lien vers le fichier JavaScript principal qui gère les animations et interactions -->
+  <!-- Modale d'aperçu du CV -->
+  <div id="cvModal" class="cv-modal">
+    <div class="cv-modal-content">
+      <span class="cv-close" onclick="fermerCV()" aria-label="Fermer">&times;</span>
+      <img src="images/cvtheo.jpg" alt="Aperçu du CV">
+    </div>
+  </div>
+
+  <script>
+    function visualiserCV() { document.getElementById('cvModal').style.display = 'flex'; }
+    function fermerCV() { document.getElementById('cvModal').style.display = 'none'; }
+    function imprimerCV() {
+      const w = window.open('', '_blank');
+      w.document.write('<img src="images/cvtheo.jpg" style="width:100%" onload="window.print();window.close()">');
+      w.document.close();
+    }
+    // Fermer la modale au clic sur le fond
+    document.getElementById('cvModal').addEventListener('click', function (e) {
+      if (e.target === this) fermerCV();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') fermerCV();
+    });
+  </script>
+
+  <script src="js/script.js"></script> <!-- Fond animé commun -->
 </body> <!-- Fin du corps du document -->
 </html> <!-- Fin du document HTML -->

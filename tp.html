@@ -4,9 +4,12 @@
     <meta charset="UTF-8"> <!-- Définit l'encodage des caractères en UTF-8 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Configure la vue pour les appareils mobiles (responsive) -->
     <title>TPS - Travaux Pratiques</title> <!-- Titre affiché dans l'onglet du navigateur -->
+    <link rel="stylesheet" href="css/style.css"> <!-- Thème commun + navbar partagée -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="stylesheet" href="css/tps.css"> <!-- Lien vers la feuille de style spécifique pour la page TPS -->
 </head> <!-- Fin de l'en-tête -->
 <body> <!-- Corps du document, contenu visible -->
+    <script src="js/navbar.js"></script> <!-- Navbar partagée (injectée en haut) -->
     <canvas id="matrixCanvas"></canvas> <!-- Canvas HTML5 pour l'effet Matrix en arrière-plan -->
     <canvas id="particlesCanvas"></canvas> <!-- Canvas HTML5 pour l'effet de particules en arrière-plan -->
     
@@ -50,6 +53,7 @@
         </div> <!-- Fin du contenu de la modale -->
     </div> <!-- Fin de la fenêtre modale -->
 
+    <script src="js/icons.js"></script>
     <script src="js/tps.js"></script> <!-- Lien vers le fichier JavaScript qui gère l'affichage des TPs, les animations et la modale -->
 </body> <!-- Fin du corps du document -->
 </html> <!-- Fin du document HTML -->

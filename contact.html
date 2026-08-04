@@ -16,11 +16,14 @@
     <title>Contacter Théo</title>
     <!-- # Titre qui apparaît dans l'onglet du navigateur -->
     
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="stylesheet" href="css/stylecontact.css">
     <!-- # Lien vers la feuille de style CSS externe -->
 </head>
 
 <body>
+    <script src="js/navbar.js"></script>
     <!-- # Corps principal du document (tout ce qui est visible) -->
     
     <!-- Canvas pour l'animation de fond -->
@@ -95,46 +98,14 @@
             </div>
 
             <div class="form-group">
-            <!-- # Groupe de champ pour le téléphone -->
-                <label for="telephone">Téléphone (falcultatif)</label>
-                <input type="tel" id="telephone" name="telephone" placeholder="+33 6 12 34 56 78">
-                <!-- # type="tel" = optimisé pour les numéros de téléphone -->
-                <!-- # Pas de "required" = champ optionnel -->
-            </div>
-
-            <div class="form-group">
-            <!-- # Groupe de champ pour le sujet -->
-                <label for="sujet">Sujet *</label>
-                <select id="sujet" name="sujet" required>
-                <!-- # Menu déroulant pour choisir le sujet -->
-                    <option value="">-- Choisissez un sujet --</option>
-                    <!-- # Option par défaut vide -->
-                    <option value="information">Me conctatez sur mon adresse mail</option>
-                    <!-- # Première option de sujet -->
-                </select>
-            </div>
-
-            <div class="form-group">
             <!-- # Groupe de champ pour le message -->
                 <label for="message">Message *</label>
-                <textarea id="message" name="message" rows="6" required placeholder="Votre message..."></textarea>
-                <!-- # Zone de texte multiligne pour le message -->
-                <!-- # rows="6" = hauteur de 6 lignes -->
+                <textarea id="message" name="message" rows="5" required placeholder="Votre message..."></textarea>
             </div>
 
             <div class="form-group checkbox-group">
-            <!-- # Groupe pour la case à cocher newsletter -->
-                <input type="checkbox" id="newsletter" name="newsletter" value="oui">
-                <!-- # Case à cocher (optionnelle) -->
-                <!-- # value="oui" = si cochée, envoie "oui" dans l'email -->
-                <label for="newsletter">Je souhaite alerter Théo</label>
-                <!-- # Texte cliquable à côté de la case -->
-            </div>
-
-            <div class="form-group checkbox-group">
-            <!-- # Groupe pour la case à cocher conditions -->
+            <!-- # Case à cocher conditions (obligatoire) -->
                 <input type="checkbox" id="conditions" name="conditions" required value="accepte">
-                <!-- # Case à cocher OBLIGATOIRE (required) -->
                 <label for="conditions">J'accepte les conditions d'utilisation *</label>
             </div>
 

@@ -13,51 +13,22 @@
 </head>
 <body>
     <!-- ############################################ -->
-    <!-- #  BARRE DE NAVIGATION                      # -->
+    <!-- #  BARRE DE NAVIGATION (injectée par navbar.js) -->
     <!-- ############################################ -->
-    <header>
-        <button class="hamburger" aria-label="Ouvrir le menu" aria-controls="main-nav" aria-expanded="false" type="button">
-            <span class="hamburger-box"><span class="hamburger-inner"></span></span>
-        </button>
-        <nav id="main-nav">
-            <ul>
-                <li><a href="cv2.html"><span class="nav-text">CV</span></a></li>
-                <li><a href="motivation.html"><span class="nav-text">Lettre de motivation</span></a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropbtn"><span class="nav-text">Projets ▾</span></a>
-                    <div class="dropdown-content">
-                        <a href="jeu.html">Tetris</a>
-                        <a href="#">Serveur NAS</a>
-                    </div>
-                </li>
-                <li><a href="technologie.html"><span class="nav-text">Veille</span></a></li>
-                <li><a href="contact.html"><span class="nav-text">Contact</span></a></li>
-                <li><a href="tp.html"><span class="nav-text">TPS</span></a></li>
-                <li><a href="competences.html"><span class="nav-text">Compétences</span></a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropbtn"><span class="nav-text">Stages ▾</span></a>
-                    <div class="dropdown-content">
-                        <a href="stages.html">Stage(2024)</a>
-                        <a href="stage1.html">1ère Année (2026)</a>
-                        <a href="stage2.html">2ème Année (2027)</a>
-                    </div>
-                </li>
-            </ul>
-        </nav>
-    </header>
+    <script src="js/navbar.js"></script>
 
     <!-- ############################################ -->
     <!-- #  CONTENU PRINCIPAL                        # -->
     <!-- ############################################ -->
-    <div id="nav-container"></div>
-
     <section class="texteaccueil about-section">
         <div class="about-grid">
             <div class="about-avatar">
                 <!-- ######################################## -->
                 <!-- #  BLOC AVATAR / MUSIQUE                # -->
                 <!-- ######################################## -->
-                <img src="images/persomoi.png" alt="Avatar" class="avatar">
+                <div class="avatar-float">
+                    <img src="images/persomoi.png" alt="Avatar" class="avatar">
+                </div>
                 <div class="vinyl-player-container" id="audioPlayer">
                     <div class="vinyl-record" id="vinylRecord"></div>
                     <div class="vinyl-info">
@@ -65,15 +36,15 @@
                     </div>
 
                     <div class="vinyl-controls">
-                        <button id="prevBtn" class="ctrl-btn">⏮</button>
-                        <button id="playPauseBtn" class="ctrl-btn play-btn"><span id="playIcon">▶</span></button>
-                        <button id="nextBtn" class="ctrl-btn">⏭</button>
+                        <button id="prevBtn" class="ctrl-btn" aria-label="Piste précédente"></button>
+                        <button id="playPauseBtn" class="ctrl-btn play-btn" aria-label="Lecture / pause"><span id="playIcon"></span></button>
+                        <button id="nextBtn" class="ctrl-btn" aria-label="Piste suivante"></button>
                     </div>
                     
                     <div class="track-progress">
                         <span id="trackNumber">1/10</span>
                         <div class="volume-container">
-                            <span id="volumeIcon" style="cursor:pointer;">🔊</span>
+                            <span id="volumeIcon" style="cursor:pointer;" aria-label="Couper le son"></span>
                             <input type="range" id="volumeSlider" min="0" max="100" value="70">
                         </div>
                     </div>
@@ -84,7 +55,7 @@
             <div class="about-text">
                 <div class="about-header-row">
                     <div class="about-box">À propos</div>
-                    <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="github-link" aria-label="Lien GitHub">
+                    <a href="https://github.com/tarkheo" target="_blank" rel="noopener noreferrer" class="github-link" aria-label="Lien GitHub">
                         <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
                             <path d="M12 0.297c-6.63 0-12 5.373-12 12 0 5.301 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.09-.744.083-.729.083-.729 1.205.084 1.84 1.236 1.84 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.775.418-1.305.76-1.605-2.665-.305-5.466-1.335-5.466-5.93 0-1.31.47-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.4 3-.405 1.02.005 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.435.375.81 1.11.81 2.235 0 1.615-.015 2.915-.015 3.31 0 .315.21.69.825.57 4.77-1.59 8.205-6.09 8.205-11.39 0-6.627-5.373-12-12-12z"/>
                         </svg>
@@ -100,7 +71,7 @@
                         </video>
                     </div>
                     <div class="idea-links">
-                        <a href="https://github.com/" target="_blank" rel="noopener noreferrer">Voir GitHub</a>
+                        <a href="https://github.com/tarkheo" target="_blank" rel="noopener noreferrer">Voir GitHub</a>
                         <a href="contact.html">Contact</a>
                         <a href="cv2.html">Mon CV</a>
                     </div>
@@ -112,6 +83,7 @@
     <footer class="footer">2025-2027 Dautrevaux Théo Corporationn. Droits réservés et exclusifs</footer>
 
     <script src="js/load-nav.js"></script>
+    <script src="js/icons.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>
