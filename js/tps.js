@@ -142,9 +142,9 @@ function generateTPCards() {
         card.style.animationDelay = `${index * 0.1}s`;
         
         const statusClass = tp.disponible ? 'available' : 'locked';
-        const statusText = tp.disponible ? '✓ Disponible' : '🔒 Verrouillé';
+        const statusText = tp.disponible ? (ICON('check', 15) + ' Disponible') : (ICON('lock', 15) + ' Verrouillé');
         const iconClass = tp.disponible ? '' : 'locked';
-        const iconEmoji = tp.disponible ? '📄' : '🔒';
+        const iconEmoji = tp.disponible ? ICON('file-text', 42) : ICON('lock', 42);
         const disabled = tp.disponible ? '' : 'disabled';
         
         const imageContent = tp.imagePath 
@@ -161,10 +161,10 @@ function generateTPCards() {
                 <span class="tp-status ${statusClass}">${statusText}</span>
                 <div class="tp-actions">
                     <button class="btn-view" onclick="viewPDF('${tp.pdfPath}')" ${disabled}>
-                        👁️ Visualiser
+                        ${ICON('eye', 16)} Visualiser
                     </button>
                     <a href="${tp.pdfPath}" download class="btn-download" ${disabled}>
-                        ⬇️ Télécharger
+                        ${ICON('download', 16)} Télécharger
                     </a>
                 </div>
             </div>

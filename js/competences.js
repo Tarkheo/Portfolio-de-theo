@@ -16,8 +16,8 @@ const certificationsList = [
         description: "Certification réseau Cisco Certified Network Associate",
         imagePath: "images/cisco.pdf", // Peut être PDF ou image (jpg, png)
         dateObtention: "Décembre 2025",
-        logo: "🌐", // Emoji ou icône
-        badge: "✅", // Badge de validation
+        logo: "globe", // Nom d'icône Lucide (voir js/icons.js)
+        badge: "check-circle", // Badge de validation
         type: "pdf" // "pdf" ou "image"
     },
     {
@@ -26,8 +26,8 @@ const certificationsList = [
         description: "Formation à la sécurité numérique - ANSSI",
         imagePath: "images/secnum_certif.pdf",
         dateObtention: "Novembre 2025",
-        logo: "🔒",
-        badge: "✅",
+        logo: "lock",
+        badge: "check-circle",
         type: "pdf"
     },
 
@@ -50,19 +50,19 @@ function generateCertCards() {
         // Construit le HTML de la carte
         card.innerHTML = `
             <div class="card-glow"></div>
-            <div class="cert-badge">${cert.badge}</div>
+            <div class="cert-badge">${ICON(cert.badge, 18)}</div>
             <div class="cert-content">
-                <div class="cert-logo">${cert.logo}</div>
+                <div class="cert-logo">${ICON(cert.logo, 40)}</div>
                 <h2>${cert.nom}</h2>
                 <p><strong>${cert.organisme}</strong></p>
                 <p>${cert.description}</p>
-                <span class="cert-date">📅 ${cert.dateObtention}</span>
+                <span class="cert-date">${ICON('calendar', 16)} ${cert.dateObtention}</span>
                 <div class="cert-actions">
                     <button class="btn-view" onclick="viewCert('${cert.imagePath}', '${cert.nom}', '${cert.type}')">
-                        👁️ Visualiser
+                        ${ICON('eye', 16)} Visualiser
                     </button>
                     <a href="${cert.imagePath}" download class="btn-download">
-                        ⬇️ Télécharger
+                        ${ICON('download', 16)} Télécharger
                     </a>
                 </div>
             </div>

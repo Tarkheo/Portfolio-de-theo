@@ -429,7 +429,13 @@ function initAudioPlayer() {
     let previousVolume = 0.7;
     let isMinimized = false;
 
+    // Icônes Lucide initiales (remplacent les emojis)
+    prevBtn.innerHTML = ICON('skip-back', 18);
+    nextBtn.innerHTML = ICON('skip-forward', 18);
+    playIcon.innerHTML = ICON('play', 22);
+
     audio.volume = 0.7;
+    updateVolumeIcon(audio.volume);
     loadTrack(currentTrack);
 
     function loadTrack(index) {
@@ -446,11 +452,11 @@ function initAudioPlayer() {
         
         if (wasPlaying) {
             audio.play().then(() => {
-                playIcon.textContent = '⏸';
+                playIcon.innerHTML = ICON('pause', 22);
                 vinylRecord.classList.add('playing'); // Fait tourner le disque
             }).catch(error => {
                 console.error('Erreur lors de la lecture:', error);
-                playIcon.textContent = '▶';
+                playIcon.innerHTML = ICON('play', 22);
                 vinylRecord.classList.remove('playing');
             });
         }
@@ -461,7 +467,7 @@ function initAudioPlayer() {
     playPauseBtn.addEventListener('click', function() {
         if (audio.paused) {
             audio.play().then(() => {
-                playIcon.textContent = '⏸';
+                playIcon.innerHTML = ICON('pause', 22);
                 vinylRecord.classList.add('playing'); // Fait tourner le disque
                 console.log('Lecture démarrée');
             }).catch(error => {
@@ -470,7 +476,7 @@ function initAudioPlayer() {
             });
         } else {
             audio.pause();
-            playIcon.textContent = '▶';
+            playIcon.innerHTML = ICON('play', 22);
             vinylRecord.classList.remove('playing'); // Arrête de faire tourner le disque
             console.log('Lecture en pause');
         }
@@ -510,7 +516,7 @@ function initAudioPlayer() {
         loadTrack(currentTrack);
         
         audio.play().then(() => {
-            playIcon.textContent = '⏸';
+            playIcon.innerHTML = ICON('pause', 22);
             vinylRecord.classList.add('playing');
         }).catch(error => {
             console.error('Erreur lecture auto:', error);
@@ -539,19 +545,17 @@ function initAudioPlayer() {
 
     function updateVolumeIcon(volume) {
         if (volume === 0) {
-            volumeIcon.textContent = '🔇';
-        } else if (volume < 0.3) {
-            volumeIcon.textContent = '🔈';
-        } else if (volume < 0.7) {
-            volumeIcon.textContent = '🔉';
+            volumeIcon.innerHTML = ICON('volume-x', 18);
+        } else if (volume < 0.5) {
+            volumeIcon.innerHTML = ICON('volume-1', 18);
         } else {
-            volumeIcon.textContent = '🔊';
+            volumeIcon.innerHTML = ICON('volume-2', 18);
         }
     }
 
     audio.addEventListener('error', function(e) {
         console.error('Erreur de chargement audio:', e);
-        playIcon.textContent = '▶';
+        playIcon.innerHTML = ICON('play', 22);
         trackInfo.textContent = 'Erreur: Fichier introuvable';
         trackInfo.style.color = '#ff6b6b';
         vinylRecord.classList.remove('playing');
@@ -636,43 +640,27 @@ window.setVolume = function(volume) {
     }
 };
 
-// ===== MENU HAMBURGER MOBILE =====
-function initMobileMenu() {
-    const btn = document.querySelector('.hamburger');
-    const nav = document.getElementById('main-nav');
-    if (!btn || !nav) return;
+/* Le menu hamburger + l'accordéon des sous-menus vivent désormais
+   dans js/navbar.js (source unique, chargée sur toutes les pages). */
 
-    btn.addEventListener('click', (e) => {
-        const opened = document.body.classList.toggle('nav-open');
-        btn.setAttribute('aria-expanded', opened ? 'true' : 'false');
-        if (opened) btn.classList.add('is-active'); else btn.classList.remove('is-active');
+// ===== TILT 3D DE LA PHOTO DE PROFIL (accueil) =====
+function initAvatarTilt() {
+    const av = document.querySelector('.about-avatar .avatar');
+    if (!av) return; // seulement sur l'accueil
+
+    const MAX = 14; // inclinaison max en degrés
+
+    av.addEventListener('mousemove', (e) => {
+        const r = av.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width - 0.5;  // -0.5 .. 0.5
+        const py = (e.clientY - r.top) / r.height - 0.5;
+        av.style.transform =
+            `perspective(900px) rotateY(${px * MAX}deg) rotateX(${-py * MAX}deg) scale(1.06)`;
     });
 
-    // Close when clicking a nav link
-    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-        document.body.classList.remove('nav-open');
-        btn.setAttribute('aria-expanded', 'false');
-    }));
-
-    // Close on Escape
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && document.body.classList.contains('nav-open')) {
-            document.body.classList.remove('nav-open');
-            btn.setAttribute('aria-expanded', 'false');
-            btn.focus();
-        }
+    av.addEventListener('mouseleave', () => {
+        av.style.transform = ''; // retour à plat en douceur
     });
-
-    // Click outside to close (capture)
-    document.addEventListener('click', (e) => {
-        if (!document.body.classList.contains('nav-open')) return;
-        if (!nav.contains(e.target) && !btn.contains(e.target)) {
-            document.body.classList.remove('nav-open');
-            btn.setAttribute('aria-expanded', 'false');
-        }
-    }, true);
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    initMobileMenu();
-});
+document.addEventListener('DOMContentLoaded', initAvatarTilt);
