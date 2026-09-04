@@ -120,7 +120,7 @@ const tpsList = [
         titre: "LAB 1 : Configuration Switch avec VLAN",
         description: "Premier LAB Cisco BTS SIO 2",
         pdfPath: "images/lab1.pdf",
-        imagePath: "images/images_tp/win.jpeg",
+        imagePath: "images/images_tp/lab1.png",
         disponible: true
     },
 ];
