@@ -16,7 +16,7 @@ const tpsList = [
         titre: "TP 2 - CMD Avancé",
         description: "Commandes avancées et scripts batch",
         pdfPath: "images/TP4.pdf",
-        imagePath: "images/images_tp/cmd1.jpeg",
+        imagePath: "images/images_tp/lab2.png",
         disponible: true
     },
     {
