@@ -88,7 +88,7 @@ const tpsList = [
         titre: "Variable Subnet Lenght Mask",
         description: "Packet Tracer",
         pdfPath: "images/TD_VLSM.pdf",
-        imagePath: "images/images_tp/vslm.jpeg",
+        imagePath: "images/images_tp/exovslm.jpg",
         disponible: true
     },
     {
