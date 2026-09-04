@@ -40,7 +40,7 @@ const tpsList = [
         titre: "Commandes CMD",
         description: "TP 6.1",
         pdfPath: "images/TP6.1.pdf",
-        imagePath: "images/images_tp/cmd1.jpeg",
+        imagePath: "images/images_tp/cmdtp61.png",
         disponible: true
     },
     {
