@@ -48,7 +48,7 @@ const tpsList = [
         titre: "Linux",
         description: "Utilisateurs Linux",
         pdfPath: "images/Linux_utilisateurs.pdf",
-        imagePath: "images/images_tp/P.png",
+        imagePath: "images/images_tp/tplinuxusers.png",
         disponible: true
     },
     {
