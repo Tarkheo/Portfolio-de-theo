@@ -127,8 +127,8 @@ const tpsList = [
         numero: 16,
         titre: "LAB 1 : Révision Commandes Linux",
         description: "Commandes linux 2e annee",
-        pdfPath: "images/lab1.pdf",
-        imagePath: "images/images_tp/.png",
+        pdfPath: "images/LAB1_linux.pdf",
+        imagePath: "images/images_tp/lab1linux.png",
         disponible: true
     },
 ];
