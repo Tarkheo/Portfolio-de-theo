@@ -96,7 +96,7 @@ const tpsList = [
         titre: "Configuration Switch Cisco",
         description: "Packet Tracer",
         pdfPath: "images/switch_cisco.pdf",
-        imagePath: "images/images_tp/switch.jpeg",
+        imagePath: "images/images_tp/confswitch.jpg",
         disponible: true
     },
     {
