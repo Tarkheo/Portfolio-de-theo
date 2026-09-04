@@ -72,7 +72,7 @@ const tpsList = [
         titre: "Windows Permissions Utilisateurs",
         description: "Attribution des Permissions éléves & Administrateurs",
         pdfPath: "images/permissionsWindows.pdf",
-        imagePath: "images/images_tp/win.jpeg",
+        imagePath: "images/images_tp/winpermusers.png",
         disponible: true
     },
     {
