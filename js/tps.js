@@ -56,7 +56,7 @@ const tpsList = [
         titre: "TP Apache2",
         description: "Installer un serveur Http",
         pdfPath: "images/TP8.pdf",
-        imagePath: "images/images_tp/cmd1.jpeg",
+        imagePath: "images/images_tp/tpapache2.png",
         disponible: true
     },
     {
