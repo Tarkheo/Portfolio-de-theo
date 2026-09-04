@@ -8,7 +8,7 @@ const tpsList = [
         titre: "TP 1 - Commandes CMD",
         description: "Premiers pas avec l'invite de commandes Windows",
         pdfPath: "images/TP3.pdf",
-        imagePath: "images/images_tp/cmd1.jpeg",
+        imagePath: "images/images_tp/tp1.png",
         disponible: true
     },
     {
