@@ -24,7 +24,7 @@ const tpsList = [
         titre: "TP Bash",
         description: "Administration système et réseau",
         pdfPath: "images/TP4.2.pdf",
-        imagePath: "images/images_tp/cmd1.jpeg",
+        imagePath: "images/images_tp/tpbash.png",
         disponible: true
     },
     {
