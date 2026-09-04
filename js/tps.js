@@ -32,7 +32,7 @@ const tpsList = [
         titre: "TP Powershell",
         description: "",
         pdfPath: "images/TP5.pdf",
-        imagePath: "images/images_tp/powershell.jpeg",
+        imagePath: "images/images_tp/tppowershell.png",
         disponible: true
     },
     {
