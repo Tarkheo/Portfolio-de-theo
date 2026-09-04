@@ -112,7 +112,7 @@ const tpsList = [
         titre: "Commandes Linux",
         description: "Les commandes à connaitre",
         pdfPath: "images/commandes.pdf",
-        imagePath: "images/images_tp/P.png",
+        imagePath: "images/images_tp/commandeslinux.jpg",
         disponible: true
     },
     {
