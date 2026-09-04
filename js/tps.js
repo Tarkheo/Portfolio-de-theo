@@ -117,11 +117,11 @@ const tpsList = [
     },
     {
         numero: 15,
-        titre: "Commandes Windows",
-        description: "Les commandes à connaitre",
-        pdfPath: "images/Cmd_Window.pdf",
+        titre: "LAB 1 : Configuration Switch avec VLAN",
+        description: "Premier LAB Cisco BTS SIO 2",
+        pdfPath: "images/lab1.pdf",
         imagePath: "images/images_tp/win.jpeg",
-        disponible: false
+        disponible: true
     },
 ];
 
