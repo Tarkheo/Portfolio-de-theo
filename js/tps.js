@@ -77,9 +77,9 @@ const tpsList = [
     },
     {
         numero: 10,
-        titre: "Packet Tracer",
-        description: "Packet Tracer",
-        pdfPath: "images/TP_Cisco.pdf",
+        titre: "TP Packet Tracer",
+        description: "Configuration Switch & Wifi ",
+        pdfPath: "images/tpSwifi.png",
         imagePath: "images/images_tp/Cisco.jpeg",
         disponible: true
     },
