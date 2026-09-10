@@ -131,6 +131,14 @@ const tpsList = [
         imagePath: "images/images_tp/lab1linux.png",
         disponible: true
     },
+    {
+        numero: 17,
+        titre: "LAB Proxmox",
+        description: "Configuration d'une machine virtuelle avec l'os proxmox & installer un conteneur et les droits admin",
+        pdfPath: "images/lab_proxmox.pdf",
+        imagePath: "images/images_tp/proxmox.png",
+        disponible: true
+    },
 ];
 
 // ========================================
