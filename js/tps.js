@@ -139,6 +139,14 @@ const tpsList = [
         imagePath: "images/images_tp/proxmox.png",
         disponible: true
     },
+     {
+        numero: 18,
+        titre: "LAB Gestion Utilisateurs ",
+        description: "Gestion des users avec date d'expiration de mdp, création / suppression des users !",
+        pdfPath: "images/lab_userslinux.pdf",
+        imagePath: "images/images_tp/user.png",
+        disponible: true
+    },
 ];
 
 // ========================================
