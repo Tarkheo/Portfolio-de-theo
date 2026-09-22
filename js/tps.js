@@ -147,6 +147,14 @@ const tpsList = [
         imagePath: "images/images_tp/user.png",
         disponible: true
     },
+     {
+        numero: 19,
+        titre: "LAB Cisco Packet Tracer VLANS et Configuration Switch ",
+        description: "4 VLANS + communication inter-vlan avec trunk",
+        pdfPath: "images/LAB2_InfrastructureVlans.pdf",
+        imagePath: "images/images_tp/ciscovlan.png",
+        disponible: true
+    },
 ];
 
 // ========================================
