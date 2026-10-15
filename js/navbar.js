@@ -35,10 +35,19 @@
     '          <a href="#">Serveur NAS</a>',
     '        </div>',
     '      </li>',
-    '      <li><a href="technologie.html"><span class="nav-text">Veille</span></a></li>',
+
+    '      <li class="dropdown">',
+    '        <a href="#" class="dropbtn"><span class="nav-text">Veille</span><span class="nav-chevron"><svg class="lucide" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span></a>',
+    '        <div class="dropdown-content">',
+    '          <a href="veille1.html">Veille Sujet 1 (2026)</a>',
+    '          <a href="technologie.html">Veille Sujet 2 (2027)</a>',
+    '        </div>',
+    '      </li>',
+  
     '      <li><a href="contact.html"><span class="nav-text">Contact</span></a></li>',
     '      <li><a href="tp.html"><span class="nav-text">TPS</span></a></li>',
     '      <li><a href="competences.html"><span class="nav-text">Compétences</span></a></li>',
+
     '      <li class="dropdown">',
     '        <a href="#" class="dropbtn"><span class="nav-text">Stages</span><span class="nav-chevron"><svg class="lucide" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span></a>',
     '        <div class="dropdown-content">',
