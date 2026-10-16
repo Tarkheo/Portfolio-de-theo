@@ -155,6 +155,22 @@ const tpsList = [
         imagePath: "images/images_tp/ciscovlan.png",
         disponible: true
     },
+    {
+        numero: 20,
+        titre: "LAB Cisco Packet ACL  ",
+        description: "Autorisé pour certain postes l'accès au ping ",
+        pdfPath: "images/LAB2_InfrastructureVlans.pdf",
+        imagePath: "images/images_tp/acl.png",
+        disponible: true
+    },
+    {
+        numero: 21,
+        titre: "LAB NMAP  ",
+        description: "Scan du réseau , avec Windows , Debian  ",
+        pdfPath: "images/LAB2_InfrastructureVlans.pdf",
+        imagePath: "images/images_tp/nmap.png",
+        disponible: true
+    },
 ];
 
 // ========================================
