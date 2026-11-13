@@ -171,6 +171,22 @@ const tpsList = [
         imagePath: "images/nmap.png",
         disponible: true
     },
+     {
+        numero: 22,
+        titre: "LAB Pfsense  ",
+        description: "Découverte du pare-feu",
+        pdfPath: "images/pfsense.pdf",
+        imagePath: "images/pfsense.png",
+        disponible: true
+    },
+     {
+        numero: 23,
+        titre: "LAB Active Directory",
+        description: "Configuration du Active Directory",
+        pdfPath: "images/active_dir.pdf",
+        imagePath: "images/active_directory.png",
+        disponible: true
+    },
 ];
 
 // ========================================
