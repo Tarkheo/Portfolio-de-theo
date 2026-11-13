@@ -183,7 +183,7 @@ const tpsList = [
         numero: 23,
         titre: "LAB Active Directory",
         description: "Configuration du Active Directory",
-        pdfPath: "images/active_dir.pdf",
+        pdfPath: "images/active_directory.pdf",
         imagePath: "images/active_directory.png",
         disponible: true
     },
